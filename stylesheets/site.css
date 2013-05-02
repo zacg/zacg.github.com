@@ -1,7 +1,7 @@
 
 .landing-header {
 	height: 300px;
-	background-image: url(/images/new_hong_kong_night_skyline.jpg);
+	background-image: url(http://i.imgur.com/vCJhsdx.jpg);
 	
 	background-position: 50% 50%; 
 	color: gray;
@@ -15,14 +15,21 @@
 	
 	height: 100px;
 	/*font-size: 32px;*/
-          color: #344251;
+          /*color: #344251;
           text-shadow: 1px 1px 0px #bad3ed;
-          font-weight: bold;
+          font-weight: bold;*/
+/*	
+font-size:1.4em;
+color:#2e2e2e;
+text-shadow: 0px 1px 0px #ebebeb;*/
+color: #2C2929;
+/*text-shadow:0px 0px 0 rgb(218,218,218), -1px 0px 0 rgb(203,203,203), -2px 0px 0 rgb(187,187,187), -3px 0px 0 rgb(172,172,172), -4px 0px 0 rgb(156,156,156), -5px 0px 0 rgb(140,140,140), -6px 0px 5px rgba(0,0,0,0.5), -6px 0px 1px rgba(0,0,0,0.5);*/
 }
 
 .post-tile {
      background-color: #E0E0E0;
      padding: 5px;
+     padding-top:20px;
      height: 250px;
      border-radius: 10px 10px 10px 10px;
 }
@@ -35,3 +42,23 @@
 	padding-top: 10px;
 }
 
+.tile-heading-link{
+	font-size: 3em;
+	line-height:1.1em;
+	color:#2C2929;
+}
+
+.tile-heading-link:visited{
+	color:#2C2929;
+}
+
+
+.tile-header-wrapper{
+	background-color:rgba(255,255,204,0.4);
+}
+
+.tile-date{
+	vertical-align:bottom;
+        font-style:italic;
+	
+}

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: opencv | Zacs blog]]></title>
+  <title><![CDATA[Category: opencv | Zac's blog]]></title>
   <link href="http://zacg.github.io/blog/categories/opencv/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-05-02T03:18:36-04:00</updated>
+  <updated>2013-05-02T15:54:05-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -18,7 +18,57 @@
     <link href="http://zacg.github.io/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/"/>
     <updated>2013-05-02T00:45:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p><img src="http://zacg.github.io/images/content/OpenCV_Logo_with_text.png" alt="opencv logo" height="150px" width="150px" />
+<img src="http://zacg.github.io/images/content/ubuntu-logo.jpg" alt="ubuntu logo" height="150px" width="150px"/>
+<img src="http://zacg.github.io/images/content/eclipse-logo.png" alt="eclipse logo" height="150px" width="150px" /></p>
+
+<p>The following is a brief tutorial on getting Opencv setup with eclipse CDE on Ubuntu 12. I am using the bag of words c++ example in the samples folder as a benchmark. The same eclipse project settings can be re-used to build applications on top of opencv.</p>
+
+<ol>
+<li>
+<span style="line-height: 13px;">
+Start by getting package manager up to date
+</span>
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get upgrade
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</li>
+
+<li>Install opencv dependencies
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</li>
+
+<li>Grab the current stable release of opencv, at the time of this post it was: 2.4.5
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://github.com/Itseez/opencv/archive/2.4.5.tar.gz
+</span><span class='line'>tar -xvf OpenCV-2.4.5.tar.bz2
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</li>
+
+<li>Now we need to build a makefile with cmake if you are just messing around and aren't sure which modules to install you can run the following command which will include the most common ones including python bindings. Otherwise you can skip to 4a to select which options you want.
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<ol>
+
+<li>
+We will use the cmake gui to select which components to build, start by installing it:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get cmake-qt-gui
+</span><span class='line'>cmake-gui
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</li>
+    <li>You should now see a user interface with a checkbox list of opencv options. Select the directory you extracted the opencv source to for the source directory. Create a build directory for the output and select it in the gui.</li>
+</ol>
+</li>
+</ol>
+
 ]]></content>
   </entry>
   

@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Zacs blog</title>
+  <title>Zac's blog</title>
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="The following is a brief tutorial on getting Opencv setup with eclipse CDE on Ubuntu 12. I am using the bag of words c++ example in the samples &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -23,7 +22,7 @@
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Zacs blog" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="Zac's blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
@@ -40,7 +39,7 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">Zacs blog</a></h1>
+  <h1><a href="/">Zac's blog</a></h1>
   
     <h2>yet another software development blog.</h2>
   
@@ -93,12 +92,74 @@
 
 <time datetime="2013-05-02T00:45:00-04:00" pubdate data-updated="true">May 2<span>nd</span>, 2013</time>
         
+         | <a href="/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/#disqus_thread">Comments</a>
+        
       </p>
     
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><p><img src="/images/content/OpenCV_Logo_with_text.png" alt="opencv logo" height="150px" width="150px" />
+<img src="/images/content/ubuntu-logo.jpg" alt="ubuntu logo" height="150px" width="150px"/>
+<img src="/images/content/eclipse-logo.png" alt="eclipse logo" height="150px" width="150px" /></p>
+
+<p>The following is a brief tutorial on getting Opencv setup with eclipse CDE on Ubuntu 12. I am using the bag of words c++ example in the samples folder as a benchmark. The same eclipse project settings can be re-used to build applications on top of opencv.</p>
+
+<ol>
+<li>
+<span style="line-height: 13px;">
+Start by getting package manager up to date
+</span>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get upgrade
+</span></code></pre></td></tr></table></div></figure>
+
+</li>
+
+<li>Install opencv dependencies
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev
+</span></code></pre></td></tr></table></div></figure>
+
+</li>
+
+<li>Grab the current stable release of opencv, at the time of this post it was: 2.4.5
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://github.com/Itseez/opencv/archive/2.4.5.tar.gz
+</span><span class='line'>tar -xvf OpenCV-2.4.5.tar.bz2
+</span></code></pre></td></tr></table></div></figure>
+
+</li>
+
+<li>Now we need to build a makefile with cmake if you are just messing around and aren&#8217;t sure which modules to install you can run the following command which will include the most common ones including python bindings. Otherwise you can skip to 4a to select which options you want.
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+<ol>
+
+<li>
+We will use the cmake gui to select which components to build, start by installing it:
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get cmake-qt-gui
+</span><span class='line'>cmake-gui
+</span></code></pre></td></tr></table></div></figure>
+
+</li>
+    <li>You should now see a user interface with a checkbox list of opencv options. Select the directory you extracted the opencv source to for the source directory. Create a build directory for the output and select it in the gui.</li>
+</ol>
+</li>
+</ol>
+
 </div>
   
   
@@ -125,6 +186,35 @@
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/zacg">@zacg</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'zacg',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
 
 
 
@@ -141,6 +231,19 @@
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'zacg';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
