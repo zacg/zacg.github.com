@@ -1,0 +1,37 @@
+
+.landing-header {
+	height: 300px;
+	background-image: url(/images/new_hong_kong_night_skyline.jpg);
+	
+	background-position: 50% 50%; 
+	color: gray;
+	padding-top: 50px;
+
+}
+
+.landing-title {
+	background-color:rgba(255,255,204,0.4);
+	padding-left: 50px;
+	
+	height: 100px;
+	/*font-size: 32px;*/
+          color: #344251;
+          text-shadow: 1px 1px 0px #bad3ed;
+          font-weight: bold;
+}
+
+.post-tile {
+     background-color: #E0E0E0;
+     padding: 5px;
+     height: 250px;
+     border-radius: 10px 10px 10px 10px;
+}
+
+.landing-body{
+	background-color:black;
+}
+
+.tile-container{
+	padding-top: 10px;
+}
+
