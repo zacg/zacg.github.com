@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: opencv | Zacs blog]]></title>
+  <title><![CDATA[Category: opencv | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/opencv/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-05-03T02:31:44-04:00</updated>
+  <updated>2013-05-03T12:37:21-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -18,7 +18,22 @@
     <link href="http://zacg.github.io/blog/2013/05/03/fixing-opencv-xserver-error-with-cde/"/>
     <updated>2013-05-03T01:57:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/05/03/fixing-opencv-xserver-error-with-cde</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>When running your first opencv project with CDE you may experience the "cannot connect to x server" error when calling code that requires the opencv imageview or UI elements.</p>
+
+<p><img src="http://zacg.github.io/images/content/xhostservererror.png" alt="x server error" /></p>
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+<p>To fix simply set DISPLAY in your projects environment variables, make sure a file in your project is selected then goto run-> run configurations -> environment and add a display variable like the following:</p>
+
+<p><img src="http://zacg.github.io/images/content/cdeenvvariable.png" alt="x server error" /></p>
 ]]></content>
   </entry>
   
@@ -273,9 +288,7 @@ reference all the free modules for tesing just include
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
-
 </li>
-
 
 
 </ol>
