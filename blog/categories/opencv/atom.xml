@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: opencv | Zac's blog]]></title>
+  <title><![CDATA[Category: opencv | Zacs blog]]></title>
   <link href="http://zacg.github.io/blog/categories/opencv/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-05-02T15:54:05-04:00</updated>
+  <updated>2013-05-03T01:16:25-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -22,12 +22,12 @@
 <img src="http://zacg.github.io/images/content/ubuntu-logo.jpg" alt="ubuntu logo" height="150px" width="150px"/>
 <img src="http://zacg.github.io/images/content/eclipse-logo.png" alt="eclipse logo" height="150px" width="150px" /></p>
 
-<p>The following is a brief tutorial on getting Opencv setup with eclipse CDE on Ubuntu 12. I am using the bag of words c++ example in the samples folder as a benchmark. The same eclipse project settings can be re-used to build applications on top of opencv.</p>
+<p>The following is a brief tutorial on getting the opencv library setup with eclipse CDE on Ubuntu 12. The same eclipse project settings detailed in this tutorial can be re-used to build applicaions on top of opencv.</p>
 
 <ol>
 <li>
 <span style="line-height: 13px;">
-Start by getting package manager up to date
+Start by getting things up to date
 </span>
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -36,7 +36,7 @@ Start by getting package manager up to date
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 </li>
 
-<li>Install opencv dependencies
+<li>Install opencv dependencies so we can compile the opencv library
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev
 </span></code></pre></td></tr></table></div></figure></notextile></div>
@@ -52,22 +52,240 @@ Start by getting package manager up to date
 
 <li>Now we need to build a makefile with cmake if you are just messing around and aren't sure which modules to install you can run the following command which will include the most common ones including python bindings. Otherwise you can skip to 4a to select which options you want.
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE -D <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local
+</span><span class='line'>    -D <span class="nv">WITH_TBB</span><span class="o">=</span>ON -D <span class="nv">BUILD_NEW_PYTHON_SUPPORT</span><span class="o">=</span>ON -D <span class="nv">WITH_V4L</span><span class="o">=</span>ON
+</span><span class='line'>    -D <span class="nv">INSTALL_C_EXAMPLES</span><span class="o">=</span>ON -D <span class="nv">INSTALL_PYTHON_EXAMPLES</span><span class="o">=</span>ON
+</span><span class='line'>    -D <span class="nv">BUILD_EXAMPLES</span><span class="o">=</span>ON -D <span class="nv">WITH_QT</span><span class="o">=</span>ON -D <span class="nv">WITH_OPENGL</span><span class="o">=</span>ON ..
 </span></code></pre></td></tr></table></div></figure></notextile></div>
+
+If you chose the above generic build options continue to step 5.
+
 <ol>
 
+
 <li>
-We will use the cmake gui to select which components to build, start by installing it:
+We will use the cmake gui to select which components to include, start by installing it:
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get cmake-qt-gui
-</span><span class='line'>cmake-gui
+</span><span class='line'>sudo cmake-gui
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 </li>
-    <li>You should now see a user interface with a checkbox list of opencv options. Select the directory you extracted the opencv source to for the source directory. Create a build directory for the output and select it in the gui.</li>
+
+<li>A user interface dialog should appear. Select the directory you extraced the opencv source files to for the source directory. Create a new build direcory and select that in the gui as the build destination. Then click the configure button to the lower left, select "unix make files" for a generator, and "use native compilers" option.
+
+<img src="http://zacg.github.io/images/content/CmakeGui.png" alt="cmake gui" />
+</li>
+
+<li>
+The configuration process should populate the gui dialog with the available components, tick off desired ones, hover over the right column with the mouse cursor to see a more detailed description.
+</li>
+
+<li>
+Click generate, cmake should populate the build directory with the necessary make files. Check the output window to ensure there were no errors.
+</li>
+
 </ol>
 </li>
+
+<li>
+ Navigate to your build directory in a terminal and make. Then install.
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>release
+</span><span class='line'>make
+</span><span class='line'>sudo make install
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</li>
+
+<li>
+To configure the dynamic linker we need to add a line to the end of ld.so.conf.d. The following command will open the file in a text editor (the file may be blank, that is fine).
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo gedit /etc/ld.so.conf.d/opencv.conf
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+Add the line:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/lib
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+and save it.
+
+</li>
+
+<li>
+To configure bash.bashrc:
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo gedit /etc/bash.bashrc
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+And add:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="nv">$PKG_CONFIG_PATH</span>:/usr/local/lib/pkgconfig
+</span><span class='line'><span class="nb">export </span>PKG_CONFIG_PATH
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</li>
+
+<li>
+Logout/restart before moving on to eclipse installation.
+</li>
+
+<li>
+If you don't already have eclipse with cde installed do that first with the following command
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install eclipse eclipse-cdt g++
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</li>
+
+<li>
+Open eclipse and create a new empty c++ project using the linux GCC toolchain
+
+<img src="http://zacg.github.io/images/content/CdeNewProj.png" alt="cmake gui" />
+</li>
+
+<li>
+Next we need to add some code to the project so we have something to build/run. I am goint to take the bag of words
+example out of the /samples/cpp/ directory of the opencv project. Simple copy/paste the file into your new project.
+</li>
+
+<li>
+Next we need to tell eclipse what libraries to include with the project and where to find them. Goto project -> properties on the file menu or just right click on the project in the projects pane and click on properties. A dialog should appear, click on C/C++ Build -> settings then click on includes.
+
+Add the following to the include paths list <strong>Noted: if you need to compile projects with the older c++ api, you would replace opencv2 with opencv</strong>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/include/opencv2
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+Next goto the GC++ Linker tab and add the following to the library search paths list:
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/lib
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+then add the following libs to the libary list
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>opencv_core
+</span><span class='line'>opencv_nonfree
+</span><span class='line'>opencv_imgproc
+</span><span class='line'>opencv_highgui
+</span><span class='line'>opencv_ml
+</span><span class='line'>opencv_video
+</span><span class='line'>opencv_features2d
+</span><span class='line'>opencv_calib3d
+</span><span class='line'>opencv_objdetect
+</span><span class='line'>opencv_contrib
+</span><span class='line'>opencv_legacy
+</span><span class='line'>opencv_flann
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+for other projects you can remove uneceoctopress spell checkingssary libs or add dependent other dependant ones.
+</li>
+
+
+<li>
+ 
+These project settings should now allow you to compile projects referencing opencv. Goto project -> build the project should build. Then run it, if you are using the bag of words example from the samples folder you should see console output similar to the following:
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>This program shows how to <span class="nb">read </span>in, train on and produce <span class="nb">test </span>results <span class="k">for </span>the PASCAL VOC <span class="o">(</span>Visual Object Challenge<span class="o">)</span> data.
+</span><span class='line'>It shows how to use detectors, descriptors and recognition methods
+</span><span class='line'>Using OpenCV version %s
+</span><span class='line'>2.4.5
+</span><span class='line'>Call:
+</span><span class='line'>Format:
+</span><span class='line'> .//home/zac/dev/workspace2/Test2/Debug/Test2 <span class="o">[</span>VOC path<span class="o">]</span> <span class="o">[</span>result directory<span class="o">]</span>
+</span><span class='line'>       or:
+</span><span class='line'> .//home/zac/dev/workspace2/Test2/Debug/Test2 <span class="o">[</span>VOC path<span class="o">]</span> <span class="o">[</span>result directory<span class="o">]</span> <span class="o">[</span>feature detector<span class="o">]</span> <span class="o">[</span>descriptor extractor<span class="o">]</span> <span class="o">[</span>descriptor matcher<span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>Input parameters:
+</span><span class='line'><span class="o">[</span>VOC path<span class="o">]</span>             Path to Pascal VOC data <span class="o">(</span>e.g. /home/my/VOCdevkit/VOC2010<span class="o">)</span>. Note: VOC2007-VOC2010 are supported.
+</span><span class='line'><span class="o">[</span>result directory<span class="o">]</span>     Path to result diractory. Following folders will be created in <span class="o">[</span>result directory<span class="o">]</span>:
+</span><span class='line'>                         bowImageDescriptors - to store image descriptors,
+</span><span class='line'>                         svms - to store trained svms,
+</span><span class='line'>                         plots - to store files <span class="k">for </span>plots creating.
+</span><span class='line'><span class="o">[</span>feature detector<span class="o">]</span>     Feature detector name <span class="o">(</span>e.g. SURF, FAST...<span class="o">)</span> - see createFeatureDetector<span class="o">()</span> <span class="k">function </span>in detectors.cpp
+</span><span class='line'>                         Currently 12/2010, this is FAST, STAR, SIFT, SURF, MSER, GFTT, HARRIS
+</span><span class='line'><span class="o">[</span>descriptor extractor<span class="o">]</span> Descriptor extractor name <span class="o">(</span>e.g. SURF, SIFT<span class="o">)</span> - see createDescriptorExtractor<span class="o">()</span> <span class="k">function </span>in descriptors.cpp
+</span><span class='line'>                         Currently 12/2010, this is SURF, OpponentSIFT, SIFT, OpponentSURF, BRIEF
+</span><span class='line'><span class="o">[</span>descriptor matcher<span class="o">]</span>   Descriptor matcher name <span class="o">(</span>e.g. BruteForce<span class="o">)</span> - see createDescriptorMatcher<span class="o">()</span> <span class="k">function </span>in matchers.cpp
+</span><span class='line'>                         Currently 12/2010, this is BruteForce, BruteForce-L1, FlannBased, BruteForce-Hamming, BruteForce-HammingLUT
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+Tip: the bag of words example references each module individually, if you want to quickly
+reference all the free modules for tesing just include 
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &quot;opencv.hpp&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+
+</li>
+
+
+
 </ol>
+
+
+
+
+<p>
+References:
+<br>
+<a href="http://docs.opencv.org/doc/tutorials/introduction/linux_eclipse/linux_eclipse.html">http://docs.opencv.org/doc/tutorials/introduction/linux_eclipse/linux_eclipse.html</a>
+
+<br>
+<a href="http://www.samontab.com/web/2012/06/installing-opencv-2-4-1-ubuntu-12-04-lts/">http://www.samontab.com/web/2012/06/installing-opencv-2-4-1-ubuntu-12-04-lts/</a>
+
+
+</p>
+
+
 
 ]]></content>
   </entry>
