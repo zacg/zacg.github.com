@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Reading | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/reading/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2013-05-29T03:45:00-04:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Blogs worth reading]]></title>
+    <link href="http://zacg.github.io/blog/2013/05/03/blogs-i-recommend/"/>
+    <updated>2013-05-03T22:04:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/05/03/blogs-i-recommend</id>
+    <content type="html"><![CDATA[<p>The blogging engine I am using dosen't have a "following" function so I am using this post to list the blogs I follow, I recommend them when people ask me where I learn various development related topics:</p>
+
+<ul>
+<li>
+<a href="https://msmvps.com/blogs/jon_skeet/" >John Skeets blog</a>
+</li>
+<li>
+<a href="http://ayende.com/blog" > Ayende Rahien's blog</a>
+</li>
+<li>
+<a href="http://tomasp.net/blog" >Tomas Petricek's blog</a>
+</li>
+<li>
+<a href="http://trelford.com/blog/" > Phil Trelford's blog</a>
+</li>
+<li>
+<a href="http://martinfowler.com/" > Martin Fowler</a>
+</li>
+<li>
+<a href="http://blogs.msdn.com/b/dsyme/" > Don Syme</a>
+</li>
+<li>
+<a href="http://ericlippert.com/" >Eric Lippert</a>
+</li>
+<li>
+<a href="http://computer-vision-talks.com/" > Computer Vision Talks</a>
+</li>
+<li>
+<a href="" ></a>
+</li>
+</ul>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

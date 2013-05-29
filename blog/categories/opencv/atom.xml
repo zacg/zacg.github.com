@@ -4,7 +4,7 @@
   <title><![CDATA[Category: opencv | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/opencv/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-05-03T12:37:21-04:00</updated>
+  <updated>2013-05-29T03:45:00-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -14,10 +14,79 @@
 
   
   <entry>
+    <title type="html"><![CDATA[setup opencv project with qt creator on linux]]></title>
+    <link href="http://zacg.github.io/blog/2013/05/09/configuring-opencv-project-with-qt-creator-on-linux/"/>
+    <updated>2013-05-09T02:08:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/05/09/configuring-opencv-project-with-qt-creator-on-linux</id>
+    <content type="html"><![CDATA[<p>The following tutorial will show you how to setup a console project in qt creator for opencv based projects. It assumes you have already installed the opencv library.</p>
+
+<p>If not installed, install qt creator</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get qtcreator
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Open qt creator</p>
+
+<p>create a new console application project</p>
+
+<p>Add following lines to .pro file</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>INCLUDEPATH +<span class="o">=</span> /usr/local/include/opencv2/&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;LIBS +<span class="o">=</span> -L /usr/local/lib/
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_core
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_nonfree
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_imgproc
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_highgui
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_ml
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_video
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_features2d
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_calib3d
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_objdetect
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_contrib
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_legacy
+</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_flann
+</span><span class='line'>LIBS +<span class="o">=</span> -lboost_system
+</span><span class='line'>LIBS +<span class="o">=</span> -lboost_filesystem
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>By default qt creator will add some message pump related code to your main.cpp file, this can be commented out if you are just writing a console application (leaving it unmodified may prevent you from seeing output in the xterm console window)</p>
+
+<p>If you are using ubuntu you will probably have to configure the x-term environment settings.</p>
+
+<p>Goto: Tools -> options -> environment settings</p>
+
+<p>Set the terminal field to the following:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/bin/xterm -e
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Fixing opencv xserver error with CDE]]></title>
-    <link href="http://zacg.github.io/blog/2013/05/03/fixing-opencv-xserver-error-with-cde/"/>
-    <updated>2013-05-03T01:57:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2013/05/03/fixing-opencv-xserver-error-with-cde</id>
+    <link href="http://zacg.github.io/blog/2013/05/05/fixing-opencv-xserver-error-with-cde/"/>
+    <updated>2013-05-05T01:57:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/05/05/fixing-opencv-xserver-error-with-cde</id>
     <content type="html"><![CDATA[<p>When running your first opencv project with CDE you may experience the "cannot connect to x server" error when calling code that requires the opencv imageview or UI elements.</p>
 
 <p><img src="http://zacg.github.io/images/content/xhostservererror.png" alt="x server error" /></p>
