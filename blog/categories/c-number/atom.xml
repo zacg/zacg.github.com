@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: c# | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/c-number/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2013-06-01T14:28:51-04:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[jqGrid Inline Editing with asp.net MVC]]></title>
+    <link href="http://zacg.github.io/blog/2013/06/01/inline-editing-for-jqgrid-with-asp-dot-net-mvc/"/>
+    <updated>2013-06-01T13:54:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/06/01/inline-editing-for-jqgrid-with-asp-dot-net-mvc</id>
+    <content type="html"><![CDATA[<p>
+I am a frequent user of the popular jQuery plugin jqGrid. It comes with a large feature set for viewing and manipulating tabluar data in the browser. When I am working on an asp.net mvc projects I work with it via Robin van der Knaap's lightweight html helper library: <a href="https://github.com/robinvanderknaap/MvcJqGrid">https://github.com/robinvanderknaap/MvcJqGrid</a> . It has strongly typed html helpers and a handy model binder for handling async grid functions.
+</p>
+
+
+
+
+<p>
+Recently I required jqGrid's <a href="http://www.trirand.com/jqgridwiki/doku.php?id=wiki:inline_editing">inline editing feature</a> which is not supported in the MvcJqGrid library so via the power of github I went ahead and added it <a href="https://github.com/zacg/MvcJqGrid">https://github.com/zacg/MvcJqGrid</a>. 
+</p>
+
+
+
+
+<p>
+The syntax follows the exisitng MvcJqGrid builder pattern and is very straightforward:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="p">&lt;/</span><span class="n">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span><span class="p">&gt;</span><span class="err">@</span><span class="p">(</span><span class="n">Html</span><span class="p">.</span><span class="n">Grid</span><span class="p">(</span><span class="s">&quot;editing&quot;</span><span class="p">)&lt;/</span><span class="n">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">pre</span><span class="p">&gt;&lt;</span><span class="n">code</span><span class="p">&gt;.</span><span class="n">SetCaption</span><span class="p">(</span><span class="s">&quot;Inline Editing&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">.</span><span class="n">AddColumn</span><span class="p">(</span><span class="k">new</span> <span class="n">Column</span><span class="p">(</span><span class="s">&quot;CustomerId&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">SetLabel</span><span class="p">(</span><span class="s">&quot;Id&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">SetCustomFormatter</span><span class="p">(</span><span class="s">&quot;buttonize&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="p">.</span><span class="n">AddColumn</span><span class="p">(</span><span class="k">new</span> <span class="n">Column</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">SetFormatter</span><span class="p">(</span><span class="n">Formatters</span><span class="p">.</span><span class="n">Email</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">SetEditable</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">SetEditType</span><span class="p">(</span><span class="n">EditType</span><span class="p">.</span><span class="n">Text</span><span class="p">))</span>
+</span><span class='line'><span class="p">.</span><span class="n">AddColumn</span><span class="p">(</span><span class="k">new</span> <span class="n">Column</span><span class="p">(</span><span class="s">&quot;Company&quot;</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">.</span><span class="n">SetEditable</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">.</span><span class="n">SetEditType</span><span class="p">(</span><span class="n">MvcJqGrid</span><span class="p">.</span><span class="n">Enums</span><span class="p">.</span><span class="n">EditType</span><span class="p">.</span><span class="n">Select</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">.</span><span class="n">SetEditOptions</span><span class="p">(</span><span class="k">new</span> <span class="n">EditOptions</span><span class="p">()</span> <span class="p">{</span> <span class="n">Value</span> <span class="p">=</span> <span class="s">&quot;0:Twitter; 1:Google; 2:Microsoft; 3:Cisco&quot;</span> <span class="p">}))</span>
+</span><span class='line'><span class="p">.</span><span class="n">AddColumn</span><span class="p">(</span><span class="k">new</span> <span class="n">Column</span><span class="p">(</span><span class="s">&quot;EmailAddress&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">SetFormatter</span><span class="p">(</span><span class="n">Formatters</span><span class="p">.</span><span class="n">Email</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">SetEditable</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">SetEditType</span><span class="p">(</span><span class="n">EditType</span><span class="p">.</span><span class="n">Text</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">.</span><span class="n">SetEditRules</span><span class="p">(</span><span class="k">new</span> <span class="n">EditRules</span><span class="p">()</span> <span class="p">{</span> <span class="n">Email</span> <span class="p">=</span> <span class="k">true</span> <span class="p">}))</span>
+</span><span class='line'><span class="p">.</span><span class="n">AddColumn</span><span class="p">(</span><span class="k">new</span> <span class="n">Column</span><span class="p">(</span><span class="s">&quot;Last Modified&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="p">.</span><span class="n">AddColumn</span><span class="p">(</span><span class="k">new</span> <span class="n">Column</span><span class="p">(</span><span class="s">&quot;Telephone&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="p">.</span><span class="n">SetUrl</span><span class="p">(</span><span class="n">Url</span><span class="p">.</span><span class="n">Action</span><span class="p">(</span><span class="s">&quot;GridDataBasic&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="p">.</span><span class="n">SetAutoWidth</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
+</span><span class='line'><span class="p">.</span><span class="n">SetRowNum</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+</span><span class='line'><span class="p">.</span><span class="n">SetRowList</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">10</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">20</span><span class="p">,</span> <span class="m">50</span> <span class="p">})</span>
+</span><span class='line'><span class="p">.</span><span class="n">SetViewRecords</span><span class="p">(</span><span class="k">true</span><span class="p">)</span>
+</span><span class='line'><span class="p">.</span><span class="n">SetPager</span><span class="p">(</span><span class="s">&quot;pager&quot;</span><span class="p">))</span>
+</span><span class='line'><span class="p">&lt;/</span><span class="n">code</span><span class="p">&gt;&lt;/</span><span class="n">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">script</span> <span class="n">type</span><span class="p">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>
+</span><span class='line'>    <span class="n">function</span> <span class="nf">buttonize</span><span class="p">(</span><span class="n">cellvalue</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">rowobject</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="err">&#39;</span><span class="p">&lt;</span><span class="n">input</span> <span class="n">type</span><span class="p">=</span><span class="s">&quot;button&quot;</span> <span class="k">value</span><span class="p">=</span><span class="s">&quot;Edit&quot;</span> <span class="n">onclick</span><span class="p">=</span><span class="s">&quot;edit(&#39; + options.rowId + &#39;)&quot;</span><span class="p">&gt;</span><span class="err">&#39;</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="n">function</span> <span class="nf">edit</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="err">$</span><span class="p">(</span><span class="s">&quot;#editing&quot;</span><span class="p">).</span><span class="n">jqGrid</span><span class="p">(</span><span class="s">&quot;editRow&quot;</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">&lt;/</span><span class="n">script</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I have submitted a pull request for my additions so it will become part of the core library shortly, if you can't wait that long just clone my fork here: <a href="https://github.com/zacg/MvcJqGrid">https://github.com/zacg/MvcJqGrid</a></p>
+]]></content>
+  </entry>
+  
+</feed>

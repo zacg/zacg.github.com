@@ -1,7 +1,7 @@
 
 .landing-header {
 	height: 300px;
-	background-image: url(/images/newzealand.jpg);
+	background-image: url(/images/new_hong_kong_night_skyline.jpg);
 	
 	background-position: 50% 50%; 
 	color: gray;
@@ -64,7 +64,7 @@ color: #2C2929;
 }
 
 header[role="banner"] {
-	background-image: url(/images/newzealand.jpg) !important;
+	background-image: url(/images/new_hong_kong_night_skyline.jpg) !important;
 	color: red !important;
 	background-position: 50% 50% !important; 	
 }

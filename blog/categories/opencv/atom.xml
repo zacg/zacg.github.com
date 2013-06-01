@@ -4,7 +4,7 @@
   <title><![CDATA[Category: opencv | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/opencv/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-05-29T03:45:00-04:00</updated>
+  <updated>2013-06-01T14:28:51-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -83,7 +83,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Fixing opencv xserver error with CDE]]></title>
+    <title type="html"><![CDATA[Fixing Opencv xserver error with Eclipse CDE]]></title>
     <link href="http://zacg.github.io/blog/2013/05/05/fixing-opencv-xserver-error-with-cde/"/>
     <updated>2013-05-05T01:57:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/05/05/fixing-opencv-xserver-error-with-cde</id>
