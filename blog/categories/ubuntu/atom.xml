@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ubuntu | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-06-01T14:28:51-04:00</updated>
+  <updated>2013-06-01T23:02:03-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -12,6 +12,105 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Nested Folders in qt Creator]]></title>
+    <link href="http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator/"/>
+    <updated>2013-06-01T22:21:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator</id>
+    <content type="html"><![CDATA[<p>
+At first glance qt creator seems to be a feature rich ide however it still lacks many basic features such as being able to add sub folders for code to projects through the project explorer window. The following tutorial demonstrates how to get around the ide limitation by adding the folders manually.
+</p>
+
+
+
+
+<p>
+The goal is to achive the below folder strucutre, project being the root, and "ModuleA" being the folder we need to add.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;--Project
+</span><span class='line'>--/ModuleA/
+</span><span class='line'>----a.cpp
+</span><span class='line'>----a.h
+</span><span class='line'>----b.cpp
+</span><span class='line'>----b.h
+</span><span class='line'>--main.cpp&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Start by navigating to the projects root directory, and create a new folder:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> mkdir ModuleA
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Create a new file inside named "modulea.pri". If you are going to copy existing files into this new folder you need to add them to the pri file. (Adding new files can be done through the qt creator gui once the project is configured properly)</p>
+
+<p>Note the path names must be relative from the project root</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>title:ModuleA.pri </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;SOURCES +<span class="o">=</span> ModuleA/a.cpp <span class="se">\&lt;</span>/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;ModuleA/b.cpp <span class="se">\</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;HEADERS +<span class="o">=</span> ModuleA/a.h <span class="se">\&lt;</span>/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;ModuleA/b.h <span class="se">\</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now we need to include the new .pri file for the folder in the project configuration. Open up the .pro file located in the project root directory and add the following line:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>title:Project.pro </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;include<span class="o">(</span>ModuleA/ModuleA.pri<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Reload the project, the new ModuleA folder should now be visible as a subfolder in your main project. Right clicking on it will give you the option to add new files. Simply repeat the above process for each new sub folder you wish to add.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[setup opencv project with qt creator on linux]]></title>

@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="I am a frequent user of the popular jQuery plugin jqGrid. It comes with a large feature set for viewing and manipulating tabluar data in the browser &hellip;">
+  <meta name="description" content="At first glance qt creator seems to be a feature rich ide however it still lacks many basic features such as being able to add sub folders for code &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,108 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/01/nested-folders-in-qt-creator/">Nested Folders in Qt Creator</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-01T22:21:00-04:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/01/nested-folders-in-qt-creator/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+At first glance qt creator seems to be a feature rich ide however it still lacks many basic features such as being able to add sub folders for code to projects through the project explorer window. The following tutorial demonstrates how to get around the ide limitation by adding the folders manually.
+</p>
+
+
+
+
+<p>
+The goal is to achive the below folder strucutre, project being the root, and &#8220;ModuleA&#8221; being the folder we need to add.
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>--Project
+</span><span class='line'>--/ModuleA/
+</span><span class='line'>----a.cpp
+</span><span class='line'>----a.h
+</span><span class='line'>----b.cpp
+</span><span class='line'>----b.h
+</span><span class='line'>--main.cpp
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Start by navigating to the projects root directory, and create a new folder:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> mkdir ModuleA
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create a new file inside named &#8220;modulea.pri&#8221;. If you are going to copy existing files into this new folder you need to add them to the pri file. (Adding new files can be done through the qt creator gui once the project is configured properly)</p>
+
+<p>Note the path names must be relative from the project root</p>
+
+<figure class='code'><figcaption><span>title:ModuleA.pri </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>SOURCES +<span class="o">=</span> ModuleA/a.cpp <span class="se">\</span>
+</span><span class='line'>    ModuleA/b.cpp <span class="se">\</span>
+</span><span class='line'>
+</span><span class='line'>HEADERS +<span class="o">=</span> ModuleA/a.h <span class="se">\</span>
+</span><span class='line'>    ModuleA/b.h <span class="se">\</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we need to include the new .pri file for the folder in the project configuration. Open up the .pro file located in the project root directory and add the following line:</p>
+
+<figure class='code'><figcaption><span>title:Project.pro </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>include<span class="o">(</span>ModuleA/ModuleA.pri<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reload the project, the new ModuleA folder should now be visible as a subfolder in your main project. Right clicking on it will give you the option to add new files. Simply repeat the above process for each new sub folder you wish to add.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -789,6 +891,10 @@ References:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/01/nested-folders-in-qt-creator/">Nested Folders in qt Creator</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/01/inline-editing-for-jqgrid-with-asp-dot-net-mvc/">jqGrid Inline Editing with asp.net MVC</a>
       </li>
     
@@ -802,10 +908,6 @@ References:
     
       <li class="post">
         <a href="/blog/2013/05/03/blogs-i-recommend/">Blogs worth reading</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/">Installing opencv 2.4.5 on Ubuntu 12 with Eclipse CDE</a>
       </li>
     
   </ul>
