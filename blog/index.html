@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="At first glance qt creator seems to be a feature rich ide however it still lacks many basic features such as being able to add sub folders for code &hellip;">
+  <meta name="description" content="Go is a modern programming language that came out of Google. It is: staticly typed, garbage collected, and compiled. Recently while working on a GO &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,356 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig/">Calling C++ Code From Go With SWIG</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-06T22:51:00-04:00" pubdate data-updated="true">Jun 6<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+
+Go is a modern programming language that came out of Google. It is: staticly typed, garbage collected, and compiled. Recently while working on a GO based project I needed to use some functionality from another large C++ library. The librarys size and complexity made re-writing it in GO unfeasible. After some research I decided to use the popular SWIG framework to enable interop between my two projects.  
+
+</p>
+
+
+
+
+<p>
+The following is a brief tutorial to guide you through configuring SWIG with Go.
+</p>
+
+
+
+
+<p>
+Start by installing GO and SWIG if not already installed
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install golang
+</span><span class='line'>sudo apt-get install swig
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Once everything in installed the first step is to define a module which will tell SWIG tool what code in the C++ project to expose in the resulting GO package. We&#8217;ll assume your project is object oriented with cpp/header files for each class, if this is the case we can just include the desired header files in our SWIG module.
+</p>
+
+
+
+
+<p>
+ We will pretend our C++ project is called &#8220;simplelib&#8221; and contains the following files:
+<p>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>simpleclass.h
+</span><span class='line'>simpleclass.cpp
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+We will add a module file called <i>simplelib.swig</i>. Inside we include the simpleclass.h header, this will instruct the SWIG tool to generate wrapping code for this class allowing us to use it in GO.
+</p>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">%</span><span class="n">module</span> <span class="n">simplelib</span>  <span class="c1">//name of the resulting GO package</span>
+</span><span class='line'><span class="o">%</span><span class="p">{</span>
+</span><span class='line'><span class="cp">#include &quot;simpleclass.h&quot;</span>
+</span><span class='line'><span class="o">%</span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+If your wrapped class(es) are simple and use primitive types the above swig file should suffice, SWIG will translate the following primitive types to the specified go types
+</p>
+
+<table BORDER summary="Go primitive type mappings">
+<tr>
+<td><b>C/C++ type</b></td>
+<td><b>Go type</b></td>
+</tr>
+
+<tr>
+<td>bool</td>
+<td>bool</td>
+</tr>
+
+<tr>
+<td>char</td>
+<td>byte</td>
+</tr>
+
+<tr>
+<td>signed char</td>
+<td>int8</td>
+</tr>
+
+<tr>
+<td>unsigned char</td>
+<td>byte</td>
+</tr>
+
+<tr>
+<td>short</td>
+<td>int16</td>
+</tr>
+
+<tr>
+<td>unsigned short</td>
+<td>uint16</td>
+</tr>
+
+<tr>
+<td>int</td>
+<td>int</td>
+</tr>
+
+<tr>
+<td>unsigned int</td>
+<td>uint</td>
+</tr>
+
+<tr>
+<td>long</td>
+<td>int32 or int64, depending on <tt>-long-type-size</tt></td>
+</tr>
+
+<tr>
+<td>unsigned long</td>
+<td>uint32 or uint64, depending on <tt>-long-type-size</tt></td>
+</tr>
+
+<tr>
+<td>long long</td>
+<td>int64</td>
+</tr>
+
+<tr>
+<td>unsigned long long</td>
+<td>uint64</td>
+</tr>
+
+<tr>
+<td>float</td>
+<td>float32</td>
+</tr>
+
+<tr>
+<td>double</td>
+<td>float64</td>
+</tr>
+
+<tr>
+<td>char *<br>char []</td>
+<td>string</td>
+</tr>
+
+</table>
+
+<br/>
+
+<p>
+If your target code contains non-primitive types you have a bit more work todo. SWIG includes headers to help with common non primitive types like string and vector from the std lib. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses string and vectors from std might look like the following:
+</p>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">%</span><span class="n">module</span> <span class="n">simplelib</span>
+</span><span class='line'><span class="o">%</span><span class="p">{</span>
+</span><span class='line'><span class="cp">#include &quot;simpleclass.h&quot;</span>
+</span><span class='line'><span class="o">%</span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">typemaps</span><span class="p">.</span><span class="n">i</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;std_string.i&quot;</span>
+</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;std_vector.i&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// This will create 2 wrapped types in Go called</span>
+</span><span class='line'><span class="c1">// &quot;StringVector&quot; and &quot;ByteVector&quot; for their respective</span>
+</span><span class='line'><span class="c1">// types.</span>
+</span><span class='line'><span class="k">namespace</span> <span class="n">std</span> <span class="p">{</span>
+</span><span class='line'>   <span class="o">%</span><span class="k">template</span><span class="p">(</span><span class="n">StringVector</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span class='line'>   <span class="o">%</span><span class="k">template</span><span class="p">(</span><span class="n">ByteVector</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<br/>
+<br/>
+
+<p>
+The following definitions are included with the SWIG library, go <a href="http://www.swig.org/Doc1.3/Library.html#Library_stl_cpp_library">here for full reference</a>
+</p>
+
+<table BORDER summary="SWIG C++ library files">
+<tr VALIGN=TOP>
+<td><b>C++ class</b></td>
+<td><b>C++ Library file</b></td>
+<td><b>SWIG Interface library file</b></td>
+</tr>
+
+<tr> <td>std::deque</td>           <td>deque</td>             <td>std_deque.i</td> </tr>
+<tr> <td>std::list</td>           <td>list</td>             <td>std_list.i</td> </tr>
+<tr> <td>std::map</td>           <td>map</td>             <td>std_map.i</td> </tr>
+<tr> <td>std::pair</td>           <td>utility</td>             <td>std_pair.i</td> </tr>
+<tr> <td>std::set</td>           <td>set</td>             <td>std_set.i</td> </tr>
+<tr> <td>std::string</td>           <td>string</td>             <td>std_string.i</td> </tr>
+<tr> <td>std::vector</td>           <td>vector</td>             <td>std_vector.i</td> </tr>
+
+</table>
+
+
+<br/>
+<br/>
+<p>
+Next we need to generate the necessary C++ wrapper code to allow Go to bind to it.
+</p>
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /project/src/
+</span><span class='line'>SWIG -go -c++ simplelib.swig
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+<p>
+The above SWIG command should generate 2 new files in your project directory. Your project directory should now look something like the following:
+</p>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>simpleclass.h
+</span><span class='line'>simpleclass.cpp
+</span><span class='line'>simplelib.swig
+</span><span class='line'>simplelib.go
+</span><span class='line'>simplelib.cxx
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>
+Simplelib.cxx is the c++ wrapper containing the necessary code hooks to interop with GO, simplelib.go is the GO code stub for the resulting GO package. We now need to add the simplelib.cxx file to the C++ project and build with the projects C++ compiler (I have only tested this process with GCC). Simply add it to your makefile or build script.
+</p>
+
+<p>
+Once the C++ project has been built with necessary SWIG code we can install it as a GO package. First if you haven&#8217;t setup your GOPATH go ahead and do that. Copy the built C++ code and go file into your gopaths pacakge src directory. 
+</p>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /go/src/simplelib/
+</span><span class='line'>go install
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+<p>
+If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linx distro>/
+</p>
+
+<p>
+Thats it! you should now be able to import &#8220;simplelib&#8221; in your go projects and call the related C++ code.
+</p>
+
+<h3>Setting up Build Scripts</h3>
+
+<p>
+Because building Go packages requires the code to be in a special path referenced by the GOPATH, I script out a &#8220;release&#8221; build process for my c++ project that does the necessary pre/post build steps above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for use. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file. To recap the steps required are:
+</p>
+
+<ol>
+<li>Run SWIG tool (generate wrapper code) </li>
+<li>Compile C++ project (including new wrapper code)</li>
+<li>Copy the built C++ files and the GO wrapper generated in step 1 to a directory in your go path</li>
+<li>Run Go install to install the new go package</li>
+</ol>
+
+<br/>
+
+<p>
+This tutorial has shown you how to wrap simple classes. Feel free to leave your comments below.
+</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -891,6 +1241,10 @@ References:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig/">Calling C++ code from Go with SWIG</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/06/01/nested-folders-in-qt-creator/">Nested Folders in qt Creator</a>
       </li>
     
@@ -906,8 +1260,31 @@ References:
         <a href="/blog/2013/05/05/fixing-opencv-xserver-error-with-cde/">Fixing Opencv xserver error with Eclipse CDE</a>
       </li>
     
+  </ul>
+</section>
+
+<section>
+  <h1>Upcoming Posts</h1>
+  <ul id="upcoming_posts">
+    
       <li class="post">
-        <a href="/blog/2013/05/03/blogs-i-recommend/">Blogs worth reading</a>
+        <a>Calling C++ code from Go with SWIG</a>
+      </li>
+    
+      <li class="post">
+        <a>Nested Folders in qt Creator</a>
+      </li>
+    
+      <li class="post">
+        <a>jqGrid Inline Editing with asp.net MVC</a>
+      </li>
+    
+      <li class="post">
+        <a>setup opencv project with qt creator on linux</a>
+      </li>
+    
+      <li class="post">
+        <a>Fixing Opencv xserver error with Eclipse CDE</a>
       </li>
     
   </ul>
