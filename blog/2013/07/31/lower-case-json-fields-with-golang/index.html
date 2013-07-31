@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Eclipse - Zac Gross</title>
+  <title>Lower Case JSON Fields with Golang - Zac Gross</title>
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="Category: Eclipse">
+  <meta name="description" content="The base GO libraries provide a handy function for marshaling structs into JSON. I recently came across an issue when writing webservices in GO for &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zacg.github.ioblog/categories/eclipse">
+  <link rel="canonical" href="http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -79,50 +79,137 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Eclipse</h1>
+    
+      <h1 class="entry-title">Lower Case JSON Fields With Golang</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-31T14:19:00-04:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
+
+
+<div class="entry-content"><p>
+    The base GO libraries provide a handy function for marshaling structs into JSON. I recently came across an issue when writing webservices in GO for an existing javascript client. The problem was the client expected the JSON data to have field names starting with lowercase letters. GO&#8217;s naming convention is obviously going to make all struct fields uppercase by default as they need to be exported. I ended up copying the JSON marshaler code from GO&#8217;s library and modifiying it with a new paramater that will lowercase JSON field names when set. Because GO isn&#8217;t on github and I am strapped for time I just copied the code into a new util namespace and made the modifications as a couple of other gophers in #go-nuts were interested in using it.
+</p>
 
 
 
-  
-  <h2>2013</h2>
 
-<article>
-  
-<h1><a href="/blog/2013/05/05/fixing-opencv-xserver-error-with-cde/">Fixing Opencv xserver error with Eclipse CDE</a></h1>
-<time datetime="2013-05-05T01:57:00-04:00" pubdate><span class='month'>May</span> <span class='day'>05</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/cde/'>CDE</a>, <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>, <a class='category' href='/blog/categories/error/'>Error</a>, <a class='category' href='/blog/categories/resolved/'>Resolved</a>, <a class='category' href='/blog/categories/opencv/'>opencv</a></span>
-</footer>
-
-
-</article>
+<p>
+Usage is simple, when the 2nd paramater is set to true, all fieldnames will start with a lowercase letter(other capitalization remains unchanged):
+</p>
 
 
 
-<article>
-  
-<h1><a href="/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/">Installing opencv 2.4.5 on Ubuntu 12 with Eclipse CDE</a></h1>
-<time datetime="2013-05-02T00:45:00-04:00" pubdate><span class='month'>May</span> <span class='day'>02</span> <span class='year'>2013</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/configuration/'>Configuration</a>, <a class='category' href='/blog/categories/eclipse/'>Eclipse</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/opencv/'>opencv</a></span>
-</footer>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="nx">b</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">jsonutils</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(&lt;</span><span class="nx">some</span> <span class="nx">obj</span><span class="p">&gt;,</span> <span class="p">&lt;</span><span class="nx">lowercase</span> <span class="nx">fieldnames</span><span class="p">:</span><span class="kc">true</span><span class="o">/</span><span class="kc">false</span><span class="p">&gt;)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+
+
+<p>
+The source code can be downloaded from github: <a href="https://github.com/zacg/goutils">https://github.com/zacg/goutils</a>
+</p>
+
+
+
+
+<p>And here is some boilerplate code to use it in a Revel controller:</p>
+
+
+
+
+<div><script src='https://gist.github.com/6124880.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+
+
+
+
+<p>
+
+</p>
+
+
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Zac Gross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-31T14:19:00-04:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/go/'>go</a>, <a class='category' href='/blog/categories/golang/'>golang</a>, <a class='category' href='/blog/categories/json/'>json</a>, <a class='category' href='/blog/categories/revel/'>revel</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang/" data-via="" data-counturl="http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig/" title="Previous Post: Calling C++ code from Go with SWIG">&laquo; Calling C++ code from Go with SWIG</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -233,7 +320,10 @@
       var disqus_shortname = 'zacg';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang/';
+        var disqus_url = 'http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

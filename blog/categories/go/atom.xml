@@ -4,7 +4,7 @@
   <title><![CDATA[Category: go | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/go/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-06-17T16:36:49-04:00</updated>
+  <updated>2013-07-31T15:00:17-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -12,6 +12,58 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Lower Case JSON Fields with Golang]]></title>
+    <link href="http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang/"/>
+    <updated>2013-07-31T14:19:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang</id>
+    <content type="html"><![CDATA[<p>
+    The base GO libraries provide a handy function for marshaling structs into JSON. I recently came across an issue when writing webservices in GO for an existing javascript client. The problem was the client expected the JSON data to have field names starting with lowercase letters. GO's naming convention is obviously going to make all struct fields uppercase by default as they need to be exported. I ended up copying the JSON marshaler code from GO's library and modifiying it with a new paramater that will lowercase JSON field names when set. Because GO isn't on github and I am strapped for time I just copied the code into a new util namespace and made the modifications as a couple of other gophers in #go-nuts were interested in using it.
+</p>
+
+
+
+
+<p>
+Usage is simple, when the 2nd paramater is set to true, all fieldnames will start with a lowercase letter(other capitalization remains unchanged):
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="nx">b</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">jsonutils</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(&lt;</span><span class="nx">some</span> <span class="nx">obj</span><span class="p">&gt;,</span> <span class="p">&lt;</span><span class="nx">lowercase</span> <span class="nx">fieldnames</span><span class="p">:</span><span class="kc">true</span><span class="o">/</span><span class="kc">false</span><span class="p">&gt;)&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+The source code can be downloaded from github: <a href="https://github.com/zacg/goutils">https://github.com/zacg/goutils</a>
+</p>
+
+
+
+
+<p>And here is some boilerplate code to use it in a Revel controller:</p>
+
+
+<p><div><script src='https://gist.github.com/6124880.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<p>
+
+</p>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Calling C++ code from Go with SWIG]]></title>
