@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: javascript | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2013-08-02T09:52:53-04:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Binary Combinations in Javascript]]></title>
+    <link href="http://zacg.github.io/blog/2013/08/02/binary-combinations-in-javascript/"/>
+    <updated>2013-08-02T09:16:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/08/02/binary-combinations-in-javascript</id>
+    <content type="html"><![CDATA[<p>Recently writing test coverage for some javascript functions required me to test every possible call to a function with a large number of binary paramaters. Here is the function I came up with to generate the combinations:</p>
+
+<p><div><script src='https://gist.github.com/6139955.js'></script>
+<noscript><pre><code></code></pre></noscript></div>
+</p>
+
+<p>
+It's pretty straight forward, pass in the length (n) of binary digits and it will return an array of all possible combinations as boolean values.
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>
