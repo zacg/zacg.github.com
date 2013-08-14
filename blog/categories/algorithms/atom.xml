@@ -4,7 +4,7 @@
   <title><![CDATA[Category: algorithms | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/algorithms/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-08-02T09:52:53-04:00</updated>
+  <updated>2013-08-14T18:07:17-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -18,11 +18,17 @@
     <link href="http://zacg.github.io/blog/2013/08/02/binary-combinations-in-javascript/"/>
     <updated>2013-08-02T09:16:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/08/02/binary-combinations-in-javascript</id>
-    <content type="html"><![CDATA[<p>Recently writing test coverage for some javascript functions required me to test every possible call to a function with a large number of binary paramaters. Here is the function I came up with to generate the combinations:</p>
-
-<p><div><script src='https://gist.github.com/6139955.js'></script>
-<noscript><pre><code></code></pre></noscript></div>
+    <content type="html"><![CDATA[<p>
+While writing test coverage for a recent javascript project I was required to test every possible call to a function with a large number of binary parameters. Here is the function I came up with to generate the combinations:
 </p>
+
+
+
+
+<script src="https://gist.github.com/zacg/6139955.js"></script>
+
+
+
 
 <p>
 It's pretty straight forward, pass in the length (n) of binary digits and it will return an array of all possible combinations as boolean values.

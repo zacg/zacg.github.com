@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="Recently writing test coverage for some javascript functions required me to test every possible call to a function with a large number of binary &hellip;">
+  <meta name="description" content="Recently I had a requirement to install a shared library as a build/deployment step in a QtCreator project, which of course required sudo &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,112 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/">Running Qt Creator Build Commands as Sudo</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-07T20:00:00-04:00" pubdate data-updated="true">Aug 7<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+    Recently I had a requirement to install a shared library as a build/deployment step in a QtCreator project, which of course required sudo permissions. Not surprisingly Qt Creator does not simply let you prepend &#8220;sudo&#8221; to a custom build step, here is the workaround I found:
+</p>
+
+
+
+
+<p>
+First I moved all the commands that needed to run with sudo into a single make file like the following, mine was called InstallLib.make:
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>InstallLib.make </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>install:
+</span><span class='line'>  @echo <span class="s2">&quot;Installing go shared lib...&quot;</span>
+</span><span class='line'>  sudo cp -f libImgSearch.so.1.0.0 /usr/local/lib/
+</span><span class='line'>  sudo cp -f libImgSearch.so.1.0 /usr/local/lib/
+</span><span class='line'>  sudo cp -f libImgSearch.so.1 /usr/local/lib/
+</span><span class='line'>  sudo cp -f libImgSearch.so /usr/local/lib/
+</span><span class='line'>  sudo ldconfig
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    Next in Qt Creator with your project open, goto the project section, add a new &#8220;custom process&#8221; build step. In the command field type: &#8220;ssh-askpass&#8221; this program will popup a widget to enter the sudo password when executed. In the build step arguments field enter: &#8220;Sudo Password | sudo -S make -f InstallLib.make&#8221;. This will make the ssh-askpass program execute the &#8220;InstalledLib.make&#8221; make file when a correct sudo password is provided.
+</p>
+
+
+
+
+<p>
+If you prefer not to use the GUI, you could also edit your projects .user file and add some xml similar to the following:
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>project.user </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>   &lt;valuemap <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QVariantMap&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.BuildStepList.Step.10&quot;</span>&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;bool&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.BuildStep.Enabled&quot;</span>&gt;true&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProcessStep.Arguments&quot;</span>&gt;Sudo Password | sudo -S make -f InstallLib.make&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProcessStep.Command&quot;</span>&gt;ssh-askpass&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProcessStep.WorkingDirectory&quot;</span>&gt;%<span class="o">{</span>buildDir<span class="o">}</span>&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProjectConfiguration.DefaultDisplayName&quot;</span>&gt;Custom Process Step&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProjectConfiguration.DisplayName&quot;</span>&gt;&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProjectConfiguration.Id&quot;</span>&gt;ProjectExplorer.ProcessStep&lt;/value&gt;
+</span><span class='line'>     &lt;/valuemap&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/08/02/binary-combinations-in-javascript/">Binary Combinations in Javascript</a></h1>
     
     
@@ -111,10 +217,14 @@
   </header>
 
 
-  <div class="entry-content"><p>Recently writing test coverage for some javascript functions required me to test every possible call to a function with a large number of binary paramaters. Here is the function I came up with to generate the combinations:</p>
+  <div class="entry-content"><p>
+While writing test coverage for a recent javascript project I was required to test every possible call to a function with a large number of binary parameters. Here is the function I came up with to generate the combinations:
+</p>
 
-<div><script src='https://gist.github.com/6139955.js'></script>
-<noscript><pre><code></code></pre></noscript></div>
+
+
+
+<script src="https://gist.github.com/zacg/6139955.js"></script>
 
 
 
@@ -1372,6 +1482,10 @@ References:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/">Running Qt Creator Build Commands as Sudo</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/02/binary-combinations-in-javascript/">Binary Combinations in Javascript</a>
       </li>
     
@@ -1387,37 +1501,28 @@ References:
         <a href="/blog/2013/06/01/nested-folders-in-qt-creator/">Nested Folders in qt Creator</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/06/01/inline-editing-for-jqgrid-with-asp-dot-net-mvc/">jqGrid Inline Editing with asp.net MVC</a>
-      </li>
-    
   </ul>
 </section>
 
 <section>
   <h1>Upcoming Posts</h1>
   <ul id="upcoming_posts">
-    
       <li class="post">
-        <a>Binary Combinations in Javascript</a>
+        <a>C++ Gotchas for C# Developers</a>
       </li>
-    
       <li class="post">
-        <a>Lower Case JSON Fields with Golang</a>
+        <a>Intro to Backbone.js</a>
       </li>
-    
       <li class="post">
-        <a>Calling C++ code from Go with SWIG</a>
+        <a>Temporal Expressions</a>
       </li>
-    
       <li class="post">
-        <a>Nested Folders in qt Creator</a>
+        <a>Opencv Port of kaze Algorithm</a>
       </li>
-    
       <li class="post">
-        <a>jqGrid Inline Editing with asp.net MVC</a>
+        <a>Using html5 Websockts with Revel and Golang</a>
       </li>
-    
+      
   </ul>
 </section>
 

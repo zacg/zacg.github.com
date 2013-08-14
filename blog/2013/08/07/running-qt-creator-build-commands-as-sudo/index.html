@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blogs worth reading - Zac Gross</title>
+  <title>Running Qt Creator Build Commands as Sudo - Zac Gross</title>
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="The blogging engine I am using dosen&#8217;t have a &#8220;following&#8221; function so I am using this post to list the blogs I follow, I recommend &hellip;">
+  <meta name="description" content="Recently I had a requirement to install a shared library as a build/deployment step in a QtCreator project, which of course required sudo &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zacg.github.io/blog/2013/05/03/blogs-i-recommend">
+  <link rel="canonical" href="http://zacg.github.io/blog/2013/08/07/running-qt-creator-build-commands-as-sudo">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -83,7 +83,7 @@
   
   <header>
     
-      <h1 class="entry-title">Blogs Worth Reading</h1>
+      <h1 class="entry-title">Running Qt Creator Build Commands as Sudo</h1>
     
     
       <p class="meta">
@@ -99,7 +99,7 @@
   
 
 
-<time datetime="2013-05-03T22:04:00-04:00" pubdate data-updated="true">May 3<span>rd</span>, 2013</time>
+<time datetime="2013-08-07T20:00:00-04:00" pubdate data-updated="true">Aug 7<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -108,39 +108,74 @@
   </header>
 
 
-<div class="entry-content"><p>The blogging engine I am using dosen&#8217;t have a &#8220;following&#8221; function so I am using this post to list the blogs I follow, I recommend them when people ask me where I learn various development related topics:</p>
-
-<ul>
-<li>
-<a href="https://msmvps.com/blogs/jon_skeet/" >John Skeets blog</a>
-</li>
-<li>
-<a href="http://ayende.com/blog" > Ayende Rahien&#8217;s blog</a>
-</li>
-<li>
-<a href="http://tomasp.net/blog" >Tomas Petricek&#8217;s blog</a>
-</li>
-<li>
-<a href="http://trelford.com/blog/" > Phil Trelford&#8217;s blog</a>
-</li>
-<li>
-<a href="http://martinfowler.com/" > Martin Fowler</a>
-</li>
-<li>
-<a href="http://blogs.msdn.com/b/dsyme/" > Don Syme</a>
-</li>
-<li>
-<a href="http://ericlippert.com/" >Eric Lippert</a>
-</li>
-<li>
-<a href="http://computer-vision-talks.com/" > Computer Vision Talks</a>
-</li>
-<li>
-<a href="" ></a>
-</li>
-</ul>
+<div class="entry-content"><p>
+    Recently I had a requirement to install a shared library as a build/deployment step in a QtCreator project, which of course required sudo permissions. Not surprisingly Qt Creator does not simply let you prepend &#8220;sudo&#8221; to a custom build step, here is the workaround I found:
+</p>
 
 
+
+
+<p>
+First I moved all the commands that needed to run with sudo into a single make file like the following, mine was called InstallLib.make:
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>InstallLib.make </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>install:
+</span><span class='line'>  @echo <span class="s2">&quot;Installing go shared lib...&quot;</span>
+</span><span class='line'>  sudo cp -f libImgSearch.so.1.0.0 /usr/local/lib/
+</span><span class='line'>  sudo cp -f libImgSearch.so.1.0 /usr/local/lib/
+</span><span class='line'>  sudo cp -f libImgSearch.so.1 /usr/local/lib/
+</span><span class='line'>  sudo cp -f libImgSearch.so /usr/local/lib/
+</span><span class='line'>  sudo ldconfig
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    Next in Qt Creator with your project open, goto the project section, add a new &#8220;custom process&#8221; build step. In the command field type: &#8220;ssh-askpass&#8221; this program will popup a widget to enter the sudo password when executed. In the build step arguments field enter: &#8220;Sudo Password | sudo -S make -f InstallLib.make&#8221;. This will make the ssh-askpass program execute the &#8220;InstalledLib.make&#8221; make file when a correct sudo password is provided.
+</p>
+
+
+
+
+<p>
+If you prefer not to use the GUI, you could also edit your projects .user file and add some xml similar to the following:
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>project.user </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>   &lt;valuemap <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QVariantMap&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.BuildStepList.Step.10&quot;</span>&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;bool&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.BuildStep.Enabled&quot;</span>&gt;true&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProcessStep.Arguments&quot;</span>&gt;Sudo Password | sudo -S make -f InstallLib.make&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProcessStep.Command&quot;</span>&gt;ssh-askpass&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProcessStep.WorkingDirectory&quot;</span>&gt;%<span class="o">{</span>buildDir<span class="o">}</span>&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProjectConfiguration.DefaultDisplayName&quot;</span>&gt;Custom Process Step&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProjectConfiguration.DisplayName&quot;</span>&gt;&lt;/value&gt;
+</span><span class='line'>      &lt;value <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;QString&quot;</span> <span class="nv">key</span><span class="o">=</span><span class="s2">&quot;ProjectExplorer.ProjectConfiguration.Id&quot;</span>&gt;ProjectExplorer.ProcessStep&lt;/value&gt;
+</span><span class='line'>     &lt;/valuemap&gt;
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -164,12 +199,12 @@
   
 
 
-<time datetime="2013-05-03T22:04:00-04:00" pubdate data-updated="true">May 3<span>rd</span>, 2013</time>
+<time datetime="2013-08-07T20:00:00-04:00" pubdate data-updated="true">Aug 7<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/blogs/'>Blogs</a>, <a class='category' href='/blog/categories/opinion/'>Opinion</a>, <a class='category' href='/blog/categories/reading/'>Reading</a>, <a class='category' href='/blog/categories/recommend/'>Recommend</a>
+    <a class='category' href='/blog/categories/c-plus-plus/'>c++</a>, <a class='category' href='/blog/categories/configuration/'>configuration</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/qt-creator/'>qt creator</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -178,7 +213,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/05/03/blogs-i-recommend/" data-via="" data-counturl="http://zacg.github.io/blog/2013/05/03/blogs-i-recommend/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/" data-via="" data-counturl="http://zacg.github.io/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/" >Tweet</a>
   
   
   
@@ -187,10 +222,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/" title="Previous Post: Installing opencv 2.4.5 on Ubuntu 12 with Eclipse CDE">&laquo; Installing opencv 2.4.5 on Ubuntu 12 with Eclipse CDE</a>
+        <a class="basic-alignment left" href="/blog/2013/08/02/binary-combinations-in-javascript/" title="Previous Post: Binary Combinations in Javascript">&laquo; Binary Combinations in Javascript</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/05/05/fixing-opencv-xserver-error-with-cde/" title="Next Post: Fixing Opencv xserver error with Eclipse CDE">Fixing Opencv xserver error with Eclipse CDE &raquo;</a>
       
     </p>
   </footer>
@@ -307,8 +340,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://zacg.github.io/blog/2013/05/03/blogs-i-recommend/';
-        var disqus_url = 'http://zacg.github.io/blog/2013/05/03/blogs-i-recommend/';
+        var disqus_identifier = 'http://zacg.github.io/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/';
+        var disqus_url = 'http://zacg.github.io/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/';
         var disqus_script = 'embed.js';
       
     (function () {

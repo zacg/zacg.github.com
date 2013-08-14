@@ -42,7 +42,13 @@
     </url>
     <url>
         <loc>http://zacg.github.io/blog/2013/08/02/binary-combinations-in-javascript/</loc>
-        <lastmod>2013-08-02T09:52:23-04:00</lastmod>
+        <lastmod>2013-08-02T10:03:26-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://zacg.github.io/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/
+        </loc>
+        <lastmod>2013-08-14T18:06:37-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/robots.txt</loc>
@@ -50,15 +56,15 @@
     </url>
     <url>
         <loc>http://zacg.github.io/blog/archives/</loc>
-        <lastmod>2013-08-02T09:52:23-04:00</lastmod>
+        <lastmod>2013-08-14T18:06:37-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/blog/</loc>
-        <lastmod>2013-08-02T09:52:23-04:00</lastmod>
+        <lastmod>2013-08-14T18:06:37-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/</loc>
-        <lastmod>2013-08-02T09:52:23-04:00</lastmod>
+        <lastmod>2013-08-14T18:06:37-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/about/</loc>
