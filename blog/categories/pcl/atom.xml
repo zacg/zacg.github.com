@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: PCL | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/pcl/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2013-08-18T14:41:29-04:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[File Parameter Support for Portable Restsharp Library]]></title>
+    <link href="http://zacg.github.io/blog/2013/08/18/file-parameter-support-for-portable-restsharp-library/"/>
+    <updated>2013-08-18T14:14:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/08/18/file-parameter-support-for-portable-restsharp-library</id>
+    <content type="html"><![CDATA[<p>
+    When developing mobile cross platform apps with Xamarin I like to keep as much common code as possible in a shared portable class library (PCL) for easy reuse. This includes any webservice calls and the associated boilerplate code. I have  been using a fork of the Restsharp library which has been modified to be PCL compliant. This strategy was working fine until recently when I needed to start uploading files through webservices. The Restsharp library has robust file upload support but because it is often tied to OS specific file operations it was left out of the PCL port. As a work around I simply imported the necessary file upload code from the original library using raw bytes and streams as interfaces rather than filenames. Leaving it up to the caller to implement the file loading in their native OS code.
+</p>
+
+
+
+
+<p>
+My fork can be found on github at: <a href="https://github.com/zacg/geoserver-csharp">https://github.com/zacg/geoserver-csharp</a>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Xamarin | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/xamarin/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2013-08-18T14:41:29-04:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Xamarin Simple Text List View Helper]]></title>
+    <link href="http://zacg.github.io/blog/2013/08/18/xamarin-simple-text-list-view-helper/"/>
+    <updated>2013-08-18T13:14:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/08/18/xamarin-simple-text-list-view-helper</id>
+    <content type="html"><![CDATA[<p>
+    Recently while working on an Xamarin based Android project I came up with a handy helper class for displaying basic list views. It saves alot of boilerplate code by not forcing a new adapter implementation for every domain object you want to use in a list view.
+</p>
+
+
+<p>
+    The code:
+</p>
+
+
+<script src="https://gist.github.com/zacg/6262608.js"></script>
+
+
+
+
+<p>
+    And to use it:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">ListAdapter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SimpleTextAdapter</span><span class="p">&lt;</span><span class="n">SomeBusinessObject</span><span class="p">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="n">objects</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    Use it with a custom id field:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">ListAdapter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SimpleTextAdapter</span><span class="p">&lt;</span><span class="n">SomeBusinessObject</span><span class="p">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="n">objects</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;},</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">CustomId</span><span class="p">;});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>
