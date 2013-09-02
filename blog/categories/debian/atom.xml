@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: debian | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/debian/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2013-09-02T00:04:25-04:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Beware when Installing Swig from Debian Package]]></title>
+    <link href="http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package/"/>
+    <updated>2013-09-01T22:52:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package</id>
+    <content type="html"><![CDATA[<p>
+Recently while generating Go bindings for a C++ library with Swig I begain noticing memory issues. Specifically when memory pressure was placed on the application I noticed output paramaters of standard types like std::vector were being randomly deallocated. After triple checking my Swig template files for the correct wrapping signatures and reviewing the generated Go and C/C++ code I was at a loss.
+</p>
+
+
+
+
+<p>
+ After reviewing the Swig project commit log and noticing some fixes for Go related issues, I remembered I had installed Swig from the debian aptitude manager. Sure enough after running "swig -version" my swig version was at 2.0.7 (the current version at this time of writing was 2.0.10). 2.0.7 lacks many bug fixes related to Go. Downloading and installing 2.0.10 from the Swig website solved my memory issues.
+</p>
+
+
+
+
+<p>
+<strong>Solution:</strong>
+</p>
+
+
+
+
+<ol>
+    <li>
+        Check Installed Swig version
+        <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>        swig -version
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+    </li>
+    <li>
+        If version is < latest: unistall packaged version, then download and install current release from the website: <a href="http://swig.org">http://swig.org</a>
+    </li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

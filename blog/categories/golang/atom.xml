@@ -4,7 +4,7 @@
   <title><![CDATA[Category: golang | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/golang/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-08-18T14:41:29-04:00</updated>
+  <updated>2013-09-02T00:04:25-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Beware when Installing Swig from Debian Package]]></title>
+    <link href="http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package/"/>
+    <updated>2013-09-01T22:52:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package</id>
+    <content type="html"><![CDATA[<p>
+Recently while generating Go bindings for a C++ library with Swig I begain noticing memory issues. Specifically when memory pressure was placed on the application I noticed output paramaters of standard types like std::vector were being randomly deallocated. After triple checking my Swig template files for the correct wrapping signatures and reviewing the generated Go and C/C++ code I was at a loss.
+</p>
+
+
+
+
+<p>
+ After reviewing the Swig project commit log and noticing some fixes for Go related issues, I remembered I had installed Swig from the debian aptitude manager. Sure enough after running "swig -version" my swig version was at 2.0.7 (the current version at this time of writing was 2.0.10). 2.0.7 lacks many bug fixes related to Go. Downloading and installing 2.0.10 from the Swig website solved my memory issues.
+</p>
+
+
+
+
+<p>
+<strong>Solution:</strong>
+</p>
+
+
+
+
+<ol>
+    <li>
+        Check Installed Swig version
+        <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>        swig -version
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+    </li>
+    <li>
+        If version is < latest: unistall packaged version, then download and install current release from the website: <a href="http://swig.org">http://swig.org</a>
+    </li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Lower Case JSON Fields with Golang]]></title>
@@ -106,14 +149,26 @@ Start by installing GO and SWIG if not already installed
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>
-Once everything in installed the first step is to define a module which will tell SWIG tool what code in the C++ project to expose in the resulting GO package. We'll assume your project is object oriented with cpp/header files for each class, if this is the case we can just include the desired header files in our SWIG module.
+<strong>Update:</strong> The debian package is out of date and lacking many go related fixes, it is best to install current SWIG release from SWIG website: <a href="http://swig.org">http://swig.org</a>
+</p>
+
+
+<p>
+    I also recommend installing golang from source as some of the following commands only work with go 1.1 and up. <a href="http://golang.org/doc/install/source">http://golang.org/doc/install/source</a>
 </p>
 
 
 
 
 <p>
- We will pretend our C++ project is called "simplelib" and contains the following files:
+Once everything in installed the first step is to define a module which will tell the SWIG tool what code in the C++ project to expose in the resulting GO package. We'll assume your project is object oriented with cpp/header files for each class, if this is the case we can just include the desired header files in our SWIG module.
+</p>
+
+
+
+
+<p>
+ We will pretend our C++ project is a dynamically linked shared library called "simplelib" and contains the following files:
 <p>
 
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -143,7 +198,7 @@ We will add a module file called <i>simplelib.swig</i>. Inside we include the si
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>
-If your wrapped class(es) are simple and use primitive types the above swig file should suffice, SWIG will translate the following primitive types to the specified go types
+If your wrapped class(es) are simple and use primitive types the above swig file should suffice, SWIG will translate the following primitive types to the specified Go types
 </p>
 
 <table BORDER summary="Go primitive type mappings">
@@ -232,7 +287,7 @@ If your wrapped class(es) are simple and use primitive types the above swig file
 <br/>
 
 <p>
-If your target code contains non-primitive types you have a bit more work todo. SWIG includes headers to help with common non primitive types like string and vector from the std lib. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses string and vectors from std might look like the following:
+If your target code contains non-primitive types you have a bit more work todo. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
 </p>
 
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -315,9 +370,20 @@ Next we need to generate the necessary C++ wrapper code to allow Go to bind to i
 </span><span class='line'>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>
+Some common optional paramaters you may need to use:
+<ul>
+<li>
+"-soname" for specifying the name of your compiled shared library which is dynamically linked at runtime. e.g. -soname libSimpleLib.so.1
+</li>
+<li>
+"-intgosize" Depending on which version of go you are using 1/1.1 and which platform you are targeting you may need to explicitly set the Go int size (note the documentation for this is currently out of date). e.g. -intgosize 64
+</li>
+</ul>
+</p>
 
 <p>
-The above SWIG command should generate 2 new files in your project directory. Your project directory should now look something like the following:
+The above SWIG command should generate 3 new files in your project directory. Your project directory should now look something like the following:
 </p>
 
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -325,19 +391,36 @@ The above SWIG command should generate 2 new files in your project directory. Yo
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>simpleclass.h
 </span><span class='line'>simpleclass.cpp
 </span><span class='line'>simplelib.swig
 </span><span class='line'>simplelib.go
 </span><span class='line'>simplelib.cxx
+</span><span class='line'>simplelib_gc.c
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>
-Simplelib.cxx is the c++ wrapper containing the necessary code hooks to interop with GO, simplelib.go is the GO code stub for the resulting GO package. We now need to add the simplelib.cxx file to the C++ project and build with the projects C++ compiler (I have only tested this process with GCC). Simply add it to your makefile or build script.
+Now we need to include these 3 new files in our projects. Simplelib.cxx contains the C++ wrapper code allowing your C++ project to interop with CGO. simplelib_gc.c contains the C code designed to be called from CGO. simplelib.go contains the GO code stubs for the resulting GO package, it uses cgo to call into the simplelib_gc.c interfaces. 
+</p>
+<p>
+Add the simplelib.cxx file to the C++ project and build with the projects C++ compiler (I have only tested this process with GCC). Simply add it to your makefile or build script.
 </p>
 
 <p>
-Once the C++ project has been built with necessary SWIG code we can install it as a GO package. First if you haven't setup your GOPATH go ahead and do that. Copy the built C++ code and go file into your gopaths pacakge src directory. 
+simplelib_gc.c and simplelib.go need to be included in the go package using the following 5/6/8c and 5/6/8g commands.
+</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>go tool 6c -I &lt;Go Installation Path here&gt;/pkg/linux_amd64/ -D _64BIT simplelib_gc.c
+</span><span class='line'>go tool 6g simplelib.go
+</span><span class='line'>go tool pack grc simplelib.a simplelib.6 simplelib_gc.6
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>
+The last step is installation: first install your compiled C++ shared library, then run go install on the package created in the last step.
 </p>
 
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -346,26 +429,26 @@ Once the C++ project has been built with necessary SWIG code we can install it a
 </span><span class='line'>go install
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-
 <p>
 If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linx distro>/
 </p>
 
 <p>
-Thats it! you should now be able to import "simplelib" in your go projects and call the related C++ code.
+That's it! you should now be able to import "simplelib" in your go projects and call the wrapped C++ code.
 </p>
 
 <h3>Setting up Build Scripts</h3>
 
 <p>
-Because building Go packages requires the code to be in a special path referenced by the GOPATH, I script out a "release" build process for my c++ project that does the necessary pre/post build steps above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for use. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file. To recap the steps required are:
+Because building Go packages requires the code to be in the GOPATH, I script out a "release" build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for to be tested. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file. To recap the steps required are:
 </p>
 
 <ol>
 <li>Run SWIG tool (generate wrapper code) </li>
 <li>Compile C++ project (including new wrapper code)</li>
-<li>Copy the built C++ files and the GO wrapper generated in step 1 to a directory in your go path</li>
-<li>Run Go install to install the new go package</li>
+<li>Copy the built C++ library and generated files generated in step 1 to a directory in your go path</li>
+<li>Link and package the generated files into a Go Package</li>
+<li>Run Go install to make the new package available in your applications</li>
 </ol>
 
 <br/>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: PCL - Zac Gross</title>
+  <title>Beware when Installing Swig from Debian Package - Zac Gross</title>
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="Category: PCL">
+  <meta name="description" content="Recently while generating Go bindings for a C++ library with Swig I begain noticing memory issues. Specifically when memory pressure was placed on &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://zacg.github.ioblog/categories/pcl">
+  <link rel="canonical" href="http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -79,36 +79,129 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: PCL</h1>
+    
+      <h1 class="entry-title">Beware When Installing Swig From Debian Package</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-01T22:52:00-04:00" pubdate data-updated="true">Sep 1<span>st</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
+
+
+<div class="entry-content"><p>
+Recently while generating Go bindings for a C++ library with Swig I begain noticing memory issues. Specifically when memory pressure was placed on the application I noticed output paramaters of standard types like std::vector were being randomly deallocated. After triple checking my Swig template files for the correct wrapping signatures and reviewing the generated Go and C/C++ code I was at a loss.
+</p>
 
 
 
-  
-  <h2>2013</h2>
 
-<article>
-  
-<h1><a href="/blog/2013/08/18/file-parameter-support-for-portable-restsharp-library/">File Parameter Support for Portable Restsharp Library</a></h1>
-<time datetime="2013-08-18T14:14:00-04:00" pubdate><span class='month'>Aug</span> <span class='day'>18</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/fileupload/'>Fileupload</a>, <a class='category' href='/blog/categories/pcl/'>PCL</a>, <a class='category' href='/blog/categories/portable/'>Portable</a>, <a class='category' href='/blog/categories/restsharp/'>RestSharp</a>, <a class='category' href='/blog/categories/c-number/'>c#</a></span>
-</footer>
+<p>
+ After reviewing the Swig project commit log and noticing some fixes for Go related issues, I remembered I had installed Swig from the debian aptitude manager. Sure enough after running &#8220;swig -version&#8221; my swig version was at 2.0.7 (the current version at this time of writing was 2.0.10). 2.0.7 lacks many bug fixes related to Go. Downloading and installing 2.0.10 from the Swig website solved my memory issues.
+</p>
 
 
-</article>
+
+
+<p>
+<strong>Solution:</strong>
+</p>
+
+
+
+
+<ol>
+    <li>
+        Check Installed Swig version
+        
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>     swig -version
+</span><span class='line'>      
+</span></code></pre></td></tr></table></div></figure>
+
+    </li>
+    <li>
+        If version is < latest: unistall packaged version, then download and install current release from the website: <a href="http://swig.org">http://swig.org</a>
+    </li>
+</ol>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Zac Gross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-01T22:52:00-04:00" pubdate data-updated="true">Sep 1<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/debian/'>debian</a>, <a class='category' href='/blog/categories/error/'>error</a>, <a class='category' href='/blog/categories/go/'>go</a>, <a class='category' href='/blog/categories/golang/'>golang</a>, <a class='category' href='/blog/categories/resolved/'>resolved</a>, <a class='category' href='/blog/categories/swig/'>swig</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package/" data-via="" data-counturl="http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/18/file-parameter-support-for-portable-restsharp-library/" title="Previous Post: File Parameter Support for Portable Restsharp Library">&laquo; File Parameter Support for Portable Restsharp Library</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -214,7 +307,10 @@
       var disqus_shortname = 'zacg';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package/';
+        var disqus_url = 'http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

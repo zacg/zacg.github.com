@@ -34,7 +34,7 @@
         <loc>
             http://zacg.github.io/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig/
         </loc>
-        <lastmod>2013-06-17T16:34:03-04:00</lastmod>
+        <lastmod>2013-09-02T00:03:41-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang/</loc>
@@ -61,20 +61,26 @@
         <lastmod>2013-08-18T14:40:52-04:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package/
+        </loc>
+        <lastmod>2013-09-01T23:14:23-04:00</lastmod>
+    </url>
+    <url>
         <loc>http://zacg.github.io/robots.txt</loc>
         <lastmod>2013-05-02T00:17:37-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/blog/archives/</loc>
-        <lastmod>2013-08-18T14:40:52-04:00</lastmod>
+        <lastmod>2013-09-02T00:03:41-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/blog/</loc>
-        <lastmod>2013-08-18T14:40:52-04:00</lastmod>
+        <lastmod>2013-09-02T00:03:41-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/</loc>
-        <lastmod>2013-08-18T14:40:52-04:00</lastmod>
+        <lastmod>2013-09-02T00:03:41-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/about/</loc>
