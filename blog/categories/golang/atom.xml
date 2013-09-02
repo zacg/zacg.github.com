@@ -4,7 +4,7 @@
   <title><![CDATA[Category: golang | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/golang/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-09-02T00:16:15-04:00</updated>
+  <updated>2013-09-02T01:25:04-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -115,7 +115,7 @@ The source code can be downloaded from github: <a href="https://github.com/zacg/
     <id>http://zacg.github.io/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig</id>
     <content type="html"><![CDATA[<p>
 
-Go is a modern programming language that came out of Google. It is: staticly typed, garbage collected, and compiled. Recently while working on a GO based project I needed to use some functionality from another large C++ library. The librarys size and complexity made re-writing it in GO unfeasible. After some research I decided to use the popular SWIG framework to enable interop between my two projects.  
+ Recently while working on a Go based project I needed to use some functionality from another large C++ library. The librarys size and complexity made re-writing it in Go unfeasible. After some research I decided to use the popular SWIG (Simplified Wrapper and Interface Generator) framework to enable interop between my two projects.  
 
 </p>
 
@@ -148,20 +148,20 @@ Start by installing GO and SWIG if not already installed
 </span><span class='line'>&lt;p&gt;
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
+<div class="alert alert-danger">
 <p>
 <strong>Update:</strong> The debian package is out of date and lacking many go related fixes, it is best to install current SWIG release from SWIG website: <a href="http://swig.org">http://swig.org</a>
 </p>
-
-
 <p>
     I also recommend installing golang from source as some of the following commands only work with go 1.1 and up. <a href="http://golang.org/doc/install/source">http://golang.org/doc/install/source</a>
 </p>
+</div>
 
 
 
 
 <p>
-Once everything in installed the first step is to define a module which will tell the SWIG tool what code in the C++ project to expose in the resulting GO package. We'll assume your project is object oriented with cpp/header files for each class, if this is the case we can just include the desired header files in our SWIG module.
+Once everything in installed the first step is to define a module file which will tell the SWIG tool what code in the C++ project to expose in the resulting GO package. We'll assume your project is object oriented with cpp/header files for each class, when this is the case we can just include the desired header files in our SWIG module.
 </p>
 
 
