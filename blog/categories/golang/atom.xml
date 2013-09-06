@@ -4,7 +4,7 @@
   <title><![CDATA[Category: golang | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/golang/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-09-02T01:25:04-04:00</updated>
+  <updated>2013-09-06T16:55:51-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -57,10 +57,10 @@ Recently while generating Go bindings for a C++ library with Swig I begain notic
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Lower Case JSON Fields with Golang]]></title>
-    <link href="http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang/"/>
+    <title type="html"><![CDATA[Lowercase JSON Fields with Golang]]></title>
+    <link href="http://zacg.github.io/blog/2013/07/31/lowercase-json-fields-with-golang/"/>
     <updated>2013-07-31T14:19:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2013/07/31/lower-case-json-fields-with-golang</id>
+    <id>http://zacg.github.io/blog/2013/07/31/lowercase-json-fields-with-golang</id>
     <content type="html"><![CDATA[<p>
     The base GO libraries provide a handy function for marshaling structs into JSON. I recently came across an issue when writing webservices in GO for an existing javascript client. The problem was the client expected the JSON data to have field names starting with lowercase letters. GO's naming convention is obviously going to make all struct fields uppercase by default as they need to be exported. I ended up copying the JSON marshaler code from GO's library and modifiying it with a new paramater that will lowercase JSON field names when set. Because GO isn't on github and I am strapped for time I just copied the code into a new util namespace and made the modifications as a couple of other gophers in #go-nuts were interested in using it.
 </p>
@@ -201,10 +201,10 @@ We will add a module file called <i>simplelib.swig</i>. Inside we include the si
 If your wrapped class(es) are simple and use primitive types the above swig file should suffice, SWIG will translate the following primitive types to the specified Go types
 </p>
 
-<table BORDER summary="Go primitive type mappings">
+<table summary="Go primitive type mappings" class="table">
 <tr>
-<td><b>C/C++ type</b></td>
-<td><b>Go type</b></td>
+<th>C/C++ type</th>
+<th>Go type</th>
 </tr>
 
 <tr>
@@ -337,11 +337,11 @@ If your target code contains non-primitive types you have a bit more work todo. 
 The following definitions are included with the SWIG library, go <a href="http://www.swig.org/Doc1.3/Library.html#Library_stl_cpp_library">here for full reference</a>
 </p>
 
-<table BORDER summary="SWIG C++ library files">
-<tr VALIGN=TOP>
-<td><b>C++ class</b></td>
-<td><b>C++ Library file</b></td>
-<td><b>SWIG Interface library file</b></td>
+<table BORDER summary="SWIG C++ library files" class="table">
+<tr>
+<th>C++ class</th>
+<th>C++ Library file</th>
+<th>SWIG Interface library file</th>
 </tr>
 
 <tr> <td>std::deque</td>           <td>deque</td>             <td>std_deque.i</td> </tr>

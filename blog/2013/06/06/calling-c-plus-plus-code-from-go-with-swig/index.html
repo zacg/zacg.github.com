@@ -27,8 +27,12 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>-->
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -197,10 +201,10 @@ We will add a module file called <i>simplelib.swig</i>. Inside we include the si
 If your wrapped class(es) are simple and use primitive types the above swig file should suffice, SWIG will translate the following primitive types to the specified Go types
 </p>
 
-<table BORDER summary="Go primitive type mappings">
+<table summary="Go primitive type mappings" class="table">
 <tr>
-<td><b>C/C++ type</b></td>
-<td><b>Go type</b></td>
+<th>C/C++ type</th>
+<th>Go type</th>
 </tr>
 
 <tr>
@@ -335,11 +339,11 @@ If your target code contains non-primitive types you have a bit more work todo. 
 The following definitions are included with the SWIG library, go <a href="http://www.swig.org/Doc1.3/Library.html#Library_stl_cpp_library">here for full reference</a>
 </p>
 
-<table BORDER summary="SWIG C++ library files">
-<tr VALIGN=TOP>
-<td><b>C++ class</b></td>
-<td><b>C++ Library file</b></td>
-<td><b>SWIG Interface library file</b></td>
+<table BORDER summary="SWIG C++ library files" class="table">
+<tr>
+<th>C++ class</th>
+<th>C++ Library file</th>
+<th>SWIG Interface library file</th>
 </tr>
 
 <tr> <td>std::deque</td>           <td>deque</td>             <td>std_deque.i</td> </tr>
@@ -511,7 +515,7 @@ This tutorial has shown you how to wrap simple classes. Feel free to leave your 
         <a class="basic-alignment left" href="/blog/2013/06/01/nested-folders-in-qt-creator/" title="Previous Post: Nested Folders in qt Creator">&laquo; Nested Folders in qt Creator</a>
       
       
-        <a class="basic-alignment right" href="/blog/2013/07/31/lower-case-json-fields-with-golang/" title="Next Post: Lower Case JSON Fields with Golang">Lower Case JSON Fields with Golang &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2013/07/31/lowercase-json-fields-with-golang/" title="Next Post: Lowercase JSON Fields with Golang">Lowercase JSON Fields with Golang &raquo;</a>
       
     </p>
   </footer>
