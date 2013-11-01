@@ -4,7 +4,7 @@
   <title><![CDATA[Category: build | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/build/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-09-06T16:55:51-04:00</updated>
+  <updated>2013-11-01T02:17:09-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -335,7 +335,7 @@ The last step is installation: first install your compiled C++ shared library, t
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>
-If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linx distro>/
+If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linux distro>/
 </p>
 
 <p>
@@ -345,13 +345,13 @@ That's it! you should now be able to import "simplelib" in your go projects and 
 <h3>Setting up Build Scripts</h3>
 
 <p>
-Because building Go packages requires the code to be in the GOPATH, I script out a "release" build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for to be tested. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file. To recap the steps required are:
+Because building Go packages requires the code to be in the GOPATH, I script out a "release" build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for testing. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file or bash script. To recap the steps required are:
 </p>
 
 <ol>
 <li>Run SWIG tool (generate wrapper code) </li>
 <li>Compile C++ project (including new wrapper code)</li>
-<li>Copy the built C++ library and generated files generated in step 1 to a directory in your go path</li>
+<li>Copy the built C++ library and files generated in step 1 to a directory in your go path</li>
 <li>Link and package the generated files into a Go Package</li>
 <li>Run Go install to make the new package available in your applications</li>
 </ol>

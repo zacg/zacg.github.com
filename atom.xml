@@ -4,7 +4,7 @@
   <title><![CDATA[Zac Gross]]></title>
   <link href="http://zacg.github.io/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2013-09-06T16:55:51-04:00</updated>
+  <updated>2013-11-01T02:17:09-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -12,6 +12,167 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Golang Type Comparisons and Struct Initialization Using Reflection]]></title>
+    <link href="http://zacg.github.io/blog/2013/10/11/golang-type-comparisons-using-reflection/"/>
+    <updated>2013-10-11T19:29:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/10/11/golang-type-comparisons-using-reflection</id>
+    <content type="html"><![CDATA[<p>
+While writing some basic <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> code for a recent project, I decided to create a base struct containing the redundant fields for all of my data entities (id,date_created, etc&#8230;). I then embedded this struct in all data entites and tagged it as inline so json/bson marshalers would treat it accordingly. A problem arose when I wanted to pass newly created data entities from clients into a json webservice. Normally when instantiating a data entity struct I would use the associated creation method (NewSomeEntity()) which would set the appropriate id/created date etc&#8230; however the json marshaler is not smart enough to do this as it builds the object graph. If the object graph is only one level deep, you can just run an init function on the new object returned from the marshaler, when the object contains n-levels (n-many relationships) it becomes a problem.
+</p>
+
+
+<p>
+I had two options: I could implement custom marshal interfaces for every data entity struct, or I could write a function that reflects over the object graph after it has been built by the json marshaler and run my intitalization function against any new/unintitalized base entity structs. I decided to go with the later option.
+</p>
+
+
+
+
+<p>
+Thre are a few key functions needed to achieve the method described above, mainly: reflecting over an object to get a list of it&#8217;s fields, checking the type of the reflected field against your base struct, , checking if the reflected field value is uninitialized or in the case of a pointer nil, and finally setting the value of an empty field to an initialized struct. 
+</p>
+
+
+
+
+<p>
+Here are some code examples:
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>  <span class="c1">//base struct for all data entities</span>
+</span><span class='line'>  <span class="kd">type</span> <span class="nx">Entity</span> <span class="kd">struct</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">Id</span>        <span class="nx">Uuid</span> <span class="s">`bson:&quot;_id,omitempty&quot; json:id`</span>
+</span><span class='line'>      <span class="nx">CreatedOn</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'> <span class="c1">//initialization function</span>
+</span><span class='line'> <span class="kd">func</span> <span class="nx">NewEntity</span><span class="p">()</span> <span class="nx">Entity</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">Entity</span><span class="p">{</span><span class="nx">CreatedOn</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">(),</span> <span class="nx">Id</span><span class="p">:</span> <span class="nx">Uuid</span><span class="p">.</span><span class="nx">NewUuid</span><span class="p">()}</span>
+</span><span class='line'> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Reflect over object and get list of fields
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="nx">obj</span> <span class="o">:=</span> <span class="nx">Entity</span><span class="p">{};</span>
+</span><span class='line'><span class="c1">//retrieve list of fields</span>
+</span><span class='line'><span class="nx">r</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">Elem</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//iterate over fields</span>
+</span><span class='line'><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">NumField</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">f</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Field</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Compare reflected type
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Type</span><span class="p">()</span> <span class="o">==</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">TypeOf</span><span class="p">(</span><span class="nx">Entity</span><span class="p">{}))</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">//reflected type is of type &quot;Entity&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Checking for uninitialized/empty struct
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Interface</span><span class="p">().(</span><span class="nx">Entity</span><span class="p">)</span> <span class="o">==</span> <span class="nx">Entity</span><span class="p">{})</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">//reflected field is an uninitialized entity struct</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Checking for nil pointer - if you are using pointers you may need to check for a nil pointer rather than an uninitialized struct.
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Kind</span><span class="p">()</span> <span class="o">==</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">Pointer</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span><span class="p">.</span><span class="nx">IsNil</span><span class="p">())</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">//reflected field is a null pointer</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+Finally once an empty field is found set it to an initialized Entity struct
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="c1">//sets field f to an initialized Entity struct</span>
+</span><span class='line'><span class="nx">f</span><span class="p">.</span><span class="nx">Set</span><span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="nx">NewEntity</span><span class="p">()))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+With the above snippets you can easily build a custom function for iterating over your object graph and initialize empty structs.
+</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Beware when Installing Swig from Debian Package]]></title>
@@ -612,7 +773,7 @@ The last step is installation: first install your compiled C++ shared library, t
 
 
 <p>
-If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linx distro>/
+If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linux distro>/
 </p>
 
 <p>
@@ -622,13 +783,13 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 <h3>Setting up Build Scripts</h3>
 
 <p>
-Because building Go packages requires the code to be in the GOPATH, I script out a &#8220;release&#8221; build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for to be tested. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file. To recap the steps required are:
+Because building Go packages requires the code to be in the GOPATH, I script out a &#8220;release&#8221; build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for testing. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file or bash script. To recap the steps required are:
 </p>
 
 <ol>
 <li>Run SWIG tool (generate wrapper code) </li>
 <li>Compile C++ project (including new wrapper code)</li>
-<li>Copy the built C++ library and generated files generated in step 1 to a directory in your go path</li>
+<li>Copy the built C++ library and files generated in step 1 to a directory in your go path</li>
 <li>Link and package the generated files into a Go Package</li>
 <li>Run Go install to make the new package available in your applications</li>
 </ol>

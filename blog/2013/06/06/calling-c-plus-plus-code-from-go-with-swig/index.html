@@ -440,7 +440,7 @@ The last step is installation: first install your compiled C++ shared library, t
 
 
 <p>
-If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linx distro>/
+If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linux distro>/
 </p>
 
 <p>
@@ -450,13 +450,13 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 <h3>Setting up Build Scripts</h3>
 
 <p>
-Because building Go packages requires the code to be in the GOPATH, I script out a &#8220;release&#8221; build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for to be tested. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file. To recap the steps required are:
+Because building Go packages requires the code to be in the GOPATH, I script out a &#8220;release&#8221; build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for testing. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file or bash script. To recap the steps required are:
 </p>
 
 <ol>
 <li>Run SWIG tool (generate wrapper code) </li>
 <li>Compile C++ project (including new wrapper code)</li>
-<li>Copy the built C++ library and generated files generated in step 1 to a directory in your go path</li>
+<li>Copy the built C++ library and files generated in step 1 to a directory in your go path</li>
 <li>Link and package the generated files into a Go Package</li>
 <li>Run Go install to make the new package available in your applications</li>
 </ol>
@@ -536,6 +536,10 @@ This tutorial has shown you how to wrap simple classes. Feel free to leave your 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/11/golang-type-comparisons-using-reflection/">Golang Type Comparisons and Struct Initialization Using Reflection</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/09/01/beware-when-installing-swig-from-debian-package/">Beware when Installing Swig from Debian Package</a>
       </li>
     
@@ -549,10 +553,6 @@ This tutorial has shown you how to wrap simple classes. Feel free to leave your 
     
       <li class="post">
         <a href="/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/">Running Qt Creator Build Commands as Sudo</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/02/binary-combinations-in-javascript/">Binary Combinations in Javascript</a>
       </li>
     
   </ul>
