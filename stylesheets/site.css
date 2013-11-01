@@ -70,3 +70,14 @@ header[role="banner"] {
 	color: red !important;
 	background-position: 50% 50% !important; 	
 }
+
+hgroup {
+	background-color: rgba(255, 255, 204, 0.4);
+    
+    width: 20em;
+    padding-left: .5em;
+}
+
+hgroup h2, hgroup h1 a {
+	color: #000000!important;
+}
