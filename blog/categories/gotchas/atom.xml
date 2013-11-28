@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: gotchas | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/gotchas/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2013-11-28T03:10:20-05:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Notes on C++ for C# developers]]></title>
+    <link href="http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers/"/>
+    <updated>2013-05-29T02:25:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers</id>
+    <content type="html"><![CDATA[<p>After primarily working in C# for the last 5 years I recently switched back to c++ for a large project. I am going to use this article to post notes/gotcha's/tips as a I come across them. I already have a few to add, and will update as I go along. Hopefully they help some c# programmers out there. They are listed in no particular order.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">C++ does not support template type constraints/guards on template definitions</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+Gotcha: C++ does not support template type constraints/guards on template definitions. I ended up using static asserts (requires c++ 11), the example shown below uses helper methods from the popular boost library.
+    </p>
+   
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>c# </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">TestSuite</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+</span><span class='line'>    <span class="p">:</span>  <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">SomeType</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Case</span><span class="o">&gt;</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">TestSuite</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'> <span class="n">BOOST_STATIC_ASSERT</span><span class="p">((</span><span class="n">boost</span><span class="o">::</span><span class="n">is_base_of</span><span class="o">&lt;</span><span class="n">ITestCase</span><span class="p">,</span> <span class="n">Case</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+  </div>
+ </div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">By default inheritance is private in c++</h3>
+  </div>
+  <div class="panel-body">
+
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C# </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">b</span>
+</span><span class='line'>    <span class="p">:</span> <span class="k">class</span> <span class="nc">a</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Don't forget the "public" declaration if you are used to c#.</p>
+
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">b</span>
+</span><span class='line'> <span class="o">:</span> <span class="k">public</span> <span class="k">class</span> <span class="nc">a</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Member access specified at group level</h3>
+  </div>
+  <div class="panel-body">
+
+<p>Access identifier specified on each member.</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C#</span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">SomeProp</span> <span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
+</span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="nf">GetSomeOtherProp</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Access can be grouped.</p>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">string</span> <span class="n">GetSomeProp</span><span class="p">();</span>
+</span><span class='line'>    <span class="n">string</span> <span class="n">GetSomeOtherProp</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">C++ supports multiple inheiritance</h3>
+  </div>
+  <div class="panel-body">
+<p>
+Unlike C#, C++ supports multiple inheiritance, while this may seem like a benifit it should be used very very rarely. If you find your object model requires multiple inheiritance it is best to reevaluate your design or you will end up facing issues like the <a href="http://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem">diamond of death</a>.
+</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Rule of 3</h3>
+  </div>
+  <div class="panel-body">
+<p>
+Remember the <a href="http://en.wikipedia.org/wiki/Rule_of_three_%28C++_programming%29">rule of 3</a>.
+
+If you require any of the following then you should explicitly define all three.
+<ul>
+<li>copy constructor</li>
+<li>copy assingment operator</li>
+<li>destructor</li>
+</ul>
+
+</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Temproraries with Parameterless Constructors</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+Don't include parathesis on paramaterless constructors the compiler will favour resolving it as a function declaration and you will end up with an error message like:
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="nl">error:</span> <span class="n">request</span> <span class="k">for</span> <span class="n">member</span> <span class="err">&#39;</span><span class="n">method</span><span class="err">&#39;</span> <span class="n">in</span> <span class="err">&#39;</span><span class="n">someObj</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">is</span> <span class="n">of</span> <span class="n">non</span><span class="o">-</span><span class="k">class</span> <span class="nc">type</span> <span class="err">&#39;</span><span class="n">someType</span><span class="p">()</span><span class="err">&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+Parthensis can still be used when using the "new" keyword
+
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//bad</span>
+</span><span class='line'><span class="n">someObj</span> <span class="n">obj</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//good</span>
+</span><span class='line'><span class="n">someObj</span> <span class="n">obj</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+</p>
+
+</div>
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">STL containers copy their values.</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+        When adding items to STL containters remember the container does a copy and keeps track of it's own copy of the item being added.
+    </p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Follow the Virtual Constructor Idiom</h3>
+  </div>
+  <div class="panel-body">
+<p>
+    When creating abstract base classes follow the  <a href="http://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Virtual_Constructor">virtual constructor idiom</a>
+    and create virtual clone and create methods.
+
+    This allows you to create collections of base types while still being able to copy them without knowing their concrete type.
+</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dynamic Linking Libraries</h3>
+  </div>
+  <div class="panel-body">
+  <p>
+    Here are some tips and tools for working with dynamically linked libraries and shared objects.
+  </p>
+  <ul>
+    <li>Shared library files to be registered must start with "lib"</li>
+    <li>Use ldconfig -v to see registered libraries</li>
+    <li>Use ldconfig to reload linked libraries</li>
+    <li>Export ldpath to temporarily point executable at your lib, handy for scripting.</li>
+    <li>Use ldd command to view an executables dependencies.</li>
+    <li>Use nm --demangle <some.so> to view shared objects exported symbol list.</li>
+  </ul>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Can't call virtual methods from constructor</h3>
+  </div>
+  <div class="panel-body">
+    Virtual methods can't be called from within constructors. This usually means you have to use a two stage approach to initialization of derived classes.
+  
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Avoid importing namespaces</h3>
+  </div>
+  <div class="panel-body">
+    It is bad practice to use "using namespace <...>;". When including third party libraries there can be naming conflicts which become a pain to track down in a large project.
+  </div>
+  
+</div>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

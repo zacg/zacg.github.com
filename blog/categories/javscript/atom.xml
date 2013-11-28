@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: javscript | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/javscript/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2013-11-28T03:10:20-05:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Checking Nested Models in Backbone Forms]]></title>
+    <link href="http://zacg.github.io/blog/2013/11/28/checking-nested-models-in-backbone-forms/"/>
+    <updated>2013-11-28T02:28:00-05:00</updated>
+    <id>http://zacg.github.io/blog/2013/11/28/checking-nested-models-in-backbone-forms</id>
+    <content type="html"><![CDATA[<p>
+    When defining custom form templates in <a href="https://github.com/powmedia/backbone-forms">backbone forms</a> you may want to conditionally include content based on whether or not the form is nested. The following code will allow you to check using the template markup: 
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">%</span> <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fieldTemplate</span> <span class="o">!=</span> <span class="s2">&quot;nestedField&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="o">%&gt;&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">//form is nested inside another</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">%</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="o">%&gt;&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="c1">//form is not nested</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">%</span> <span class="p">}</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    This check will enable you to write fewer, more reusable form templates. The following changes to the default bootstrap template included with backbone forms allows you to include form submit and cancel buttons by setting a template data flag.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Form</span><span class="p">.</span><span class="nx">template</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;\&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;\</span>
+</span><span class='line'><span class="s1">&amp;lt;form class=&quot;form-horizontal&quot; data-fieldsets&amp;gt;\</span>
+</span><span class='line'><span class="s1">&amp;lt;/form&amp;gt;\</span>
+</span><span class='line'><span class="s1">&amp;lt;% if(submitbtn &amp;amp;&amp;amp; this.options.fieldTemplate != &quot;nestedField&quot;) { %&amp;gt;\</span>
+</span><span class='line'><span class="s1">  &amp;lt;button class=&quot;btn btn-primary createBtn&quot; &amp;gt;Create&amp;lt;/button&amp;gt;\</span>
+</span><span class='line'><span class="s1">  &amp;lt;button class=&quot;btn btn-danger cancelBtn&quot; &amp;gt;Cancel&amp;lt;/button&amp;gt;\</span>
+</span><span class='line'><span class="s1">&amp;lt;% } %&amp;gt;\</span>
+</span><span class='line'><span class="s1">&amp;lt;/div&amp;gt;\</span>
+</span><span class='line'><span class="s1">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="s1">&lt;p&gt;  &#39;</span><span class="p">);</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="c1">//Setting the submitbtn flag in the templateData</span>
+</span><span class='line'><span class="c1">//paramater will cause the buttons to appear on the form&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">ExampleForm</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Form</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span>    <span class="nx">templateData</span><span class="o">:</span> <span class="p">{</span> <span class="nx">submitbtn</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+</span><span class='line'> <span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
+  
+</feed>

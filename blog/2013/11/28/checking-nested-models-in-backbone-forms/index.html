@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Checking Nested Models in Backbone Forms - Zac Gross</title>
+  <meta name="author" content="Zac Gross">
+
+  
+  <meta name="description" content="When defining custom form templates in backbone forms you may want to conditionally include content based on whether or not the form is nested. The &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zacg.github.io/blog/2013/11/28/checking-nested-models-in-backbone-forms">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Zac Gross" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>-->
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4180781-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zac Gross</a></h1>
+  
+    <h2>yet another software development blog.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zacg.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Checking Nested Models in Backbone Forms</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-28T02:28:00-05:00" pubdate data-updated="true">Nov 28<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>
+    When defining custom form templates in <a href="https://github.com/powmedia/backbone-forms">backbone forms</a> you may want to conditionally include content based on whether or not the form is nested. The following code will allow you to check using the template markup: 
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;%</span> <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fieldTemplate</span> <span class="o">!=</span> <span class="s2">&quot;nestedField&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="o">%&gt;</span>
+</span><span class='line'>  <span class="c1">//form is nested inside another</span>
+</span><span class='line'><span class="o">&lt;%</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="o">%&gt;</span>
+</span><span class='line'>  <span class="c1">//form is not nested</span>
+</span><span class='line'><span class="o">&lt;%</span> <span class="p">}</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    This check will enable you to write fewer, more reusable form templates. The following changes to the default bootstrap template included with backbone forms allows you to include form submit and cancel buttons by setting a template data flag.
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">Form</span><span class="p">.</span><span class="nx">template</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;\</span>
+</span><span class='line'><span class="s1">    &lt;div&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;form class=&quot;form-horizontal&quot; data-fieldsets&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;/form&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;% if(submitbtn &amp;&amp; this.options.fieldTemplate != &quot;nestedField&quot;) { %&gt;\</span>
+</span><span class='line'><span class="s1">      &lt;button class=&quot;btn btn-primary createBtn&quot; &gt;Create&lt;/button&gt;\</span>
+</span><span class='line'><span class="s1">      &lt;button class=&quot;btn btn-danger cancelBtn&quot; &gt;Cancel&lt;/button&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;% } %&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;/div&gt;\</span>
+</span><span class='line'><span class="s1">  &#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Setting the submitbtn flag in the templateData</span>
+</span><span class='line'><span class="c1">//paramater will cause the buttons to appear on the form</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">ExampleForm</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Form</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">templateData</span><span class="o">:</span> <span class="p">{</span> <span class="nx">submitbtn</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+</span><span class='line'>     <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Zac Gross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-28T02:28:00-05:00" pubdate data-updated="true">Nov 28<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/backbone/'>backbone</a>, <a class='category' href='/blog/categories/backbone-forms/'>backbone forms</a>, <a class='category' href='/blog/categories/javscript/'>javscript</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/11/28/checking-nested-models-in-backbone-forms/" data-via="" data-counturl="http://zacg.github.io/blog/2013/11/28/checking-nested-models-in-backbone-forms/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/10/11/golang-type-comparisons-using-reflection/" title="Previous Post: Golang Type Comparisons and Struct Initialization Using Reflection">&laquo; Golang Type Comparisons and Struct Initialization Using Reflection</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/">Checking Nested Models in Backbone Forms</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/11/golang-type-comparisons-using-reflection/">Golang Type Comparisons and Struct Initialization Using Reflection</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/01/beware-when-installing-swig-from-debian-package/">Beware when Installing Swig from Debian Package</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/18/file-parameter-support-for-portable-restsharp-library/">File Parameter Support for Portable Restsharp Library</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/18/xamarin-simple-text-list-view-helper/">Xamarin Simple Text List View Helper</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Upcoming Posts</h1>
+  <ul id="upcoming_posts">
+      <li class="post">
+        <a>C++ Gotchas for C# Developers</a>
+      </li>
+      <li class="post">
+        <a>Intro to Backbone.js</a>
+      </li>
+      <li class="post">
+        <a>Temporal Expressions</a>
+      </li>
+      <li class="post">
+        <a>Opencv Port of kaze Algorithm</a>
+      </li>
+      <li class="post">
+        <a>Using html5 Websockts with Revel and Golang</a>
+      </li>
+      
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/zacg">@zacg</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'zacg',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Zac Gross -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'zacg';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zacg.github.io/blog/2013/11/28/checking-nested-models-in-backbone-forms/';
+        var disqus_url = 'http://zacg.github.io/blog/2013/11/28/checking-nested-models-in-backbone-forms/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

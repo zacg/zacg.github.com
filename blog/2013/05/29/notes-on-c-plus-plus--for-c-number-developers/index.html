@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Notes on C++ for C# developers - Zac Gross</title>
+  <meta name="author" content="Zac Gross">
+
+  
+  <meta name="description" content="After primarily working in C# for the last 5 years I recently switched back to c++ for a large project. I am going to use this article to post notes/ &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Zac Gross" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>-->
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4180781-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zac Gross</a></h1>
+  
+    <h2>yet another software development blog.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zacg.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Notes on C++ for C# Developers</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-29T02:25:00-04:00" pubdate data-updated="true">May 29<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>After primarily working in C# for the last 5 years I recently switched back to c++ for a large project. I am going to use this article to post notes/gotcha&#8217;s/tips as a I come across them. I already have a few to add, and will update as I go along. Hopefully they help some c# programmers out there. They are listed in no particular order.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">C++ does not support template type constraints/guards on template definitions</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+Gotcha: C++ does not support template type constraints/guards on template definitions. I ended up using static asserts (requires c++ 11), the example shown below uses helper methods from the popular boost library.
+    </p>
+   
+
+<figure class='code'><figcaption><span>c# </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">TestSuite</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+</span><span class='line'>  <span class="p">:</span>  <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">SomeType</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>C++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Case</span><span class="o">&gt;</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">TestSuite</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'> <span class="n">BOOST_STATIC_ASSERT</span><span class="p">((</span><span class="n">boost</span><span class="o">::</span><span class="n">is_base_of</span><span class="o">&lt;</span><span class="n">ITestCase</span><span class="p">,</span> <span class="n">Case</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+  </div>
+ </div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">By default inheritance is private in c++</h3>
+  </div>
+  <div class="panel-body">
+
+
+
+<figure class='code'><figcaption><span>C# </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">b</span>
+</span><span class='line'>  <span class="p">:</span> <span class="k">class</span> <span class="nc">a</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Don&#8217;t forget the &#8220;public&#8221; declaration if you are used to c#.</p>
+
+
+<figure class='code'><figcaption><span>C++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">b</span>
+</span><span class='line'> <span class="o">:</span> <span class="k">public</span> <span class="k">class</span> <span class="nc">a</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Member access specified at group level</h3>
+  </div>
+  <div class="panel-body">
+
+<p>Access identifier specified on each member.</p>
+
+<figure class='code'><figcaption><span>C#</span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">SomeProp</span> <span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
+</span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="nf">GetSomeOtherProp</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Access can be grouped.</p>
+
+<figure class='code'><figcaption><span>C++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">GetSomeProp</span><span class="p">();</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">GetSomeOtherProp</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">C++ supports multiple inheiritance</h3>
+  </div>
+  <div class="panel-body">
+<p>
+Unlike C#, C++ supports multiple inheiritance, while this may seem like a benifit it should be used very very rarely. If you find your object model requires multiple inheiritance it is best to reevaluate your design or you will end up facing issues like the <a href="http://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem">diamond of death</a>.
+</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Rule of 3</h3>
+  </div>
+  <div class="panel-body">
+<p>
+Remember the <a href="http://en.wikipedia.org/wiki/Rule_of_three_%28C++_programming%29">rule of 3</a>.
+
+If you require any of the following then you should explicitly define all three.
+<ul>
+<li>copy constructor</li>
+<li>copy assingment operator</li>
+<li>destructor</li>
+</ul>
+
+</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Temproraries with Parameterless Constructors</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+Don&#8217;t include parathesis on paramaterless constructors the compiler will favour resolving it as a function declaration and you will end up with an error message like:
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="nl">error:</span> <span class="n">request</span> <span class="k">for</span> <span class="n">member</span> <span class="err">&#39;</span><span class="n">method</span><span class="err">&#39;</span> <span class="n">in</span> <span class="err">&#39;</span><span class="n">someObj</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">is</span> <span class="n">of</span> <span class="n">non</span><span class="o">-</span><span class="k">class</span> <span class="nc">type</span> <span class="err">&#39;</span><span class="n">someType</span><span class="p">()</span><span class="err">&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+Parthensis can still be used when using the &#8220;new&#8221; keyword
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//bad</span>
+</span><span class='line'><span class="n">someObj</span> <span class="n">obj</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//good</span>
+</span><span class='line'><span class="n">someObj</span> <span class="n">obj</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</p>
+
+</div>
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">STL containers copy their values.</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+        When adding items to STL containters remember the container does a copy and keeps track of it&#8217;s own copy of the item being added.
+    </p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Follow the Virtual Constructor Idiom</h3>
+  </div>
+  <div class="panel-body">
+<p>
+    When creating abstract base classes follow the  <a href="http://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Virtual_Constructor">virtual constructor idiom</a>
+    and create virtual clone and create methods.
+
+    This allows you to create collections of base types while still being able to copy them without knowing their concrete type.
+</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dynamic Linking Libraries</h3>
+  </div>
+  <div class="panel-body">
+  <p>
+    Here are some tips and tools for working with dynamically linked libraries and shared objects.
+  </p>
+  <ul>
+    <li>Shared library files to be registered must start with &#8220;lib&#8221;</li>
+    <li>Use ldconfig -v to see registered libraries</li>
+    <li>Use ldconfig to reload linked libraries</li>
+    <li>Export ldpath to temporarily point executable at your lib, handy for scripting.</li>
+    <li>Use ldd command to view an executables dependencies.</li>
+    <li>Use nm &#8211;demangle <some.so> to view shared objects exported symbol list.</li>
+  </ul>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Can&#8217;t call virtual methods from constructor</h3>
+  </div>
+  <div class="panel-body">
+    Virtual methods can&#8217;t be called from within constructors. This usually means you have to use a two stage approach to initialization of derived classes.
+  
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Avoid importing namespaces</h3>
+  </div>
+  <div class="panel-body">
+    It is bad practice to use &#8220;using namespace <...>;&#8221;. When including third party libraries there can be naming conflicts which become a pain to track down in a large project.
+  </div>
+  
+</div>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Zac Gross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-29T02:25:00-04:00" pubdate data-updated="true">May 29<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c-plus-plus/'>C++</a>, <a class='category' href='/blog/categories/c-number/'>c#</a>, <a class='category' href='/blog/categories/gotchas/'>gotchas</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers/" data-via="" data-counturl="http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/09/configuring-opencv-project-with-qt-creator-on-linux/" title="Previous Post: setup opencv project with qt creator on linux">&laquo; setup opencv project with qt creator on linux</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/06/01/inline-editing-for-jqgrid-with-asp-dot-net-mvc/" title="Next Post: jqGrid Inline Editing with asp.net MVC">jqGrid Inline Editing with asp.net MVC &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/">Checking Nested Models in Backbone Forms</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/11/golang-type-comparisons-using-reflection/">Golang Type Comparisons and Struct Initialization Using Reflection</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/01/beware-when-installing-swig-from-debian-package/">Beware when Installing Swig from Debian Package</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/18/file-parameter-support-for-portable-restsharp-library/">File Parameter Support for Portable Restsharp Library</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/18/xamarin-simple-text-list-view-helper/">Xamarin Simple Text List View Helper</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Upcoming Posts</h1>
+  <ul id="upcoming_posts">
+      <li class="post">
+        <a>C++ Gotchas for C# Developers</a>
+      </li>
+      <li class="post">
+        <a>Intro to Backbone.js</a>
+      </li>
+      <li class="post">
+        <a>Temporal Expressions</a>
+      </li>
+      <li class="post">
+        <a>Opencv Port of kaze Algorithm</a>
+      </li>
+      <li class="post">
+        <a>Using html5 Websockts with Revel and Golang</a>
+      </li>
+      
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/zacg">@zacg</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'zacg',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Zac Gross -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'zacg';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers/';
+        var disqus_url = 'http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="While writing some basic CRUD code for a recent project, I decided to create a base struct containing the redundant fields for all of my data &hellip;">
+  <meta name="description" content="When defining custom form templates in backbone forms you may want to conditionally include content based on whether or not the form is nested. The &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +85,108 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/">Checking Nested Models in Backbone Forms</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-28T02:28:00-05:00" pubdate data-updated="true">Nov 28<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+    When defining custom form templates in <a href="https://github.com/powmedia/backbone-forms">backbone forms</a> you may want to conditionally include content based on whether or not the form is nested. The following code will allow you to check using the template markup: 
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;%</span> <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fieldTemplate</span> <span class="o">!=</span> <span class="s2">&quot;nestedField&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="o">%&gt;</span>
+</span><span class='line'>  <span class="c1">//form is nested inside another</span>
+</span><span class='line'><span class="o">&lt;%</span> <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="o">%&gt;</span>
+</span><span class='line'>  <span class="c1">//form is not nested</span>
+</span><span class='line'><span class="o">&lt;%</span> <span class="p">}</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    This check will enable you to write fewer, more reusable form templates. The following changes to the default bootstrap template included with backbone forms allows you to include form submit and cancel buttons by setting a template data flag.
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">Form</span><span class="p">.</span><span class="nx">template</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;\</span>
+</span><span class='line'><span class="s1">    &lt;div&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;form class=&quot;form-horizontal&quot; data-fieldsets&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;/form&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;% if(submitbtn &amp;&amp; this.options.fieldTemplate != &quot;nestedField&quot;) { %&gt;\</span>
+</span><span class='line'><span class="s1">      &lt;button class=&quot;btn btn-primary createBtn&quot; &gt;Create&lt;/button&gt;\</span>
+</span><span class='line'><span class="s1">      &lt;button class=&quot;btn btn-danger cancelBtn&quot; &gt;Cancel&lt;/button&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;% } %&gt;\</span>
+</span><span class='line'><span class="s1">    &lt;/div&gt;\</span>
+</span><span class='line'><span class="s1">  &#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Setting the submitbtn flag in the templateData</span>
+</span><span class='line'><span class="c1">//paramater will cause the buttons to appear on the form</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">var</span> <span class="nx">ExampleForm</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Form</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">templateData</span><span class="o">:</span> <span class="p">{</span> <span class="nx">submitbtn</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
+</span><span class='line'>     <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1347,6 +1449,333 @@ The syntax follows the exisitng MvcJqGrid builder pattern and is very straightfo
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers/">Notes on C++ for C# Developers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-29T02:25:00-04:00" pubdate data-updated="true">May 29<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After primarily working in C# for the last 5 years I recently switched back to c++ for a large project. I am going to use this article to post notes/gotcha&#8217;s/tips as a I come across them. I already have a few to add, and will update as I go along. Hopefully they help some c# programmers out there. They are listed in no particular order.</p>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">C++ does not support template type constraints/guards on template definitions</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+Gotcha: C++ does not support template type constraints/guards on template definitions. I ended up using static asserts (requires c++ 11), the example shown below uses helper methods from the popular boost library.
+    </p>
+   
+
+<figure class='code'><figcaption><span>c# </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">TestSuite</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+</span><span class='line'>  <span class="p">:</span>  <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">SomeType</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>C++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Case</span><span class="o">&gt;</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">TestSuite</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'> <span class="n">BOOST_STATIC_ASSERT</span><span class="p">((</span><span class="n">boost</span><span class="o">::</span><span class="n">is_base_of</span><span class="o">&lt;</span><span class="n">ITestCase</span><span class="p">,</span> <span class="n">Case</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">));</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+  </div>
+ </div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">By default inheritance is private in c++</h3>
+  </div>
+  <div class="panel-body">
+
+
+
+<figure class='code'><figcaption><span>C# </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">b</span>
+</span><span class='line'>  <span class="p">:</span> <span class="k">class</span> <span class="nc">a</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Don&#8217;t forget the &#8220;public&#8221; declaration if you are used to c#.</p>
+
+
+<figure class='code'><figcaption><span>C++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">b</span>
+</span><span class='line'> <span class="o">:</span> <span class="k">public</span> <span class="k">class</span> <span class="nc">a</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Member access specified at group level</h3>
+  </div>
+  <div class="panel-body">
+
+<p>Access identifier specified on each member.</p>
+
+<figure class='code'><figcaption><span>C#</span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">SomeProp</span> <span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
+</span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="nf">GetSomeOtherProp</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Access can be grouped.</p>
+
+<figure class='code'><figcaption><span>C++ </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">GetSomeProp</span><span class="p">();</span>
+</span><span class='line'>  <span class="n">string</span> <span class="n">GetSomeOtherProp</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">C++ supports multiple inheiritance</h3>
+  </div>
+  <div class="panel-body">
+<p>
+Unlike C#, C++ supports multiple inheiritance, while this may seem like a benifit it should be used very very rarely. If you find your object model requires multiple inheiritance it is best to reevaluate your design or you will end up facing issues like the <a href="http://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem">diamond of death</a>.
+</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Rule of 3</h3>
+  </div>
+  <div class="panel-body">
+<p>
+Remember the <a href="http://en.wikipedia.org/wiki/Rule_of_three_%28C++_programming%29">rule of 3</a>.
+
+If you require any of the following then you should explicitly define all three.
+<ul>
+<li>copy constructor</li>
+<li>copy assingment operator</li>
+<li>destructor</li>
+</ul>
+
+</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Temproraries with Parameterless Constructors</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+Don&#8217;t include parathesis on paramaterless constructors the compiler will favour resolving it as a function declaration and you will end up with an error message like:
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="nl">error:</span> <span class="n">request</span> <span class="k">for</span> <span class="n">member</span> <span class="err">&#39;</span><span class="n">method</span><span class="err">&#39;</span> <span class="n">in</span> <span class="err">&#39;</span><span class="n">someObj</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">is</span> <span class="n">of</span> <span class="n">non</span><span class="o">-</span><span class="k">class</span> <span class="nc">type</span> <span class="err">&#39;</span><span class="n">someType</span><span class="p">()</span><span class="err">&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+Parthensis can still be used when using the &#8220;new&#8221; keyword
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//bad</span>
+</span><span class='line'><span class="n">someObj</span> <span class="n">obj</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//good</span>
+</span><span class='line'><span class="n">someObj</span> <span class="n">obj</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</p>
+
+</div>
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">STL containers copy their values.</h3>
+  </div>
+  <div class="panel-body">
+    <p>
+        When adding items to STL containters remember the container does a copy and keeps track of it&#8217;s own copy of the item being added.
+    </p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Follow the Virtual Constructor Idiom</h3>
+  </div>
+  <div class="panel-body">
+<p>
+    When creating abstract base classes follow the  <a href="http://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Virtual_Constructor">virtual constructor idiom</a>
+    and create virtual clone and create methods.
+
+    This allows you to create collections of base types while still being able to copy them without knowing their concrete type.
+</p>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Dynamic Linking Libraries</h3>
+  </div>
+  <div class="panel-body">
+  <p>
+    Here are some tips and tools for working with dynamically linked libraries and shared objects.
+  </p>
+  <ul>
+    <li>Shared library files to be registered must start with &#8220;lib&#8221;</li>
+    <li>Use ldconfig -v to see registered libraries</li>
+    <li>Use ldconfig to reload linked libraries</li>
+    <li>Export ldpath to temporarily point executable at your lib, handy for scripting.</li>
+    <li>Use ldd command to view an executables dependencies.</li>
+    <li>Use nm &#8211;demangle <some.so> to view shared objects exported symbol list.</li>
+  </ul>
+
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Can&#8217;t call virtual methods from constructor</h3>
+  </div>
+  <div class="panel-body">
+    Virtual methods can&#8217;t be called from within constructors. This usually means you have to use a two stage approach to initialization of derived classes.
+  
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Avoid importing namespaces</h3>
+  </div>
+  <div class="panel-body">
+    It is bad practice to use &#8220;using namespace <...>;&#8221;. When including third party libraries there can be naming conflicts which become a pain to track down in a large project.
+  </div>
+  
+</div>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/05/09/configuring-opencv-project-with-qt-creator-on-linux/">Setup Opencv Project With Qt Creator on Linux</a></h1>
     
     
@@ -1918,6 +2347,10 @@ References:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/">Checking Nested Models in Backbone Forms</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/11/golang-type-comparisons-using-reflection/">Golang Type Comparisons and Struct Initialization Using Reflection</a>
       </li>
     
@@ -1931,10 +2364,6 @@ References:
     
       <li class="post">
         <a href="/blog/2013/08/18/xamarin-simple-text-list-view-helper/">Xamarin Simple Text List View Helper</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/07/running-qt-creator-build-commands-as-sudo/">Running Qt Creator Build Commands as Sudo</a>
       </li>
     
   </ul>
