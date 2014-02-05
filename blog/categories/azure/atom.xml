@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: azure | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/azure/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2014-02-05T02:49:14-05:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Azure Log4Net Appender]]></title>
+    <link href="http://zacg.github.io/blog/2014/02/05/azure-log4net-appender/"/>
+    <updated>2014-02-05T01:28:00-05:00</updated>
+    <id>http://zacg.github.io/blog/2014/02/05/azure-log4net-appender</id>
+    <content type="html"><![CDATA[<p>
+    Recently when deploying an existing codebase to Azure I required the ability to configure log4net to write to azure storage services. 
+</p>
+
+
+
+
+<p>
+    After some quick googling I found a NuGet package that seemed to be fairly well maintained and had a modest amount of users according to the NuGet download stats. NuGet Package here: <a href="http://www.nuget.org/packages/log4net.Appender.Azure/">http://www.nuget.org/packages/log4net.Appender.Azure/</a> or type the following in package manager console:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'> <span class="n">Install</span><span class="p">-</span><span class="n">Package</span> <span class="n">log4net</span><span class="p">.</span><span class="n">Appender</span><span class="p">.</span><span class="n">Azure</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    However I immediately ran into a few issues, first problems building it with my project as it was built with dependencies on older frameworks such as log4net. Additionally when running the table appender in a real application with multiple concurrent loggers I began to get errors related to the way it submitted batch inserts to the storage service.
+</p>
+
+
+
+
+<p>
+    I was able to fork the NuGet project on github, update it's dependencies, and fix the batch processing issue, you can find my branch here: <a href="https://github.com/zacg/log4net.Azure">https://github.com/zacg/log4net.Azure</a> I have submitted a pull request for these changes, hopefully they will appear in the next NuGet package release.
+</p>
+
+
+
+
+<p>
+    Once referenced just choose your preferred storage method and set your connection string like so:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Azure Appender Config Example </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;log4net&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>appender name=&quot;TableAppender&quot; type=&quot;log4net.Appender.AzureTableAppender, log4net.Appender.Azure&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>param name=&quot;TableName&quot; value=&quot;testLoggingTable&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>param name=&quot;ConnectionString&quot; value=&quot;UseDevelopmentStorage=true&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>layout type=&quot;log4net.Layout.PatternLayout&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>conversionPattern value=&quot;%date [%thread] %-5level %logger [%property{NDC}] - %message%newline&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>/layout<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/appender<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>appender name=&quot;BlobAppender&quot; type=&quot;log4net.Appender.AzureBlobAppender, log4net.Appender.Azure&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>param name=&quot;ContainerName&quot; value=&quot;testloggingblob&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>param name=&quot;DirectoryName&quot; value=&quot;logs&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>param name=&quot;ConnectionString&quot; value=&quot;UseDevelopmentStorage=true&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>layout type=&quot;log4net.Layout.PatternLayout&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="ni">&amp;lt;</span>conversionPattern value=&quot;%date [%thread] %-5level %logger [%property{NDC}] - %message%newline&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>/layout<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/appender<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>root<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>level value=&quot;INFO&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>appender-ref ref=&quot;TableAppender&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'>  <span class="ni">&amp;lt;</span>appender-ref ref=&quot;BlobAppender&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/root<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/log4net&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    If you ever have to debug log4net appenders here are a few snippets that may help you. The first is a function to flush the log buffers. The second turns on log4net debug logging, it will log to system.diagnostic.trace, just place the app setting in your config file. And the last snippet is just a setting to write your trace logs to file, again place in your config file.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Flush Buffers </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="c1">//From: Alconja @ http://stackoverflow.com/questions/2045935/is-there-anyway-to-programmably-flush-the-buffer-in-log4net</span>
+</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">FlushBuffers</span><span class="p">()</span>
+</span><span class='line'><span class="p">{&lt;/</span><span class="n">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">pre</span><span class="p">&gt;&lt;</span><span class="n">code</span><span class="p">&gt;</span><span class="n">ILoggerRepository</span> <span class="n">rep</span> <span class="p">=</span> <span class="n">LogManager</span><span class="p">.</span><span class="n">GetRepository</span><span class="p">();</span>
+</span><span class='line'><span class="k">foreach</span> <span class="p">(</span><span class="n">IAppender</span> <span class="n">appender</span> <span class="k">in</span> <span class="n">rep</span><span class="p">.</span><span class="n">GetAppenders</span><span class="p">())</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">var</span> <span class="n">buffered</span> <span class="p">=</span> <span class="n">appender</span> <span class="k">as</span> <span class="n">BufferingAppenderSkeleton</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">buffered</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">buffered</span><span class="p">.</span><span class="n">Flush</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">&lt;/</span><span class="n">code</span><span class="p">&gt;&lt;/</span><span class="n">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span><span class="p">&gt;}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Log log4net Debugging Info </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>appSettings<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>add key=&quot;log4net.Internal.Debug&quot; value=&quot;true&quot;/<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/appSettings<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Dump Trace Logs to File </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'> <span class="ni">&amp;lt;</span>system.diagnostics&gt;<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>trace<span class="ni">&amp;gt;</span>
+</span><span class='line'> <span class="ni">&amp;lt;</span>listeners<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>add
+</span><span class='line'>   name=&quot;textWriterTraceListener&quot;
+</span><span class='line'>   type=&quot;System.Diagnostics.TextWriterTraceListener&quot;
+</span><span class='line'>   initializeData=&quot;C:\dev\log4net.txt&quot; /<span class="ni">&amp;gt;</span>
+</span><span class='line'> <span class="ni">&amp;lt;</span>/listeners<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/trace<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="ni">&amp;lt;</span>/system.diagnostics&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    And finally a list of the errors encountered and fixed to help out random googlers.
+    <ul>
+        <li>Could not load file or assembly 'log4net, Version=1.2.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a' or one of its dependencies.</li>
+        <li>WRN: Comparing the assembly name resulted in the mismatch: Build Number</li>
+        <li>All entities in a single batch operation must have the same partition key</li>
+    </ul>
+</p>
+
+
+
+
+<p>
+    I ran into a few roadblocks along the way but ended up with a working log4net appender that can write logs to Azure storage services with a few simple configuration settings. If you have any comments feel free to share below.
+</p>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>
