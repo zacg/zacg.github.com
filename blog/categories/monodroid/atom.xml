@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: monodroid | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/monodroid/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2014-02-28T01:38:46-05:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Android Using Custom Header Title]]></title>
+    <link href="http://zacg.github.io/blog/2014/02/28/android-using-custom-header-title/"/>
+    <updated>2014-02-28T01:17:00-05:00</updated>
+    <id>http://zacg.github.io/blog/2014/02/28/android-using-custom-header-title</id>
+    <content type="html"><![CDATA[<p>
+Trying to configure a custom header/title layout with the newer Android Halo Theme can be painful producing cryptic error messages. Apparently the issue is with the new actionbar added in the halo theme conflicting with the older title configuration.
+</p>
+
+
+
+
+<p>
+    Here is what worked for me: after creating a layout named "CustomHeader.xml" I added the following lines to my activity OnCreate method:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="p">&lt;/</span><span class="n">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">pre</span><span class="p">&gt;&lt;</span><span class="n">code</span><span class="p">&gt;</span><span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="n">OnCreate</span> <span class="p">(</span><span class="n">Bundle</span> <span class="n">bundle</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">base</span><span class="p">.</span><span class="n">OnCreate</span> <span class="p">(</span><span class="n">bundle</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">RequestWindowFeature</span><span class="p">(</span><span class="n">WindowFeatures</span><span class="p">.</span><span class="n">CustomTitle</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">SetContentView</span> <span class="p">(</span><span class="n">Resource</span><span class="p">.</span><span class="n">Layout</span><span class="p">.</span><span class="n">Main</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">Window</span><span class="p">.</span><span class="n">SetFeatureInt</span> <span class="p">(</span><span class="n">WindowFeatures</span><span class="p">.</span><span class="n">CustomTitle</span><span class="p">,</span> <span class="n">Resource</span><span class="p">.</span><span class="n">Layout</span><span class="p">.</span><span class="n">CustomHeader</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">&lt;/</span><span class="n">code</span><span class="p">&gt;&lt;/</span><span class="n">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="n">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+I then modified my androidmanifiest.xml and style.xml files to configure a custom theme that inherits from the oridinal halo theme but removes the action bar.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>androidmanifiest.xml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>manifest<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>application android:theme=&quot;@style/CustomTheme&quot;<span class="ni">&amp;gt;&amp;lt;</span>/application<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/manifest<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>styles.xml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>resources<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>style name=&quot;CustomTheme&quot; parent=&quot;android:Theme.Holo&quot;<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>item name=&quot;android:windowActionBar&quot;<span class="ni">&amp;gt;</span>false<span class="ni">&amp;lt;</span>/item<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/style<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="ni">&amp;lt;</span>/resources<span class="ni">&amp;gt;</span>
+</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+If you don't already have a styles.xml file, it should be created in /resources/values/
+</p>
+
+
+
+
+<p>
+If you try setting a custom header/title without removing the actionbar you will get the following runtime exception: <strong>"Cannot combine custom title with other title features"</strong>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

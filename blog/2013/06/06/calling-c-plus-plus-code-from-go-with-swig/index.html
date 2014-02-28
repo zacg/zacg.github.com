@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="Recently while working on a Go based project I needed to use some functionality from another large C++ library. The librarys size and complexity &hellip;">
+  <meta name="description" content="Recently while working on a Go based project I needed to use some functionality from another large C++ library. The library&#8217;s size and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -115,7 +115,7 @@
 
 <div class="entry-content"><p>
 
- Recently while working on a Go based project I needed to use some functionality from another large C++ library. The librarys size and complexity made re-writing it in Go unfeasible. After some research I decided to use the popular SWIG (Simplified Wrapper and Interface Generator) framework to enable interop between my two projects.  
+ Recently while working on a Go based project I needed to use some functionality from another large C++ library. The library&#8217;s size and complexity made re-writing it in Go unfeasible. After some research I decided to use the popular SWIG (Simplified Wrapper and Interface Generator) framework to enable interop between my two projects.  
 
 </p>
 
@@ -288,7 +288,7 @@ If your wrapped class(es) are simple and use primitive types the above swig file
 <br/>
 
 <p>
-If your target code contains non-primitive types you have a bit more work todo. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
+If your target code contains non-primitive types you have a bit more work to do. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
 </p>
 
 
@@ -451,7 +451,7 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 <h3>Setting up Build Scripts</h3>
 
 <p>
-Because building Go packages requires the code to be in the GOPATH, I script out a &#8220;release&#8221; build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for testing. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file or bash script. To recap the steps required are:
+Because building Go packages requires the code to be in the GOPATH, I script out a &#8220;release&#8221; build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurrently, only publishing the go packages when they are ready for testing. I use the build commands feature built into qt Creator to accomplish this but you can achieve the same results with a simple make file or bash script. To recap the steps required are:
 </p>
 
 <ol>
@@ -537,6 +537,10 @@ This tutorial has shown you how to wrap simple classes. Feel free to leave your 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/28/android-using-custom-header-title/">Android Using Custom Header Title</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/05/azure-log4net-appender/">Azure Log4Net Appender</a>
       </li>
     
@@ -550,10 +554,6 @@ This tutorial has shown you how to wrap simple classes. Feel free to leave your 
     
       <li class="post">
         <a href="/blog/2013/09/01/beware-when-installing-swig-from-debian-package/">Beware when Installing Swig from Debian Package</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/18/file-parameter-support-for-portable-restsharp-library/">File Parameter Support for Portable Restsharp Library</a>
       </li>
     
   </ul>

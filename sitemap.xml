@@ -40,7 +40,7 @@
         <loc>
             http://zacg.github.io/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig/
         </loc>
-        <lastmod>2013-11-01T01:02:35-04:00</lastmod>
+        <lastmod>2014-02-28T01:38:14-05:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/blog/2013/07/31/lowercase-json-fields-with-golang/</loc>
@@ -85,20 +85,24 @@
         <lastmod>2014-02-05T02:37:05-05:00</lastmod>
     </url>
     <url>
+        <loc>http://zacg.github.io/blog/2014/02/28/android-using-custom-header-title/</loc>
+        <lastmod>2014-02-28T01:35:55-05:00</lastmod>
+    </url>
+    <url>
         <loc>http://zacg.github.io/robots.txt</loc>
         <lastmod>2013-05-02T00:17:37-04:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/blog/archives/</loc>
-        <lastmod>2014-02-05T02:37:05-05:00</lastmod>
+        <lastmod>2014-02-28T01:38:14-05:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/blog/</loc>
-        <lastmod>2014-02-05T02:37:05-05:00</lastmod>
+        <lastmod>2014-02-28T01:38:14-05:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/</loc>
-        <lastmod>2014-02-05T02:42:26-05:00</lastmod>
+        <lastmod>2014-02-28T01:38:14-05:00</lastmod>
     </url>
     <url>
         <loc>http://zacg.github.io/about/</loc>

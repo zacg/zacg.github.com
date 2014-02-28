@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="Recently when deploying an existing codebase to Azure I required the ability to configure log4net to write to azure storage services. After some &hellip;">
+  <meta name="description" content="Trying to configure a custom header/title layout with the newer Android Halo Theme can be painful producing cryptic error messages. Apparently the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +85,124 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/28/android-using-custom-header-title/">Android Using Custom Header Title</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-28T01:17:00-05:00" pubdate data-updated="true">Feb 28<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/02/28/android-using-custom-header-title/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+Trying to configure a custom header/title layout with the newer Android Halo Theme can be painful producing cryptic error messages. Apparently the issue is with the new actionbar added in the halo theme conflicting with the older title configuration.
+</p>
+
+
+
+
+<p>
+    Here is what worked for me: after creating a layout named &#8220;CustomHeader.xml&#8221; I added the following lines to my activity OnCreate method:
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'>   <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnCreate</span> <span class="p">(</span><span class="n">Bundle</span> <span class="n">bundle</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>      <span class="k">base</span><span class="p">.</span><span class="n">OnCreate</span> <span class="p">(</span><span class="n">bundle</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">RequestWindowFeature</span><span class="p">(</span><span class="n">WindowFeatures</span><span class="p">.</span><span class="n">CustomTitle</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">SetContentView</span> <span class="p">(</span><span class="n">Resource</span><span class="p">.</span><span class="n">Layout</span><span class="p">.</span><span class="n">Main</span><span class="p">);</span>
+</span><span class='line'>      <span class="n">Window</span><span class="p">.</span><span class="n">SetFeatureInt</span> <span class="p">(</span><span class="n">WindowFeatures</span><span class="p">.</span><span class="n">CustomTitle</span><span class="p">,</span> <span class="n">Resource</span><span class="p">.</span><span class="n">Layout</span><span class="p">.</span><span class="n">CustomHeader</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+I then modified my androidmanifiest.xml and style.xml files to configure a custom theme that inherits from the oridinal halo theme but removes the action bar.
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>androidmanifiest.xml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;manifest&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;application</span> <span class="na">android:theme=</span><span class="s">&quot;@style/CustomTheme&quot;</span><span class="nt">&gt;&lt;/application&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/manifest&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>styles.xml </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;resources&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">&quot;CustomTheme&quot;</span> <span class="na">parent=</span><span class="s">&quot;android:Theme.Holo&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;android:windowActionBar&quot;</span><span class="nt">&gt;</span>false<span class="nt">&lt;/item&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/style&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/resources&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+If you don&#8217;t already have a styles.xml file, it should be created in /resources/values/
+</p>
+
+
+
+
+<p>
+If you try setting a custom header/title without removing the actionbar you will get the following runtime exception: <strong>&#8220;Cannot combine custom title with other title features&#8221;</strong>
+</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1074,7 +1192,7 @@ The source code can be downloaded from github: <a href="https://github.com/zacg/
 
   <div class="entry-content"><p>
 
- Recently while working on a Go based project I needed to use some functionality from another large C++ library. The librarys size and complexity made re-writing it in Go unfeasible. After some research I decided to use the popular SWIG (Simplified Wrapper and Interface Generator) framework to enable interop between my two projects.  
+ Recently while working on a Go based project I needed to use some functionality from another large C++ library. The library&#8217;s size and complexity made re-writing it in Go unfeasible. After some research I decided to use the popular SWIG (Simplified Wrapper and Interface Generator) framework to enable interop between my two projects.  
 
 </p>
 
@@ -1247,7 +1365,7 @@ If your wrapped class(es) are simple and use primitive types the above swig file
 <br/>
 
 <p>
-If your target code contains non-primitive types you have a bit more work todo. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
+If your target code contains non-primitive types you have a bit more work to do. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
 </p>
 
 
@@ -1410,7 +1528,7 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 <h3>Setting up Build Scripts</h3>
 
 <p>
-Because building Go packages requires the code to be in the GOPATH, I script out a &#8220;release&#8221; build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for testing. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file or bash script. To recap the steps required are:
+Because building Go packages requires the code to be in the GOPATH, I script out a &#8220;release&#8221; build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurrently, only publishing the go packages when they are ready for testing. I use the build commands feature built into qt Creator to accomplish this but you can achieve the same results with a simple make file or bash script. To recap the steps required are:
 </p>
 
 <ol>
@@ -2571,6 +2689,10 @@ References:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/02/28/android-using-custom-header-title/">Android Using Custom Header Title</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/05/azure-log4net-appender/">Azure Log4Net Appender</a>
       </li>
     
@@ -2584,10 +2706,6 @@ References:
     
       <li class="post">
         <a href="/blog/2013/09/01/beware-when-installing-swig-from-debian-package/">Beware when Installing Swig from Debian Package</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/08/18/file-parameter-support-for-portable-restsharp-library/">File Parameter Support for Portable Restsharp Library</a>
       </li>
     
   </ul>

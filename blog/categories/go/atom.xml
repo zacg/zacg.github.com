@@ -4,7 +4,7 @@
   <title><![CDATA[Category: go | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/go/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-02-05T02:49:14-05:00</updated>
+  <updated>2014-02-28T01:38:46-05:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -320,7 +320,7 @@ The source code can be downloaded from github: <a href="https://github.com/zacg/
     <id>http://zacg.github.io/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig</id>
     <content type="html"><![CDATA[<p>
 
- Recently while working on a Go based project I needed to use some functionality from another large C++ library. The librarys size and complexity made re-writing it in Go unfeasible. After some research I decided to use the popular SWIG (Simplified Wrapper and Interface Generator) framework to enable interop between my two projects.  
+ Recently while working on a Go based project I needed to use some functionality from another large C++ library. The library's size and complexity made re-writing it in Go unfeasible. After some research I decided to use the popular SWIG (Simplified Wrapper and Interface Generator) framework to enable interop between my two projects.  
 
 </p>
 
@@ -492,7 +492,7 @@ If your wrapped class(es) are simple and use primitive types the above swig file
 <br/>
 
 <p>
-If your target code contains non-primitive types you have a bit more work todo. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
+If your target code contains non-primitive types you have a bit more work to do. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
 </p>
 
 <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -645,7 +645,7 @@ That's it! you should now be able to import "simplelib" in your go projects and 
 <h3>Setting up Build Scripts</h3>
 
 <p>
-Because building Go packages requires the code to be in the GOPATH, I script out a "release" build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurently, only publishing the go packages when they are ready for testing. I use the build commands feature built into qt Creator to accomplish this but you can achive the same results with a simple make file or bash script. To recap the steps required are:
+Because building Go packages requires the code to be in the GOPATH, I script out a "release" build process for my c++ project that does the necessary pre/post build steps listed above. This allows me to keep 2 streams of development going concurrently, only publishing the go packages when they are ready for testing. I use the build commands feature built into qt Creator to accomplish this but you can achieve the same results with a simple make file or bash script. To recap the steps required are:
 </p>
 
 <ol>
