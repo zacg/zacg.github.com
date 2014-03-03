@@ -4,7 +4,7 @@
   <title><![CDATA[Category: android | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-02-28T01:38:46-05:00</updated>
+  <updated>2014-03-02T20:56:33-05:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -19,7 +19,7 @@
     <updated>2014-02-28T01:17:00-05:00</updated>
     <id>http://zacg.github.io/blog/2014/02/28/android-using-custom-header-title</id>
     <content type="html"><![CDATA[<p>
-Trying to configure a custom header/title layout with the newer Android Halo Theme can be painful producing cryptic error messages. Apparently the issue is with the new actionbar added in the halo theme conflicting with the older title configuration.
+Trying to configure a custom header/title layout with the newer Android Holo Theme can be painful producing cryptic error messages. Apparently the issue is with the new actionbar added in the halo theme conflicting with the older title configuration.
 </p>
 
 
