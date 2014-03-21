@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="Trying to configure a custom header/title layout with the newer Android Holo Theme can be painful producing cryptic error messages. Apparently the &hellip;">
+  <meta name="description" content="CLA and Hierarchical Temporal Memory are finally starting to grow in popularity and an open source community is starting to grow around the open &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -57,7 +57,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">Zac Gross</a></h1>
   
-    <h2>yet another software development blog.</h2>
+    <h2>AI | Engineering | Biology</h2>
   
 </hgroup>
 
@@ -85,6 +85,90 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/21/new-nupic-cerebro-docker-image/">New Nupic Cerebro Docker Image</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-21T01:22:00-04:00" pubdate data-updated="true">Mar 21<span>st</span>, 2014</time>
+        
+         | <a href="/blog/2014/03/21/new-nupic-cerebro-docker-image/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+    CLA and Hierarchical Temporal Memory are finally starting to grow in popularity and an open source community is starting to grow around the open source <a href="https://github.com/numenta/nupic/">Nupic framework</a>. Currently Cerebro is the best tool (in my opnion) for prototyping models CLA models it allows you to visually disect your work.
+</p>
+
+
+<p>
+    Because Cerebro is a webapp build on mongodb and python it requires a bit of work get setup. In order to make it easier for newcomers to get up and running quickly I created a dockerfile containing all the dependencides required to run Cerebro. Once the docker image is built Cerebro can be run with one command.
+</p>
+
+
+<p>
+    The Dockerfile is now located in the Cerebro repository: <a href="https://github.com/numenta/nupic.cerebro/blob/master/Dockerfile">https://github.com/numenta/nupic.cerebro/blob/master/Dockerfile</a>
+</p>
+
+
+<p>
+    To build the docker image:
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> sudo docker build -t<span class="o">=</span><span class="s2">&quot;nupic.cerebro&quot;</span> .
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    To run Cerebro on port: 1955:
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> sudo docker run -p<span class="o">=</span>1955:1955 nupic.cerebro
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    Simply navigate to http://localhost:1955 to start using Cerebro. For an introductory video checkout: <a href="http://youtu.be/WQWU1K5tE5o">http://youtu.be/WQWU1K5tE5o</a>
+</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -2689,6 +2773,10 @@ References:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/21/new-nupic-cerebro-docker-image/">New Nupic Cerebro Docker Image</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/02/28/android-using-custom-header-title/">Android Using Custom Header Title</a>
       </li>
     
@@ -2702,10 +2790,6 @@ References:
     
       <li class="post">
         <a href="/blog/2013/10/11/golang-type-comparisons-using-reflection/">Golang Type Comparisons and Struct Initialization Using Reflection</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/01/beware-when-installing-swig-from-debian-package/">Beware when Installing Swig from Debian Package</a>
       </li>
     
   </ul>

@@ -1,7 +1,7 @@
 
 .landing-header {
 	height: 300px;
-	background-image: url(/images/new_hong_kong_night_skyline.jpg);
+	background-image: url(/images/cali.jpg);
 	
 	background-position: 50% 50%; 
 	color: gray;
@@ -33,6 +33,7 @@ color: #2C2929;
      height: 250px;
      border-radius: 10px 10px 10px 10px;
      background-repeat: no-repeat;
+     
 }
 
 .landing-body{
@@ -66,18 +67,26 @@ color: #2C2929;
 }
 
 header[role="banner"] {
-	background-image: url(/images/new_hong_kong_night_skyline.jpg) !important;
+	background-image: url(/images/cali.jpg) !important;
 	color: red !important;
-	background-position: 50% 50% !important; 	
+	background-position: 75% 50% !important; 	
 }
 
 hgroup {
 	background-color: rgba(255, 255, 204, 0.4);
-    
     width: 20em;
     padding-left: .5em;
 }
 
-hgroup h2, hgroup h1 a {
+hgroup h2{
 	color: #000000!important;
+}
+
+
+hgroup h1 a{
+	text-shadow:
+    -1px -1px 0 #0099CC,
+    1px -1px 0 #0099CC,
+    -1px 1px 0 #0099CC,
+    1px 1px 0 #0099CC !important;
 }

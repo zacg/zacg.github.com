@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>New Nupic Cerebro Docker Image - Zac Gross</title>
+  <meta name="author" content="Zac Gross">
+
+  
+  <meta name="description" content="CLA and Hierarchical Temporal Memory are finally starting to grow in popularity and an open source community is starting to grow around the open &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zacg.github.io/blog/2014/03/21/new-nupic-cerebro-docker-image">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Zac Gross" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>-->
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4180781-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zac Gross</a></h1>
+  
+    <h2>AI | Engineering | Biology</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zacg.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">New Nupic Cerebro Docker Image</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-21T01:22:00-04:00" pubdate data-updated="true">Mar 21<span>st</span>, 2014</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>
+    CLA and Hierarchical Temporal Memory are finally starting to grow in popularity and an open source community is starting to grow around the open source <a href="https://github.com/numenta/nupic/">Nupic framework</a>. Currently Cerebro is the best tool (in my opnion) for prototyping models CLA models it allows you to visually disect your work.
+</p>
+
+
+<p>
+    Because Cerebro is a webapp build on mongodb and python it requires a bit of work get setup. In order to make it easier for newcomers to get up and running quickly I created a dockerfile containing all the dependencides required to run Cerebro. Once the docker image is built Cerebro can be run with one command.
+</p>
+
+
+<p>
+    The Dockerfile is now located in the Cerebro repository: <a href="https://github.com/numenta/nupic.cerebro/blob/master/Dockerfile">https://github.com/numenta/nupic.cerebro/blob/master/Dockerfile</a>
+</p>
+
+
+<p>
+    To build the docker image:
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> sudo docker build -t<span class="o">=</span><span class="s2">&quot;nupic.cerebro&quot;</span> .
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    To run Cerebro on port: 1955:
+</p>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> sudo docker run -p<span class="o">=</span>1955:1955 nupic.cerebro
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    Simply navigate to http://localhost:1955 to start using Cerebro. For an introductory video checkout: <a href="http://youtu.be/WQWU1K5tE5o">http://youtu.be/WQWU1K5tE5o</a>
+</p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Zac Gross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-21T01:22:00-04:00" pubdate data-updated="true">Mar 21<span>st</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ai/'>AI</a>, <a class='category' href='/blog/categories/cerebro/'>Cerebro</a>, <a class='category' href='/blog/categories/docker/'>Docker</a>, <a class='category' href='/blog/categories/numenta/'>Numenta</a>, <a class='category' href='/blog/categories/nupic/'>Nupic</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2014/03/21/new-nupic-cerebro-docker-image/" data-via="zachgross" data-counturl="http://zacg.github.io/blog/2014/03/21/new-nupic-cerebro-docker-image/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/02/28/android-using-custom-header-title/" title="Previous Post: Android Using Custom Header Title">&laquo; Android Using Custom Header Title</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/21/new-nupic-cerebro-docker-image/">New Nupic Cerebro Docker Image</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/28/android-using-custom-header-title/">Android Using Custom Header Title</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/02/05/azure-log4net-appender/">Azure Log4Net Appender</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/">Checking Nested Models in Backbone Forms</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/11/golang-type-comparisons-using-reflection/">Golang Type Comparisons and Struct Initialization Using Reflection</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Upcoming Posts</h1>
+  <ul id="upcoming_posts">
+      <li class="post">
+        <a>Intro to Backbone.js</a>
+      </li>
+      <li class="post">
+        <a>Temporal Expressions</a>
+      </li>
+      <li class="post">
+        <a>Opencv Port of kaze Algorithm</a>
+      </li>
+      <li class="post">
+        <a>Using html5 Websockts with Revel and Golang</a>
+      </li>
+      
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/zacg">@zacg</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'zacg',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Zac Gross -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'zacg';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zacg.github.io/blog/2014/03/21/new-nupic-cerebro-docker-image/';
+        var disqus_url = 'http://zacg.github.io/blog/2014/03/21/new-nupic-cerebro-docker-image/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

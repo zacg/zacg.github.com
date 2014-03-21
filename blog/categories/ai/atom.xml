@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: AI | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/ai/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2014-03-21T02:40:43-04:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New Nupic Cerebro Docker Image]]></title>
+    <link href="http://zacg.github.io/blog/2014/03/21/new-nupic-cerebro-docker-image/"/>
+    <updated>2014-03-21T01:22:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2014/03/21/new-nupic-cerebro-docker-image</id>
+    <content type="html"><![CDATA[<p>
+    CLA and Hierarchical Temporal Memory are finally starting to grow in popularity and an open source community is starting to grow around the open source <a href="https://github.com/numenta/nupic/">Nupic framework</a>. Currently Cerebro is the best tool (in my opnion) for prototyping models CLA models it allows you to visually disect your work.
+</p>
+
+
+<p>
+    Because Cerebro is a webapp build on mongodb and python it requires a bit of work get setup. In order to make it easier for newcomers to get up and running quickly I created a dockerfile containing all the dependencides required to run Cerebro. Once the docker image is built Cerebro can be run with one command.
+</p>
+
+
+<p>
+    The Dockerfile is now located in the Cerebro repository: <a href="https://github.com/numenta/nupic.cerebro/blob/master/Dockerfile">https://github.com/numenta/nupic.cerebro/blob/master/Dockerfile</a>
+</p>
+
+
+<p>
+    To build the docker image:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;sudo docker build -t<span class="o">=</span><span class="s2">&quot;nupic.cerebro&quot;</span> .
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    To run Cerebro on port: 1955:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;sudo docker run -p<span class="o">=</span>1955:1955 nupic.cerebro
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    Simply navigate to http://localhost:1955 to start using Cerebro. For an introductory video checkout: <a href="http://youtu.be/WQWU1K5tE5o">http://youtu.be/WQWU1K5tE5o</a>
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>
