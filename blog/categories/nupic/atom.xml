@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Nupic | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/nupic/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-03-21T02:40:43-04:00</updated>
+  <updated>2014-03-21T03:27:08-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -19,12 +19,12 @@
     <updated>2014-03-21T01:22:00-04:00</updated>
     <id>http://zacg.github.io/blog/2014/03/21/new-nupic-cerebro-docker-image</id>
     <content type="html"><![CDATA[<p>
-    CLA and Hierarchical Temporal Memory are finally starting to grow in popularity and an open source community is starting to grow around the open source <a href="https://github.com/numenta/nupic/">Nupic framework</a>. Currently Cerebro is the best tool (in my opnion) for prototyping models CLA models it allows you to visually disect your work.
+    CLA and Hierarchical Temporal Memory are finally starting to grow in popularity and an open source community is starting to grow around the open source <a href="https://github.com/numenta/nupic/">Nupic framework</a>. Currently Cerebro is the best tool (and only) for prototyping CLA models it allows you to visually dissect your work.
 </p>
 
 
 <p>
-    Because Cerebro is a webapp build on mongodb and python it requires a bit of work get setup. In order to make it easier for newcomers to get up and running quickly I created a dockerfile containing all the dependencides required to run Cerebro. Once the docker image is built Cerebro can be run with one command.
+    Because Cerebro is a webapp built on mongodb and python it requires a bit of work get setup. To make it easier for newcomers to get up and running quickly I created a dockerfile containing all the dependencies required to run Cerebro. Once the docker image is built Cerebro can be run with one command. (Eventually users will be able to pull an official built image from dockers index)
 </p>
 
 
