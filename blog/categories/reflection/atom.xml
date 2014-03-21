@@ -4,7 +4,7 @@
   <title><![CDATA[Category: reflection | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/reflection/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-03-21T03:27:08-04:00</updated>
+  <updated>2014-03-21T03:32:44-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -19,19 +19,19 @@
     <updated>2013-10-11T19:29:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/10/11/golang-type-comparisons-using-reflection</id>
     <content type="html"><![CDATA[<p>
-While writing some basic <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> code for a recent project, I decided to create a base struct containing the redundant fields for all of my data entities (id,date_created, etc...). I then embedded this struct in all data entites and tagged it as inline so json/bson marshalers would treat it accordingly. A problem arose when I wanted to pass newly created data entities from clients into a json webservice. Normally when instantiating a data entity struct I would use the associated creation method (NewSomeEntity()) which would set the appropriate id/created date etc... however the json marshaler is not smart enough to do this as it builds the object graph. If the object graph is only one level deep, you can just run an init function on the new object returned from the marshaler, when the object contains n-levels (n-many relationships) it becomes a problem.
+While writing some basic <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> code for a recent project, I decided to create a base struct containing the redundant fields for all of my data entities (id,date_created, etc...). I then embedded this struct in all data entities and tagged it as inline so json/bson marshalers would treat it accordingly. A problem arose when I wanted to pass newly created data entities from clients into a json webservice. Normally when instantiating a data entity struct I would use the associated creation method (NewSomeEntity()) which would set the appropriate id/created date etc... however the json marshaler is not smart enough to do this as it builds the object graph. If the object graph is only one level deep, you can just run an init function on the new object returned from the marshaler, when the object contains n-levels (n-many relationships) it becomes a problem.
 </p>
 
 
 <p>
-I had two options: I could implement custom marshal interfaces for every data entity struct, or I could write a function that reflects over the object graph after it has been built by the json marshaler and run my intitalization function against any new/unintitalized base entity structs. I decided to go with the later option.
+I had two options: I could implement custom marshal interfaces for every data entity struct, or I could write a function that reflects over the object graph after it has been built by the json marshaler and run my initialization function against any new/unintitalized base entity structs. I decided to go with the later option.
 </p>
 
 
 
 
 <p>
-Thre are a few key functions needed to achieve the method described above, mainly: reflecting over an object to get a list of it's fields, checking the type of the reflected field against your base struct, , checking if the reflected field value is uninitialized or in the case of a pointer nil, and finally setting the value of an empty field to an initialized struct. 
+There are a few key functions needed to achieve the method described above, mainly: reflecting over an object to get a list of it's fields, checking the type of the reflected field against your base struct, checking if the reflected field value is uninitialized or in the case of a pointer nil, and finally setting the value of an empty field to an initialized struct. 
 </p>
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: asp.net | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/asp-dot-net/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-03-21T03:27:08-04:00</updated>
+  <updated>2014-03-21T03:32:44-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -208,6 +208,11 @@
 
 <p>
     I ran into a few roadblocks along the way but ended up with a working log4net appender that can write logs to Azure storage services with a few simple configuration settings. If you have any comments feel free to share below.
+</p>
+
+
+<p>
+  Source Code Here: <a href="https://github.com/zacg/log4net.Azure">https://github.com/zacg/log4net.Azure</a>
 </p>
 
 
