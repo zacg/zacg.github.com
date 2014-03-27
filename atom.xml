@@ -4,7 +4,7 @@
   <title><![CDATA[Zac Gross]]></title>
   <link href="http://zacg.github.io/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-03-21T03:32:44-04:00</updated>
+  <updated>2014-03-26T23:59:13-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Encoding Data as DNA with Go]]></title>
+    <link href="http://zacg.github.io/blog/2014/03/26/encoding-data-as-dna-with-go/"/>
+    <updated>2014-03-26T23:58:00-04:00</updated>
+    <id>http://zacg.github.io/blog/2014/03/26/encoding-data-as-dna-with-go</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[New Nupic Cerebro Docker Image]]></title>
