@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Encoding Data as DNA with Go - Zac Gross</title>
+  <title>Encoding Data in DNA with Go - Zac Gross</title>
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="As a recent programming exercise I wrote a golang library that allows the encoding/decoding of arbitrary data data in DNA segments. The encoding &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,7 +88,7 @@
   
   <header>
     
-      <h1 class="entry-title">Encoding Data as DNA With Go</h1>
+      <h1 class="entry-title">Encoding Data in DNA With Go</h1>
     
     
       <p class="meta">
@@ -114,7 +113,71 @@
   </header>
 
 
-<div class="entry-content">
+<div class="entry-content"><p>
+    As a recent programming exercise I wrote a golang library that allows the encoding/decoding of arbitrary data data in DNA segments.
+</p>
+
+
+
+
+<p>
+    The encoding algorithm is based on the method described in this Nature paper: <a href="http://www.nature.com/nature/journal/v494/n7435/full/nature11875.html">http://www.nature.com/nature/journal/v494/n7435/full/nature11875.html</a> . Pseudo code and details can be found here: <a href="http://www.nature.com/nature/journal/vaop/ncurrent/extref/nature11875-s2.pdf">http://www.nature.com/nature/journal/vaop/ncurrent/extref/nature11875-s2.pdf</a>
+</p>
+
+
+
+
+<p>
+Usage Example:
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>Encoding </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="nx">str</span> <span class="o">:=</span> <span class="s">&quot;Birney and Goldman&quot;</span>
+</span><span class='line'>  <span class="nx">dna</span> <span class="o">:=</span> <span class="nx">dna</span><span class="p">.</span><span class="nx">Encode</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
+</span><span class='line'>  <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result: &quot;</span><span class="p">,</span> <span class="nx">dna</span><span class="p">)</span>
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+The resulting string is a valid DNA sequence.
+</p>
+
+
+
+
+<p>
+Sequences can be decoded back to human readable text the same way:
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>Decoding </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="nx">dna</span> <span class="o">:=</span> <span class="s">&quot;ATAGTATATCGACTAGTACAGCGTAGCATCTCGCAGCGAGATACGCTGCTACGCAGCATGCTGTGAGTATCGATGACGAGTGACTCTGTACAGTACGTACGATACGTACGTACGTCGTATAGTCGTACGTACGTACGTACGTACGTACGTACTGTACAGAGTCACTCGTCATCGATACTCACAGCATGCTGCGTAGCAGCGTATCTCGCTGCGAGATGATACGTACGTACGAGC&quot;</span>
+</span><span class='line'>  <span class="nx">str</span> <span class="o">:=</span> <span class="nx">dna</span><span class="p">.</span><span class="nx">Decode</span><span class="p">(</span><span class="nx">dna</span><span class="p">)</span>
+</span><span class='line'>  <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result&quot;</span><span class="p">,</span><span class="nx">str</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    Source on github: <a href="https://github.com/zacg/dna">https://github.com/zacg/dna</a>
+</p>
+
 </div>
 
 
@@ -140,6 +203,12 @@
 <time datetime="2014-03-26T23:58:00-04:00" pubdate data-updated="true">Mar 26<span>th</span>, 2014</time>
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dna/'>dna</a>, <a class='category' href='/blog/categories/go/'>go</a>, <a class='category' href='/blog/categories/golang/'>golang</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
 
     </p>
     
@@ -156,6 +225,8 @@
       
         <a class="basic-alignment left" href="/blog/2014/03/21/new-nupic-cerebro-docker-image/" title="Previous Post: New Nupic Cerebro Docker Image">&laquo; New Nupic Cerebro Docker Image</a>
       
+      
+        <a class="basic-alignment right" href="/blog/2014/03/26/encoding-data-in-dna-with-go/" title="Next Post: Encoding Data in DNA with Go">Encoding Data in DNA with Go &raquo;</a>
       
     </p>
   </footer>
@@ -176,7 +247,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/03/26/encoding-data-as-dna-with-go/">Encoding Data as DNA with Go</a>
+        <a href="/blog/2014/03/26/encoding-data-in-dna-with-go/">Encoding Data in DNA with Go</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/26/encoding-data-as-dna-with-go/">Encoding Data in DNA with Go</a>
       </li>
     
       <li class="post">
@@ -189,10 +264,6 @@
     
       <li class="post">
         <a href="/blog/2014/02/05/azure-log4net-appender/">Azure Log4Net Appender</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/">Checking Nested Models in Backbone Forms</a>
       </li>
     
   </ul>
