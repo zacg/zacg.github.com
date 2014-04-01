@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gotchas | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/gotchas/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-03-27T03:13:25-04:00</updated>
+  <updated>2014-04-01T12:34:59-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -257,6 +257,7 @@ Parthensis can still be used when using the "new" keyword
     <li>Export ldpath to temporarily point executable at your lib, handy for scripting.</li>
     <li>Use ldd command to view an executables dependencies.</li>
     <li>Use nm --demangle <some.so> to view shared objects exported symbol list.</li>
+    <li>Use c++filt <symbol reference> to lookup runtime symbol lookup errors.</li>
   </ul>
 
   </div>

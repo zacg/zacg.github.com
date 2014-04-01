@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-03-27T03:13:25-04:00</updated>
+  <updated>2014-04-01T12:34:59-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -49,87 +49,6 @@ Usage Example:
 </pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">str</span> <span class="o">:=</span> <span class="s">&quot;some string to encode in DNA&quot;</span>
-</span><span class='line'><span class="nx">dna</span> <span class="o">:=</span> <span class="nx">dna</span><span class="p">.</span><span class="nx">Encode</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
-</span><span class='line'><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result: &quot;</span><span class="p">,</span> <span class="nx">dna</span><span class="p">)</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-The resulting string is a valid DNA sequence.
-</p>
-
-
-
-
-<p>
-Sequences can be decoded back to human readable text the same way:
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Decoding </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">dna</span> <span class="o">:=</span> <span class="s">&quot;ATAGTATATCGACTAGTACAGCGTAGCATCTCGCAGCGAGATACGCTGCTACGCAGCATGCTGTGAGTATCGATGACGAGTGACTCTGTACAGTACGTACGATACGTACGTACGTCGTATAGTCGTACGTACGTACGTACGTACGTACGTACTGTACAGAGTCACTCGTCATCGATACTCACAGCATGCTGCGTAGCAGCGTATCTCGCTGCGAGATGATACGTACGTACGAGC&quot;</span>
-</span><span class='line'><span class="nx">str</span> <span class="o">:=</span> <span class="nx">dna</span><span class="p">.</span><span class="nx">Decode</span><span class="p">(</span><span class="nx">dna</span><span class="p">)</span>
-</span><span class='line'><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result&quot;</span><span class="p">,</span><span class="nx">str</span><span class="p">)</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-    Source on github: <a href="https://github.com/zacg/dna">https://github.com/zacg/dna</a>
-</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Encoding Data in DNA with Go]]></title>
-    <link href="http://zacg.github.io/blog/2014/03/26/encoding-data-as-dna-with-go/"/>
-    <updated>2014-03-26T23:58:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2014/03/26/encoding-data-as-dna-with-go</id>
-    <content type="html"><![CDATA[<p>
-    As a recent programming exercise I wrote a golang library that allows the encoding/decoding of arbitrary data data in DNA segments.
-</p>
-
-
-
-
-<p>
-    The encoding algorithm is based on the method described in this Nature paper: <a href="http://www.nature.com/nature/journal/v494/n7435/full/nature11875.html">http://www.nature.com/nature/journal/v494/n7435/full/nature11875.html</a> . Pseudo code and details can be found here: <a href="http://www.nature.com/nature/journal/vaop/ncurrent/extref/nature11875-s2.pdf">http://www.nature.com/nature/journal/vaop/ncurrent/extref/nature11875-s2.pdf</a>
-</p>
-
-
-
-
-<p>
-Usage Example:
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Encoding </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">str</span> <span class="o">:=</span> <span class="s">&quot;Birney and Goldman&quot;</span>
 </span><span class='line'><span class="nx">dna</span> <span class="o">:=</span> <span class="nx">dna</span><span class="p">.</span><span class="nx">Encode</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
 </span><span class='line'><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result: &quot;</span><span class="p">,</span> <span class="nx">dna</span><span class="p">)</span>
 </span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
@@ -419,6 +338,7 @@ Parthensis can still be used when using the "new" keyword
     <li>Export ldpath to temporarily point executable at your lib, handy for scripting.</li>
     <li>Use ldd command to view an executables dependencies.</li>
     <li>Use nm --demangle <some.so> to view shared objects exported symbol list.</li>
+    <li>Use c++filt <symbol reference> to lookup runtime symbol lookup errors.</li>
   </ul>
 
   </div>
