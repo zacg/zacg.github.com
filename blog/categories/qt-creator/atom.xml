@@ -4,7 +4,7 @@
   <title><![CDATA[Category: qt creator | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/qt-creator/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-01T12:34:59-04:00</updated>
+  <updated>2014-04-03T22:48:07-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -31,7 +31,7 @@ First I moved all the commands that needed to run with sudo into a single make f
 
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>InstallLib.make </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -72,7 +72,7 @@ If you prefer not to use the GUI, you could also edit your projects .user file a
 
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>project.user </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -121,7 +121,7 @@ The goal is to achive the below folder strucutre, project being the root, and "M
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -147,7 +147,7 @@ The goal is to achive the below folder strucutre, project being the root, and "M
 
 <p>Start by navigating to the projects root directory, and create a new folder:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'> mkdir ModuleA
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
@@ -156,7 +156,7 @@ The goal is to achive the below folder strucutre, project being the root, and "M
 <p>Note the path names must be relative from the project root</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>title:ModuleA.pri </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -187,7 +187,7 @@ The goal is to achive the below folder strucutre, project being the root, and "M
 <p>Now we need to include the new .pri file for the folder in the project configuration. Open up the .pro file located in the project root directory and add the following line:</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>title:Project.pro </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>

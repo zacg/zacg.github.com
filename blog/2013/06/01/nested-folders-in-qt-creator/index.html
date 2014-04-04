@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Nested Folders in qt Creator - Zac Gross</title>
+  <title>Nested Folders in Qt Creator - Zac Gross</title>
   <meta name="author" content="Zac Gross">
 
   
@@ -20,19 +20,16 @@
   
   <link rel="canonical" href="http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator">
   <link href="/favicon.png" rel="icon">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Zac Gross" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  
+
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>-->
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<!-- Optional theme -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -106,7 +103,8 @@
 
 <time datetime="2013-06-01T22:21:00-04:00" pubdate data-updated="true">Jun 1<span>st</span>, 2013</time>
         
-         | <a href="#disqus_thread">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://zacg.github.io">Comments</a>
         
       </p>
     
@@ -127,7 +125,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -146,7 +144,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
 
 <p>Start by navigating to the projects root directory, and create a new folder:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'> mkdir ModuleA
 </span></code></pre></td></tr></table></div></figure>
 
@@ -156,7 +154,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
 <p>Note the path names must be relative from the project root</p>
 
 <figure class='code'><figcaption><span>title:ModuleA.pri </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -172,7 +170,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
 <p>Now we need to include the new .pri file for the folder in the project configuration. Open up the .pro file located in the project root directory and add the following line:</p>
 
 <figure class='code'><figcaption><span>title:Project.pro </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>include<span class="o">(</span>ModuleA/ModuleA.pri<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -214,7 +212,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator/" data-via="zachgross" data-counturl="http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator/" data-via="zachgross" data-counturl="http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator/" >Tweet</a>
   
   
   
@@ -247,7 +245,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/03/26/encoding-data-in-dna-with-go/">Encoding Data in DNA with Go</a>
+        <a href="/blog/2014/03/26/encoding-data-in-dna-with-go/">Encoding Data in DNA With Go</a>
       </li>
     
       <li class="post">
@@ -266,25 +264,6 @@ The goal is to achive the below folder strucutre, project being the root, and &#
         <a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/">Checking Nested Models in Backbone Forms</a>
       </li>
     
-  </ul>
-</section>
-
-<section>
-  <h1>Upcoming Posts</h1>
-  <ul id="upcoming_posts">
-      <li class="post">
-        <a>Intro to Backbone.js</a>
-      </li>
-      <li class="post">
-        <a>Temporal Expressions</a>
-      </li>
-      <li class="post">
-        <a>Opencv Port of kaze Algorithm</a>
-      </li>
-      <li class="post">
-        <a>Using html5 Websockts with Revel and Golang</a>
-      </li>
-      
   </ul>
 </section>
 
@@ -346,7 +325,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -362,7 +341,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

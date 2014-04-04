@@ -4,7 +4,7 @@
   <title><![CDATA[Category: go | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/go/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-01T12:34:59-04:00</updated>
+  <updated>2014-04-03T22:48:07-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -38,7 +38,7 @@ Usage Example:
 
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Encoding </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -69,7 +69,7 @@ Sequences can be decoded back to human readable text the same way:
 
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Decoding </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -123,7 +123,7 @@ Here are some code examples:
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -168,7 +168,7 @@ Reflect over object and get list of fields
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -205,7 +205,7 @@ Compare reflected type
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -224,7 +224,7 @@ Checking for uninitialized/empty struct
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -251,7 +251,7 @@ Checking for nil pointer - if you are using pointers you may need to check for a
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -278,7 +278,7 @@ Finally once an empty field is found set it to an initialized Entity struct
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -328,7 +328,7 @@ Recently while generating Go bindings for a C++ library with Swig I begain notic
 <ol>
     <li>
         Check Installed Swig version
-        <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+        <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>        swig -version
 </span><span class='line'>
@@ -359,7 +359,7 @@ Usage is simple, when the 2nd paramater is set to true, all fieldnames will star
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -415,12 +415,17 @@ The following is a brief tutorial to guide you through wrapping a C++ class with
 
 
 
+<!-- more -->
+
+
+
+
 <p>
 Start by installing GO and SWIG if not already installed
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -453,59 +458,26 @@ Once everything in installed the first step is to define a module file which wil
 
 
 
-<p>
+<p><p>
  We will pretend our C++ project is a dynamically linked shared library called "simplelib" and contains the following files:
-<p>
+<p></p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>simpleclass.h
-</span><span class='line'>simpleclass.cpp
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simpleclass.h </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#ifndef SIMPLECLASS_H</span>
-</span><span class='line'><span class="cp">#define SIMPLECLASS_H</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="cp">#include &lt;iostream&gt;</span>
-</span><span class='line'><span class="cp">#include &lt;vector&gt;</span>
+</span><span class='line'>&lt;p&gt;simpleclass.h
+</span><span class='line'>simpleclass.cpp&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">SimpleClass</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="n">SimpleClass</span><span class="p">(){};</span>
-</span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">hello</span><span class="p">();</span>
-</span><span class='line'>    <span class="kt">void</span> <span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">);</span>
-</span><span class='line'>    <span class="kt">void</span> <span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="cp">#endif</span>
-</span><span class='line'>
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simpleclass.cpp </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simpleclass.h </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -524,135 +496,41 @@ Once everything in installed the first step is to define a module file which wil
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &quot;simpleclass.h&quot;</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">hello</span><span class="p">(){</span>
-</span><span class='line'>    <span class="k">return</span> <span class="s">&quot;world&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">ifndef</span> <span class="n">SIMPLECLASS_H</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">){</span>
-</span><span class='line'>    <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">SIMPLECLASS_H</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">){</span>
-</span><span class='line'>    <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;w&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;o&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;r&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;l&#39;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;d&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">iostream</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">vector</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>
-We will add a module file called <i>simplelib.swig</i>. Inside we include the simpleclass.h header, this will instruct the SWIG tool to generate wrapping code for this class allowing us to use it in GO.
-</p>
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Minimum Swig Template</span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">%</span><span class="n">module</span> <span class="n">simplelib</span>  <span class="c1">//name of the resulting GO package</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">SimpleClass</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">SimpleClass</span><span class="p">(){};</span>
+</span><span class='line'><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">hello</span><span class="p">();</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="o">*</span><span class="n">results</span><span class="p">);</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">char</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="o">*</span><span class="n">results</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">};</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">endif</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>
-If your wrapped class(es) are simple and use primitive types the above swig file should suffice, SWIG will translate the following primitive types to the specified Go types
-</p>
-
-<table summary="Go primitive type mappings" class="table">
-<tr>
-<th>C/C++ type</th>
-<th>Go type</th>
-</tr>
-
-<tr>
-<td>bool</td>
-<td>bool</td>
-</tr>
-
-<tr>
-<td>char</td>
-<td>byte</td>
-</tr>
-
-<tr>
-<td>signed char</td>
-<td>int8</td>
-</tr>
-
-<tr>
-<td>unsigned char</td>
-<td>byte</td>
-</tr>
-
-<tr>
-<td>short</td>
-<td>int16</td>
-</tr>
-
-<tr>
-<td>unsigned short</td>
-<td>uint16</td>
-</tr>
-
-<tr>
-<td>int</td>
-<td>int</td>
-</tr>
-
-<tr>
-<td>unsigned int</td>
-<td>uint</td>
-</tr>
-
-<tr>
-<td>long</td>
-<td>int32 or int64, depending on <tt>-long-type-size</tt></td>
-</tr>
-
-<tr>
-<td>unsigned long</td>
-<td>uint32 or uint64, depending on <tt>-long-type-size</tt></td>
-</tr>
-
-<tr>
-<td>long long</td>
-<td>int64</td>
-</tr>
-
-<tr>
-<td>unsigned long long</td>
-<td>uint64</td>
-</tr>
-
-<tr>
-<td>float</td>
-<td>float32</td>
-</tr>
-
-<tr>
-<td>double</td>
-<td>float64</td>
-</tr>
-
-<tr>
-<td>char *<br>char []</td>
-<td>string</td>
-</tr>
-
-</table>
-
-<br/>
-
-<p>
-If your target code contains non-primitive types you have a bit more work to do. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
-</p>
-
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simplelib.swig</span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simpleclass.cpp </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -667,75 +545,264 @@ If your target code contains non-primitive types you have a bit more work to do.
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">%</span><span class="n">module</span> <span class="n">simplelib</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">typemaps</span><span class="p">.</span><span class="n">i</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">hello</span><span class="p">(){</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="s">&quot;world&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">){</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">){</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;w&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;o&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;r&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;l&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;d&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><p>
+We will add a module file called <i>simplelib.swig</i>. Inside we include the simpleclass.h header, this will instruct the SWIG tool to generate wrapping code for this class allowing us to use it in GO.
+</p></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Minimum Swig Template</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">module</span> <span class="n">simplelib</span>  <span class="c1">//name of the resulting GO package&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><p>
+If your wrapped class(es) are simple and use primitive types the above swig file should suffice, SWIG will translate the following primitive types to the specified Go types
+</p></p>
+
+<p><table summary="Go primitive type mappings" class="table">
+<tr>
+<th>C/C++ type</th>
+<th>Go type</th>
+</tr></p>
+
+<p><tr>
+<td>bool</td>
+<td>bool</td>
+</tr></p>
+
+<p><tr>
+<td>char</td>
+<td>byte</td>
+</tr></p>
+
+<p><tr>
+<td>signed char</td>
+<td>int8</td>
+</tr></p>
+
+<p><tr>
+<td>unsigned char</td>
+<td>byte</td>
+</tr></p>
+
+<p><tr>
+<td>short</td>
+<td>int16</td>
+</tr></p>
+
+<p><tr>
+<td>unsigned short</td>
+<td>uint16</td>
+</tr></p>
+
+<p><tr>
+<td>int</td>
+<td>int</td>
+</tr></p>
+
+<p><tr>
+<td>unsigned int</td>
+<td>uint</td>
+</tr></p>
+
+<p><tr>
+<td>long</td>
+<td>int32 or int64, depending on <tt>-long-type-size</tt></td>
+</tr></p>
+
+<p><tr>
+<td>unsigned long</td>
+<td>uint32 or uint64, depending on <tt>-long-type-size</tt></td>
+</tr></p>
+
+<p><tr>
+<td>long long</td>
+<td>int64</td>
+</tr></p>
+
+<p><tr>
+<td>unsigned long long</td>
+<td>uint64</td>
+</tr></p>
+
+<p><tr>
+<td>float</td>
+<td>float32</td>
+</tr></p>
+
+<p><tr>
+<td>double</td>
+<td>float64</td>
+</tr></p>
+
+<p><tr>
+<td>char *<br>char []</td>
+<td>string</td>
+</tr></p>
+
+<p></table></p>
+
+<p><br/></p>
+
+<p><p>
+If your target code contains non-primitive types you have a bit more work to do. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
+</p></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simplelib.swig</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">module</span> <span class="n">simplelib</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">typemaps</span><span class="p">.</span><span class="n">i</span><span class="o">&gt;</span>
 </span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;std_string.i&quot;</span>
-</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;std_vector.i&quot;</span>
+</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;std_vector.i&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1">// This will create 2 wrapped types in Go called</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">// This will create 2 wrapped types in Go called</span>
 </span><span class='line'><span class="c1">// &quot;StringVector&quot; and &quot;ByteVector&quot; for their respective</span>
 </span><span class='line'><span class="c1">// types.</span>
 </span><span class='line'><span class="k">namespace</span> <span class="n">std</span> <span class="p">{</span>
 </span><span class='line'>   <span class="o">%</span><span class="k">template</span><span class="p">(</span><span class="n">StringVector</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">;</span>
 </span><span class='line'>   <span class="o">%</span><span class="k">template</span><span class="p">(</span><span class="n">ByteVector</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<br/>
-<br/>
+<p><br/>
+<br/></p>
 
-<p>
+<p><p>
 The following definitions are included with the SWIG library, go <a href="http://www.swig.org/Doc1.3/Library.html#Library_stl_cpp_library">here for full reference</a>
-</p>
+</p></p>
 
-<table BORDER summary="SWIG C++ library files" class="table">
+<p><table BORDER summary="SWIG C++ library files" class="table">
 <tr>
 <th>C++ class</th>
 <th>C++ Library file</th>
 <th>SWIG Interface library file</th>
-</tr>
+</tr></p>
 
-<tr> <td>std::deque</td>           <td>deque</td>             <td>std_deque.i</td> </tr>
+<p><tr> <td>std::deque</td>           <td>deque</td>             <td>std_deque.i</td> </tr>
 <tr> <td>std::list</td>           <td>list</td>             <td>std_list.i</td> </tr>
 <tr> <td>std::map</td>           <td>map</td>             <td>std_map.i</td> </tr>
 <tr> <td>std::pair</td>           <td>utility</td>             <td>std_pair.i</td> </tr>
 <tr> <td>std::set</td>           <td>set</td>             <td>std_set.i</td> </tr>
 <tr> <td>std::string</td>           <td>string</td>             <td>std_string.i</td> </tr>
-<tr> <td>std::vector</td>           <td>vector</td>             <td>std_vector.i</td> </tr>
+<tr> <td>std::vector</td>           <td>vector</td>             <td>std_vector.i</td> </tr></p>
 
-</table>
+<p></table></p>
 
+<p><br/>
+<br/></p>
 
-<br/>
-<br/>
-
-<p>
+<p><p>
 Next we need to generate the necessary C++ wrapper code to allow Go to bind to it.
-</p>
+</p></p>
 
-<div class="alert alert-danger">
+<p><div class="alert alert-danger">
 <p>
 <strong>Update:</strong>
-With the official release of Go 1.2, the go build tool now recognizes SWIG files. The following steps are not necessary but may still be useful for users with more complicated build systems. 
+With the official release of Go 1.2, the go build tool now recognizes SWIG files. The following steps are not necessary but may still be useful for users with more complicated build systems.
 </p>
 <p>
-    If you are using Go 1.2 simply include the .swig file in your package directory along with the relevant c++ code files and run "go build" or "go install"
+If you are using Go 1.2 simply include the .swig file in your package directory along with the relevant c++ code files and run "go build" or "go install"
 </p>
-</div>
+</div></p>
 
-
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /project/src/
-</span><span class='line'>SWIG -go -c++ simplelib.swig
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
 </span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>&lt;p&gt;cd /project/src/
+</span><span class='line'>SWIG -go -c++ simplelib.swig&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>
+<p><p>
 Common optional parameters you may need to use:
 <ul>
 <li>
@@ -745,83 +812,105 @@ Common optional parameters you may need to use:
 <strong>"-intgosize"</strong> Depending on which version of go you are using 1/1.1 and which platform you are targeting you may need to explicitly set the Go int size (note the documentation for this is currently out of date). e.g. -intgosize 64
 </li>
 </ul>
-</p>
+</p></p>
 
-<p>
+<p><p>
 The above SWIG command should generate 3 new files in your project directory. Your project directory should now look something like the following:
-</p>
+</p></p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>simpleclass.h
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;simpleclass.h
 </span><span class='line'>simpleclass.cpp
 </span><span class='line'>simplelib.swig
 </span><span class='line'>simplelib.go
 </span><span class='line'>simplelib.cxx
-</span><span class='line'>simplelib_gc.c
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>simplelib_gc.c&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>
-Now we need to include these 3 new files in our projects. Simplelib.cxx contains the C++ wrapper code allowing your C++ project to interop with CGO. simplelib_gc.c contains the C code designed to be called from CGO. simplelib.go contains the GO code stubs for the resulting GO package, it uses cgo to call into the simplelib_gc.c interfaces. 
+<p><p>
+Now we need to include these 3 new files in our projects. Simplelib.cxx contains the C++ wrapper code allowing your C++ project to interop with CGO. simplelib_gc.c contains the C code designed to be called from CGO. simplelib.go contains the GO code stubs for the resulting GO package, it uses cgo to call into the simplelib_gc.c interfaces.
 </p>
 <p>
 Add the simplelib.cxx file to the C++ project and build with the projects C++ compiler (I have only tested this process with GCC). Simply add it to your makefile or build script.
-</p>
+</p></p>
 
-<p>
+<p><p>
 simplelib_gc.c and simplelib.go need to be included in the go package using the following 5/6/8c and 5/6/8g commands.
-</p>
+</p></p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>go tool 6c -I &lt;Go Installation Path here&gt;/pkg/linux_amd64/ -D _64BIT simplelib_gc.c
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;go tool 6c -I &lt;Go Installation Path here&gt;/pkg/linux_amd64/ -D _64BIT simplelib_gc.c
 </span><span class='line'>go tool 6g simplelib.go
-</span><span class='line'>go tool pack grc simplelib.a simplelib.6 simplelib_gc.6
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>go tool pack grc simplelib.a simplelib.6 simplelib_gc.6&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>
+<p><p>
 The last step is installation: first install your compiled C++ shared library, then run go install on the package created in the last step.
-</p>
+</p></p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /go/src/simplelib/
 </span><span class='line'>go install
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>
+<p><p>
 If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linux distro>/
-</p>
+</p></p>
 
-<p>
+<p><p>
 That's it! you should now be able to import "simplelib" in your go projects and call the wrapped C++ code.
-</p>
+</p></p>
 
-<h3>Setting up Build Scripts</h3>
+<p><h3>Setting up Build Scripts</h3></p>
 
-<p>
-    To recap the steps required are:
-</p>
+<p><p></p>
 
-<ol>
+<pre><code>To recap the steps required are:
+</code></pre>
+
+<p></p></p>
+
+<p><ol>
 <li>Run SWIG tool (generate wrapper code) </li>
 <li>Compile C++ project (including new wrapper code)</li>
 <li>Copy the built C++ library and files generated in step 1 to a directory in your go path</li>
 <li>Link and package the generated files into a Go Package</li>
 <li>Run Go install to make the new package available in your applications</li>
-</ol>
+</ol></p>
 
-<p>
-    And here is an example makefile:
-</p>
+<p><p></p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simplelib.make </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<pre><code>And here is an example makefile:
+</code></pre>
+
+<p></p></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simplelib.make </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -892,95 +981,138 @@ That's it! you should now be able to import "simplelib" in your go projects and 
 <span class='line-number'>69</span>
 <span class='line-number'>70</span>
 <span class='line-number'>71</span>
-</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="nv">CC</span><span class="o">=</span>g++
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">CC</span><span class="o">=</span>g++&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="cp">ifeq ($(DEBUG),yes)</span>
-</span><span class='line'>    <span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall -g
-</span><span class='line'>    <span class="nv">LDFLAGS</span><span class="o">=</span>-Wall -g
-</span><span class='line'><span class="cp">else</span>
-</span><span class='line'>    <span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall
-</span><span class='line'>    <span class="nv">LDFLAGS</span><span class="o">=</span>-Wall
-</span><span class='line'><span class="cp">endif</span>
+</span><span class='line'>&lt;p&gt;ifeq <span class="o">(</span><span class="k">$(</span>DEBUG<span class="k">)</span>,yes<span class="o">)</span>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="nv">INCPATH</span><span class="o">=</span>inc
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;CXXFLAGS<span class="o">=</span>-Wall -g
+</span><span class='line'><span class="nv">LDFLAGS</span><span class="o">=</span>-Wall -g
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;else&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;CXXFLAGS<span class="o">=</span>-Wall
+</span><span class='line'><span class="nv">LDFLAGS</span><span class="o">=</span>-Wall
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;endif&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;INCPATH<span class="o">=</span>inc
 </span><span class='line'><span class="nv">SRCPATH</span><span class="o">=</span>src
 </span><span class='line'><span class="nv">OBJPATH</span><span class="o">=</span>obj
 </span><span class='line'><span class="nv">LIBPATH</span><span class="o">=</span>lib
-</span><span class='line'><span class="nv">BINPATH</span><span class="o">=</span>bin
+</span><span class='line'><span class="nv">BINPATH</span><span class="o">=</span>bin&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="nv">OBJS</span><span class="o">=</span><span class="k">$(</span>OBJPATH<span class="k">)</span>/simpleclass.o <span class="k">$(</span>OBJPATH<span class="k">)</span>/simplelib_wrap.o
-</span><span class='line'><span class="nv">OUT</span><span class="o">=</span><span class="k">$(</span>LIBPATH<span class="k">)</span>/libSimpleLib.so
+</span><span class='line'>&lt;p&gt;OBJS<span class="o">=</span><span class="k">$(</span>OBJPATH<span class="k">)</span>/simpleclass.o <span class="k">$(</span>OBJPATH<span class="k">)</span>/simplelib_wrap.o
+</span><span class='line'><span class="nv">OUT</span><span class="o">=</span><span class="k">$(</span>LIBPATH<span class="k">)</span>/libSimpleLib.so&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="nv">INCLUDES</span><span class="o">=</span>-I ./<span class="k">$(</span>INCPATH<span class="k">)</span>
+</span><span class='line'>&lt;p&gt;INCLUDES<span class="o">=</span>-I ./<span class="k">$(</span>INCPATH<span class="k">)</span>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="c">#Set this to your go installation directory</span>
-</span><span class='line'><span class="nv">EXE</span><span class="o">=</span><span class="nv">$$</span>HOME/dev/goinstallation/go/bin/
-</span><span class='line'><span class="k">export </span><span class="nv">PATH</span> <span class="o">:=</span> bin:<span class="k">$(</span>PATH<span class="k">)</span>
+</span><span class='line'>&lt;h1&gt;Set this to your go installation directory&lt;/h1&gt;
 </span><span class='line'>
-</span><span class='line'><span class="nf">default</span><span class="o">:</span> <span class="m">$(OUT)</span>
+</span><span class='line'>&lt;p&gt;EXE<span class="o">=</span><span class="nv">$$</span>HOME/dev/goinstallation/go/bin/
+</span><span class='line'><span class="nb">export </span>PATH :<span class="o">=</span> bin:<span class="k">$(</span>PATH<span class="k">)</span>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'><span class="k">$(</span>OUT<span class="k">)</span>: <span class="k">$(</span>OBJS<span class="k">)</span>
-</span><span class='line'>    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> -shared -o <span class="nv">$@</span> <span class="nv">$^</span>
+</span><span class='line'>&lt;p&gt;default: <span class="k">$(</span>OUT<span class="k">)</span>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>obj/simplelib_wrap.o: simplelib_wrap.cxx inc/simpleclass.h
-</span><span class='line'>    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CXXFLAGS<span class="k">)</span> <span class="k">$(</span>INCLUDES<span class="k">)</span> -fpic -c <span class="nv">$&lt;</span> -o <span class="nv">$@</span>
+</span><span class='line'>&lt;p&gt;<span class="k">$(</span>OUT<span class="k">)</span>: <span class="k">$(</span>OBJS<span class="k">)</span>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>obj/simpleclass.o: src/simpleclass.cpp inc/simpleclass.h
-</span><span class='line'>    <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CXXFLAGS<span class="k">)</span> <span class="k">$(</span>INCLUDES<span class="k">)</span> -fpic -c <span class="nv">$&lt;</span> -o <span class="nv">$@</span>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;<span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> -shared -o <span class="nv">$@</span> <span class="nv">$^</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
 </span><span class='line'>
+</span><span class='line'>&lt;p&gt;obj/simplelib_wrap.o: simplelib_wrap.cxx inc/simpleclass.h&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>simplelib_wrap.cxx:
-</span><span class='line'>    swig -go -c++ -intgosize 64 -soname libSimpleLib.so simplelib.swig
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;<span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CXXFLAGS<span class="k">)</span> <span class="k">$(</span>INCLUDES<span class="k">)</span> -fpic -c <span class="nv">$&amp;</span>lt; -o <span class="nv">$@</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
 </span><span class='line'>
-</span><span class='line'>.PHONY: clean cleanall
+</span><span class='line'>&lt;p&gt;obj/simpleclass.o: src/simpleclass.cpp inc/simpleclass.h&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>clean:
-</span><span class='line'>    rm -f <span class="k">$(</span>OBJPATH<span class="k">)</span>/*.o
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;<span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CXXFLAGS<span class="k">)</span> <span class="k">$(</span>INCLUDES<span class="k">)</span> -fpic -c <span class="nv">$&amp;</span>lt; -o <span class="nv">$@</span>
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
 </span><span class='line'>
-</span><span class='line'>cleanall: clean
-</span><span class='line'>    rm -f <span class="k">$(</span>OUT<span class="k">)</span>
-</span><span class='line'>    rm -f *.6
-</span><span class='line'>    rm -f *.a
-</span><span class='line'>    rm -f *.so
-</span><span class='line'>    rm -f *.cxx
-</span><span class='line'>    rm -f *.c
+</span><span class='line'>&lt;p&gt;simplelib_wrap.cxx:&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>build:
-</span><span class='line'>    @echo <span class="s2">&quot;Building bindings...&quot;</span>
-</span><span class='line'>    <span class="k">$(</span>EXE<span class="k">)</span>go tool 6c -I <span class="nv">$$</span>HOME/dev/goinstallation/go/pkg/linux_amd64/ -D _64BIT simplelib_gc.c
-</span><span class='line'>    <span class="k">$(</span>EXE<span class="k">)</span>go tool 6g simplelib.go
-</span><span class='line'>    <span class="k">$(</span>EXE<span class="k">)</span>go tool pack grc simplelib.a simplelib.6 simplelib_gc.6
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;swig -go -c++ -intgosize 64 -soname libSimpleLib.so simplelib.swig
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
 </span><span class='line'>
+</span><span class='line'>&lt;p&gt;.PHONY: clean cleanall&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>install:
-</span><span class='line'>    @echo <span class="s2">&quot;Installing go package...&quot;</span>
-</span><span class='line'><span class="c">    #Rename swig file so go install command does not try to reprocess it</span>
-</span><span class='line'>    mv simplelib.swig simplelib.notswig
-</span><span class='line'>    <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$$</span>HOME/dev/go/; <span class="se">\</span>
-</span><span class='line'>    <span class="k">$(</span>EXE<span class="k">)</span>go install
-</span><span class='line'>    mv simplelib.notswig simplelib.swig
+</span><span class='line'>&lt;p&gt;clean:&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>    @echo <span class="s2">&quot;Installing go shared lib...&quot;</span>
-</span><span class='line'>    sudo cp -f lib/libSimpleLib.so /usr/local/lib/
-</span><span class='line'>    sudo ldconfig
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;rm -f <span class="k">$(</span>OBJPATH<span class="k">)</span>/*.o
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cleanall: clean&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;rm -f <span class="k">$(</span>OUT<span class="k">)</span>
+</span><span class='line'>rm -f *.6
+</span><span class='line'>rm -f *.a
+</span><span class='line'>rm -f *.so
+</span><span class='line'>rm -f *.cxx
+</span><span class='line'>rm -f *.c
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;build:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;@echo <span class="s2">&quot;Building bindings...&quot;</span>
+</span><span class='line'><span class="k">$(</span>EXE<span class="k">)</span>go tool 6c -I <span class="nv">$$</span>HOME/dev/goinstallation/go/pkg/linux_amd64/ -D _64BIT simplelib_gc.c
+</span><span class='line'><span class="k">$(</span>EXE<span class="k">)</span>go tool 6g simplelib.go
+</span><span class='line'><span class="k">$(</span>EXE<span class="k">)</span>go tool pack grc simplelib.a simplelib.6 simplelib_gc.6
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;install:&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;@echo <span class="s2">&quot;Installing go package...&quot;</span>
+</span><span class='line'><span class="c">#Rename swig file so go install command does not try to reprocess it</span>
+</span><span class='line'>mv simplelib.swig simplelib.notswig
+</span><span class='line'><span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$$</span>HOME/dev/go/; <span class="se">\</span>
+</span><span class='line'><span class="k">$(</span>EXE<span class="k">)</span>go install
+</span><span class='line'>mv simplelib.notswig simplelib.swig
+</span><span class='line'>
+</span><span class='line'>@echo <span class="s2">&quot;Installing go shared lib...&quot;</span>
+</span><span class='line'>sudo cp -f lib/libSimpleLib.so /usr/local/lib/
+</span><span class='line'>sudo ldconfig
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<br/>
+<p><br/></p>
 
-
-<div class="alert alert-info">
+<p><div class="alert alert-info">
 <p>
 <strong>Get example project on github:</strong>
-<a href="https://github.com/zacg/simplelib">https://github.com/zacg/simplelib</a> 
-</p>
+<a href="https://github.com/zacg/simplelib">https://github.com/zacg/simplelib</a>
+</p></p>
 
-</div>
+<p></div></p>
 
-
-<p>
+<p><p>
  Feel free to leave your comments below.
-</p>
-
+</p></p>
 ]]></content>
   </entry>
   

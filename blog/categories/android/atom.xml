@@ -4,7 +4,7 @@
   <title><![CDATA[Category: android | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-01T12:34:59-04:00</updated>
+  <updated>2014-04-03T22:48:07-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -30,7 +30,7 @@ Trying to configure a custom header/title layout with the newer Android Holo The
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -62,7 +62,7 @@ I then modified my androidmanifiest.xml and style.xml files to configure a custo
 
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>androidmanifiest.xml </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -81,7 +81,7 @@ I then modified my androidmanifiest.xml and style.xml files to configure a custo
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>styles.xml </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -144,7 +144,7 @@ If you try setting a custom header/title without removing the actionbar you will
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">ListAdapter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SimpleTextAdapter</span><span class="p">&lt;</span><span class="n">SomeBusinessObject</span><span class="p">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="n">objects</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
@@ -153,7 +153,7 @@ If you try setting a custom header/title without removing the actionbar you will
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">ListAdapter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SimpleTextAdapter</span><span class="p">&lt;</span><span class="n">SomeBusinessObject</span><span class="p">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="n">objects</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;},</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">CustomId</span><span class="p">;});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>

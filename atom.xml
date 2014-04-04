@@ -4,7 +4,7 @@
   <title><![CDATA[Zac Gross]]></title>
   <link href="http://zacg.github.io/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-01T12:34:59-04:00</updated>
+  <updated>2014-04-03T22:48:07-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Encoding Data in DNA with Go]]></title>
+    <title type="html"><![CDATA[Encoding Data in DNA With Go]]></title>
     <link href="http://zacg.github.io/blog/2014/03/26/encoding-data-in-dna-with-go/"/>
     <updated>2014-03-26T23:58:00-04:00</updated>
     <id>http://zacg.github.io/blog/2014/03/26/encoding-data-in-dna-with-go</id>
@@ -40,7 +40,7 @@ Usage Example:
 
 
 <figure class='code'><figcaption><span>Encoding </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="nx">str</span> <span class="o">:=</span> <span class="s">&quot;some string to encode in DNA&quot;</span>
@@ -66,7 +66,7 @@ Sequences can be decoded back to human readable text the same way:
 
 
 <figure class='code'><figcaption><span>Decoding </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="nx">dna</span> <span class="o">:=</span> <span class="s">&quot;ATAGTATATCGACTAGTACAGCGTAGCATCTCGCAGCGAGATACGCTGCTACGCAGCATGCTGTGAGTATCGATGACGAGTGACTCTGTACAGTACGTACGATACGTACGTACGTCGTATAGTCGTACGTACGTACGTACGTACGTACGTACTGTACAGAGTCACTCGTCATCGATACTCACAGCATGCTGCGTAGCAGCGTATCTCGCTGCGAGATGATACGTACGTACGAGC&quot;</span>
@@ -111,7 +111,7 @@ Sequences can be decoded back to human readable text the same way:
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'> sudo docker build -t<span class="o">=</span><span class="s2">&quot;nupic.cerebro&quot;</span> .
 </span></code></pre></td></tr></table></div></figure>
 
@@ -125,7 +125,7 @@ Sequences can be decoded back to human readable text the same way:
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'> sudo docker run -p<span class="o">=</span>1955:1955 nupic.cerebro
 </span></code></pre></td></tr></table></div></figure>
 
@@ -158,7 +158,7 @@ Trying to configure a custom header/title layout with the newer Android Holo The
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -185,7 +185,7 @@ I then modified my androidmanifiest.xml and style.xml files to configure a custo
 
 
 <figure class='code'><figcaption><span>androidmanifiest.xml </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;manifest&gt;</span>
@@ -197,7 +197,7 @@ I then modified my androidmanifiest.xml and style.xml files to configure a custo
 
 
 <figure class='code'><figcaption><span>styles.xml </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -247,7 +247,7 @@ If you try setting a custom header/title without removing the actionbar you will
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'> <span class="n">Install</span><span class="p">-</span><span class="n">Package</span> <span class="n">log4net</span><span class="p">.</span><span class="n">Appender</span><span class="p">.</span><span class="n">Azure</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -276,7 +276,7 @@ If you try setting a custom header/title without removing the actionbar you will
 
 
 <figure class='code'><figcaption><span>Azure Appender Config Example </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -333,7 +333,7 @@ If you try setting a custom header/title without removing the actionbar you will
 
 
 <figure class='code'><figcaption><span>Flush Buffers </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -365,7 +365,7 @@ If you try setting a custom header/title without removing the actionbar you will
 
 
 <figure class='code'><figcaption><span>Log log4net Debugging Info </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;appSettings&gt;</span>
@@ -377,7 +377,7 @@ If you try setting a custom header/title without removing the actionbar you will
 
 
 <figure class='code'><figcaption><span>Dump Trace Logs to File </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -440,7 +440,7 @@ If you try setting a custom header/title without removing the actionbar you will
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -462,7 +462,7 @@ If you try setting a custom header/title without removing the actionbar you will
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -532,7 +532,7 @@ Here are some code examples:
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -564,7 +564,7 @@ Reflect over object and get list of fields
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -592,7 +592,7 @@ Compare reflected type
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='go'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Type</span><span class="p">()</span> <span class="o">==</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">TypeOf</span><span class="p">(</span><span class="nx">Entity</span><span class="p">{}))</span> <span class="p">{</span>
@@ -610,7 +610,7 @@ Checking for uninitialized/empty struct
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='go'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Interface</span><span class="p">().(</span><span class="nx">Entity</span><span class="p">)</span> <span class="o">==</span> <span class="nx">Entity</span><span class="p">{})</span> <span class="p">{</span>
@@ -628,7 +628,7 @@ Checking for nil pointer - if you are using pointers you may need to check for a
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='go'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Kind</span><span class="p">()</span> <span class="o">==</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">Pointer</span> <span class="o">&amp;&amp;</span> <span class="nx">f</span><span class="p">.</span><span class="nx">IsNil</span><span class="p">())</span> <span class="p">{</span>
@@ -646,7 +646,7 @@ Finally once an empty field is found set it to an initialized Entity struct
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='go'><span class='line'><span class="c1">//sets field f to an initialized Entity struct</span>
 </span><span class='line'><span class="nx">f</span><span class="p">.</span><span class="nx">Set</span><span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="nx">NewEntity</span><span class="p">()))</span>
@@ -663,7 +663,7 @@ With the above snippets you can easily build a custom function for iterating ove
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Beware when Installing Swig from Debian Package]]></title>
+    <title type="html"><![CDATA[Beware When Installing Swig From Debian Package]]></title>
     <link href="http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package/"/>
     <updated>2013-09-01T22:52:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package</id>
@@ -692,7 +692,7 @@ Recently while generating Go bindings for a C++ library with Swig I begain notic
     <li>
         Check Installed Swig version
         
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>     swig -version
 </span><span class='line'>      
@@ -753,7 +753,7 @@ My fork can be found on github at: <a href="https://github.com/zacg/geoserver-cs
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">ListAdapter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SimpleTextAdapter</span><span class="p">&lt;</span><span class="n">SomeBusinessObject</span><span class="p">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="n">objects</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;});</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -767,7 +767,7 @@ My fork can be found on github at: <a href="https://github.com/zacg/geoserver-cs
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">ListAdapter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SimpleTextAdapter</span><span class="p">&lt;</span><span class="n">SomeBusinessObject</span><span class="p">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="n">objects</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;},</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">CustomId</span><span class="p">;});</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -794,7 +794,7 @@ First I moved all the commands that needed to run with sudo into a single make f
 
 
 <figure class='code'><figcaption><span>InstallLib.make </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -828,7 +828,7 @@ If you prefer not to use the GUI, you could also edit your projects .user file a
 
 
 <figure class='code'><figcaption><span>project.user </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -876,7 +876,7 @@ It&#8217;s pretty straight forward, pass in the length (n) of binary digits and 
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Lowercase JSON Fields with Golang]]></title>
+    <title type="html"><![CDATA[Lowercase JSON Fields With Golang]]></title>
     <link href="http://zacg.github.io/blog/2013/07/31/lowercase-json-fields-with-golang/"/>
     <updated>2013-07-31T14:19:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/07/31/lowercase-json-fields-with-golang</id>
@@ -894,7 +894,7 @@ Usage is simple, when the 2nd paramater is set to true, all fieldnames will star
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='go'><span class='line'><span class="nx">b</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">jsonutils</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(&lt;</span><span class="nx">some</span> <span class="nx">obj</span><span class="p">&gt;,</span> <span class="p">&lt;</span><span class="nx">lowercase</span> <span class="nx">fieldnames</span><span class="p">:</span><span class="kc">true</span><span class="o">/</span><span class="kc">false</span><span class="p">&gt;)</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -929,7 +929,7 @@ The source code can be downloaded from github: <a href="https://github.com/zacg/
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Calling C++ code from Go with SWIG]]></title>
+    <title type="html"><![CDATA[Calling C++ Code From Go With SWIG]]></title>
     <link href="http://zacg.github.io/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig/"/>
     <updated>2013-06-06T22:51:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig</id>
@@ -949,6 +949,11 @@ The following is a brief tutorial to guide you through wrapping a C++ class with
 
 
 
+<!-- more -->
+
+
+
+
 <p>
 Start by installing GO and SWIG if not already installed
 </p>
@@ -956,7 +961,7 @@ Start by installing GO and SWIG if not already installed
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install golang
 </span><span class='line'>sudo apt-get install swig
@@ -984,23 +989,20 @@ Once everything in installed the first step is to define a module file which wil
 
 
 
-<p>
+<p><p>
  We will pretend our C++ project is a dynamically linked shared library called &#8220;simplelib&#8221; and contains the following files:
-<p>
+<p></p>
 
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>simpleclass.h
 </span><span class='line'>simpleclass.cpp
-</span><span class='line'>  
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><br/>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-
-<figure class='code'><figcaption><span>simpleclass.h </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span>simpleclass.h </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1029,19 +1031,17 @@ Once everything in installed the first step is to define a module file which wil
 </span><span class='line'><span class="k">public</span><span class="o">:</span>
 </span><span class='line'>    <span class="n">SimpleClass</span><span class="p">(){};</span>
 </span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">hello</span><span class="p">();</span>
-</span><span class='line'>    <span class="kt">void</span> <span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">);</span>
-</span><span class='line'>    <span class="kt">void</span> <span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">);</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o"><em></span><span class="n">results</span><span class="p">);</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o"></em></span><span class="n">results</span><span class="p">);</span>
 </span><span class='line'><span class="p">};</span>
 </span><span class='line'>
 </span><span class='line'><span class="cp">#endif</span>
 </span><span class='line'>
-</span><span class='line'>  
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><br/>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-
-<figure class='code'><figcaption><span>simpleclass.cpp </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span>simpleclass.cpp </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1066,11 +1066,11 @@ Once everything in installed the first step is to define a module file which wil
 </span><span class='line'>  <span class="k">return</span> <span class="s">&quot;world&quot;</span><span class="p">;</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">){</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o"><em></span><span class="n">results</span><span class="p">){</span>
 </span><span class='line'>  <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">){</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o"></em></span><span class="n">results</span><span class="p">){</span>
 </span><span class='line'>  <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;w&#39;</span><span class="p">);</span>
 </span><span class='line'>  <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;o&#39;</span><span class="p">);</span>
 </span><span class='line'>  <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;r&#39;</span><span class="p">);</span>
@@ -1078,121 +1078,117 @@ Once everything in installed the first step is to define a module file which wil
 </span><span class='line'>  <span class="n">results</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;d&#39;</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>  
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><br/>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-<p>
+<p><p>
 We will add a module file called <i>simplelib.swig</i>. Inside we include the simpleclass.h header, this will instruct the SWIG tool to generate wrapping code for this class allowing us to use it in GO.
-</p>
+</p></p>
 
-
-<figure class='code'><figcaption><span>Minimum Swig Template</span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span>Minimum Swig Template</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">%</span><span class="n">module</span> <span class="n">simplelib</span>  <span class="c1">//name of the resulting GO package</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-<p>
+<p><p>
 If your wrapped class(es) are simple and use primitive types the above swig file should suffice, SWIG will translate the following primitive types to the specified Go types
-</p>
+</p></p>
 
-<table summary="Go primitive type mappings" class="table">
+<p><table summary="Go primitive type mappings" class="table">
 <tr>
 <th>C/C++ type</th>
 <th>Go type</th>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>bool</td>
 <td>bool</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>char</td>
 <td>byte</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>signed char</td>
 <td>int8</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>unsigned char</td>
 <td>byte</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>short</td>
 <td>int16</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>unsigned short</td>
 <td>uint16</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>int</td>
 <td>int</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>unsigned int</td>
 <td>uint</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>long</td>
 <td>int32 or int64, depending on <tt>-long-type-size</tt></td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>unsigned long</td>
 <td>uint32 or uint64, depending on <tt>-long-type-size</tt></td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>long long</td>
 <td>int64</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>unsigned long long</td>
 <td>uint64</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>float</td>
 <td>float32</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>double</td>
 <td>float64</td>
-</tr>
+</tr></p>
 
-<tr>
+<p><tr>
 <td>char *<br>char []</td>
 <td>string</td>
-</tr>
+</tr></p>
 
-</table>
+<p></table></p>
 
-<br/>
+<p><br/></p>
 
-<p>
+<p><p>
 If your target code contains non-primitive types you have a bit more work to do. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
-</p>
+</p></p>
 
-
-<figure class='code'><figcaption><span>simplelib.swig</span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><figcaption><span>simplelib.swig</span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1222,63 +1218,58 @@ If your target code contains non-primitive types you have a bit more work to do.
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></p>
 
+<p><br/>
+<br/></p>
 
-<br/>
-<br/>
-
-<p>
+<p><p>
 The following definitions are included with the SWIG library, go <a href="http://www.swig.org/Doc1.3/Library.html#Library_stl_cpp_library">here for full reference</a>
-</p>
+</p></p>
 
-<table BORDER summary="SWIG C++ library files" class="table">
+<p><table BORDER summary="SWIG C++ library files" class="table">
 <tr>
 <th>C++ class</th>
 <th>C++ Library file</th>
 <th>SWIG Interface library file</th>
-</tr>
+</tr></p>
 
-<tr> <td>std::deque</td>           <td>deque</td>             <td>std_deque.i</td> </tr>
+<p><tr> <td>std::deque</td>           <td>deque</td>             <td>std_deque.i</td> </tr>
 <tr> <td>std::list</td>           <td>list</td>             <td>std_list.i</td> </tr>
 <tr> <td>std::map</td>           <td>map</td>             <td>std_map.i</td> </tr>
 <tr> <td>std::pair</td>           <td>utility</td>             <td>std_pair.i</td> </tr>
 <tr> <td>std::set</td>           <td>set</td>             <td>std_set.i</td> </tr>
 <tr> <td>std::string</td>           <td>string</td>             <td>std_string.i</td> </tr>
-<tr> <td>std::vector</td>           <td>vector</td>             <td>std_vector.i</td> </tr>
+<tr> <td>std::vector</td>           <td>vector</td>             <td>std_vector.i</td> </tr></p>
 
-</table>
+<p></table></p>
 
+<p><br/>
+<br/></p>
 
-<br/>
-<br/>
-
-<p>
+<p><p>
 Next we need to generate the necessary C++ wrapper code to allow Go to bind to it.
-</p>
+</p></p>
 
-<div class="alert alert-danger">
+<p><div class="alert alert-danger">
 <p>
 <strong>Update:</strong>
-With the official release of Go 1.2, the go build tool now recognizes SWIG files. The following steps are not necessary but may still be useful for users with more complicated build systems. 
+With the official release of Go 1.2, the go build tool now recognizes SWIG files. The following steps are not necessary but may still be useful for users with more complicated build systems.
 </p>
 <p>
-    If you are using Go 1.2 simply include the .swig file in your package directory along with the relevant c++ code files and run &#8220;go build&#8221; or &#8220;go install&#8221;
+If you are using Go 1.2 simply include the .swig file in your package directory along with the relevant c++ code files and run &#8220;go build&#8221; or &#8220;go install&#8221;
 </p>
-</div>
+</div></p>
 
-
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /project/src/
 </span><span class='line'>SWIG -go -c++ simplelib.swig
-</span><span class='line'>  
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><br/>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-<p>
+<p><p>
 Common optional parameters you may need to use:
 <ul>
 <li>
@@ -1288,14 +1279,13 @@ Common optional parameters you may need to use:
 <strong>&#8220;-intgosize&#8221;</strong> Depending on which version of go you are using 1/1.1 and which platform you are targeting you may need to explicitly set the Go int size (note the documentation for this is currently out of date). e.g. -intgosize 64
 </li>
 </ul>
-</p>
+</p></p>
 
-<p>
+<p><p>
 The above SWIG command should generate 3 new files in your project directory. Your project directory should now look something like the following:
-</p>
+</p></p>
 
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1307,71 +1297,71 @@ The above SWIG command should generate 3 new files in your project directory. Yo
 </span><span class='line'>simplelib.go
 </span><span class='line'>simplelib.cxx
 </span><span class='line'>simplelib_gc.c
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-<p>
-Now we need to include these 3 new files in our projects. Simplelib.cxx contains the C++ wrapper code allowing your C++ project to interop with CGO. simplelib_gc.c contains the C code designed to be called from CGO. simplelib.go contains the GO code stubs for the resulting GO package, it uses cgo to call into the simplelib_gc.c interfaces. 
+<p><p>
+Now we need to include these 3 new files in our projects. Simplelib.cxx contains the C++ wrapper code allowing your C++ project to interop with CGO. simplelib_gc.c contains the C code designed to be called from CGO. simplelib.go contains the GO code stubs for the resulting GO package, it uses cgo to call into the simplelib_gc.c interfaces.
 </p>
 <p>
 Add the simplelib.cxx file to the C++ project and build with the projects C++ compiler (I have only tested this process with GCC). Simply add it to your makefile or build script.
-</p>
+</p></p>
 
-<p>
+<p><p>
 simplelib_gc.c and simplelib.go need to be included in the go package using the following 5/6/8c and 5/6/8g commands.
-</p>
+</p></p>
 
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>go tool 6c -I &lt;Go Installation Path here&gt;/pkg/linux_amd64/ -D _64BIT simplelib_gc.c
 </span><span class='line'>go tool 6g simplelib.go
 </span><span class='line'>go tool pack grc simplelib.a simplelib.6 simplelib_gc.6
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-<p>
+<p><p>
 The last step is installation: first install your compiled C++ shared library, then run go install on the package created in the last step.
-</p>
+</p></p>
 
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /go/src/simplelib/
 </span><span class='line'>go install
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></p>
 
-
-<p>
+<p><p>
 If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linux distro>/
-</p>
+</p></p>
 
-<p>
+<p><p>
 That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in your go projects and call the wrapped C++ code.
-</p>
+</p></p>
 
-<h3>Setting up Build Scripts</h3>
+<p><h3>Setting up Build Scripts</h3></p>
 
-<p>
-    To recap the steps required are:
-</p>
+<p><p></p>
 
-<ol>
+<pre><code>To recap the steps required are:
+</code></pre>
+
+<p></p></p>
+
+<p><ol>
 <li>Run SWIG tool (generate wrapper code) </li>
 <li>Compile C++ project (including new wrapper code)</li>
 <li>Copy the built C++ library and files generated in step 1 to a directory in your go path</li>
 <li>Link and package the generated files into a Go Package</li>
 <li>Run Go install to make the new package available in your applications</li>
-</ol>
+</ol></p>
 
-<p>
-    And here is an example makefile:
-</p>
+<p><p></p>
 
+<pre><code>And here is an example makefile:
+</code></pre>
 
-<figure class='code'><figcaption><span>simplelib.make </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p></p></p>
+
+<p><figure class='code'><figcaption><span>simplelib.make </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1442,15 +1432,15 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 <span class='line-number'>69</span>
 <span class='line-number'>70</span>
 <span class='line-number'>71</span>
-</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="nv">CC</span><span class="o">=</span>g++
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">CC</span><span class="o">=</span>g++
 </span><span class='line'>
-</span><span class='line'><span class="cp">ifeq ($(DEBUG),yes)</span>
+</span><span class='line'>ifeq <span class="o">(</span><span class="k">$(</span>DEBUG<span class="k">)</span>,yes<span class="o">)</span>
 </span><span class='line'>  <span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall -g
 </span><span class='line'>  <span class="nv">LDFLAGS</span><span class="o">=</span>-Wall -g
-</span><span class='line'><span class="cp">else</span>
-</span><span class='line'>  <span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'><span class="k">  </span><span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall
 </span><span class='line'>  <span class="nv">LDFLAGS</span><span class="o">=</span>-Wall
-</span><span class='line'><span class="cp">endif</span>
+</span><span class='line'>endif
 </span><span class='line'>
 </span><span class='line'><span class="nv">INCPATH</span><span class="o">=</span>inc
 </span><span class='line'><span class="nv">SRCPATH</span><span class="o">=</span>src
@@ -1465,9 +1455,9 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 </span><span class='line'>
 </span><span class='line'><span class="c">#Set this to your go installation directory</span>
 </span><span class='line'><span class="nv">EXE</span><span class="o">=</span><span class="nv">$$</span>HOME/dev/goinstallation/go/bin/
-</span><span class='line'><span class="k">export </span><span class="nv">PATH</span> <span class="o">:=</span> bin:<span class="k">$(</span>PATH<span class="k">)</span>
+</span><span class='line'><span class="nb">export </span>PATH :<span class="o">=</span> bin:<span class="k">$(</span>PATH<span class="k">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="nf">default</span><span class="o">:</span> <span class="m">$(OUT)</span>
+</span><span class='line'>default: <span class="k">$(</span>OUT<span class="k">)</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">$(</span>OUT<span class="k">)</span>: <span class="k">$(</span>OBJS<span class="k">)</span>
 </span><span class='line'>  <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> -shared -o <span class="nv">$@</span> <span class="nv">$^</span>
@@ -1485,58 +1475,54 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 </span><span class='line'>.PHONY: clean cleanall
 </span><span class='line'>
 </span><span class='line'>clean:
-</span><span class='line'>  rm -f <span class="k">$(</span>OBJPATH<span class="k">)</span>/*.o
+</span><span class='line'>  rm -f <span class="k">$(</span>OBJPATH<span class="k">)</span>/<em>.o
 </span><span class='line'>
 </span><span class='line'>cleanall: clean
 </span><span class='line'>  rm -f <span class="k">$(</span>OUT<span class="k">)</span>
-</span><span class='line'>  rm -f *.6
-</span><span class='line'>  rm -f *.a
-</span><span class='line'>  rm -f *.so
-</span><span class='line'>  rm -f *.cxx
-</span><span class='line'>  rm -f *.c
+</span><span class='line'>  rm -f </em>.6
+</span><span class='line'>  rm -f <em>.a
+</span><span class='line'>  rm -f </em>.so
+</span><span class='line'>  rm -f <em>.cxx
+</span><span class='line'>  rm -f </em>.c
 </span><span class='line'>
 </span><span class='line'>build:
 </span><span class='line'>  @echo <span class="s2">&quot;Building bindings...&quot;</span>
 </span><span class='line'>  <span class="k">$(</span>EXE<span class="k">)</span>go tool 6c -I <span class="nv">$$</span>HOME/dev/goinstallation/go/pkg/linux_amd64/ -D _64BIT simplelib_gc.c
 </span><span class='line'>  <span class="k">$(</span>EXE<span class="k">)</span>go tool 6g simplelib.go
 </span><span class='line'>  <span class="k">$(</span>EXE<span class="k">)</span>go tool pack grc simplelib.a simplelib.6 simplelib_gc.6
-</span><span class='line'>  
-</span><span class='line'>  
+</span><span class='line'><br/>
+</span><span class='line'><br/>
 </span><span class='line'>install:
 </span><span class='line'>  @echo <span class="s2">&quot;Installing go package...&quot;</span>
-</span><span class='line'><span class="c">  #Rename swig file so go install command does not try to reprocess it</span>
+</span><span class='line'>  <span class="c">#Rename swig file so go install command does not try to reprocess it</span>
 </span><span class='line'>  mv simplelib.swig simplelib.notswig
-</span><span class='line'>  <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$$</span>HOME/dev/go/; <span class="se">\</span>
+</span><span class='line'>  <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$$</span>HOME/dev/go/; <span class="se">&lt;/span>
 </span><span class='line'>  <span class="k">$(</span>EXE<span class="k">)</span>go install
 </span><span class='line'>  mv simplelib.notswig simplelib.swig
 </span><span class='line'>
 </span><span class='line'>  @echo <span class="s2">&quot;Installing go shared lib...&quot;</span>
 </span><span class='line'>  sudo cp -f lib/libSimpleLib.so /usr/local/lib/
 </span><span class='line'>  sudo ldconfig
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></p>
 
+<p><br/></p>
 
-<br/>
-
-
-<div class="alert alert-info">
+<p><div class="alert alert-info">
 <p>
 <strong>Get example project on github:</strong>
-<a href="https://github.com/zacg/simplelib">https://github.com/zacg/simplelib</a> 
-</p>
+<a href="https://github.com/zacg/simplelib">https://github.com/zacg/simplelib</a>
+</p></p>
 
-</div>
+<p></div></p>
 
-
-<p>
+<p><p>
  Feel free to leave your comments below.
-</p>
-
+</p></p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Nested Folders in qt Creator]]></title>
+    <title type="html"><![CDATA[Nested Folders in Qt Creator]]></title>
     <link href="http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator/"/>
     <updated>2013-06-01T22:21:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator</id>
@@ -1554,7 +1540,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1573,7 +1559,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
 
 <p>Start by navigating to the projects root directory, and create a new folder:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'> mkdir ModuleA
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1583,7 +1569,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
 <p>Note the path names must be relative from the project root</p>
 
 <figure class='code'><figcaption><span>title:ModuleA.pri </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1599,7 +1585,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
 <p>Now we need to include the new .pri file for the folder in the project configuration. Open up the .pro file located in the project root directory and add the following line:</p>
 
 <figure class='code'><figcaption><span>title:Project.pro </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>include<span class="o">(</span>ModuleA/ModuleA.pri<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1609,7 +1595,7 @@ The goal is to achive the below folder strucutre, project being the root, and &#
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[jqGrid Inline Editing with asp.net MVC]]></title>
+    <title type="html"><![CDATA[jqGrid Inline Editing With asp.net MVC]]></title>
     <link href="http://zacg.github.io/blog/2013/06/01/inline-editing-for-jqgrid-with-asp-dot-net-mvc/"/>
     <updated>2013-06-01T13:54:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/06/01/inline-editing-for-jqgrid-with-asp-dot-net-mvc</id>
@@ -1634,7 +1620,7 @@ The syntax follows the exisitng MvcJqGrid builder pattern and is very straightfo
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1712,7 +1698,7 @@ The syntax follows the exisitng MvcJqGrid builder pattern and is very straightfo
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Notes on C++ for C# developers]]></title>
+    <title type="html"><![CDATA[Notes on C++ for C# Developers]]></title>
     <link href="http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers/"/>
     <updated>2013-05-29T02:25:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus&#8211;for-c-number-developers</id>
@@ -1729,7 +1715,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
    
 
 <figure class='code'><figcaption><span>c# </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1745,7 +1731,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 
 
 <figure class='code'><figcaption><span>C++ </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1774,7 +1760,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 
 
 <figure class='code'><figcaption><span>C# </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1789,7 +1775,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 
 
 <figure class='code'><figcaption><span>C++ </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -1817,7 +1803,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 <p>Access identifier specified on each member.</p>
 
 <figure class='code'><figcaption><span>C#</span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">SomeProp</span> <span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
 </span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="nf">GetSomeOtherProp</span><span class="p">();</span>
@@ -1827,7 +1813,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 <p>Access can be grouped.</p>
 
 <figure class='code'><figcaption><span>C++ </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">public</span><span class="o">:</span>
@@ -1892,7 +1878,7 @@ If you require any of the following then you should explicitly define all three.
 Don&#8217;t include parathesis on paramaterless constructors the compiler will favour resolving it as a function declaration and you will end up with an error message like:
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="nl">error:</span> <span class="n">request</span> <span class="k">for</span> <span class="n">member</span> <span class="err">&#39;</span><span class="n">method</span><span class="err">&#39;</span> <span class="n">in</span> <span class="err">&#39;</span><span class="n">someObj</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">is</span> <span class="n">of</span> <span class="n">non</span><span class="o">-</span><span class="k">class</span> <span class="nc">type</span> <span class="err">&#39;</span><span class="n">someType</span><span class="p">()</span><span class="err">&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1900,7 +1886,7 @@ Don&#8217;t include parathesis on paramaterless constructors the compiler will f
 Parthensis can still be used when using the &#8220;new&#8221; keyword
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2011,7 +1997,7 @@ Parthensis can still be used when using the &#8220;new&#8221; keyword
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[setup opencv project with qt creator on linux]]></title>
+    <title type="html"><![CDATA[Setup Opencv Project With Qt Creator on Linux]]></title>
     <link href="http://zacg.github.io/blog/2013/05/09/configuring-opencv-project-with-qt-creator-on-linux/"/>
     <updated>2013-05-09T02:08:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/05/09/configuring-opencv-project-with-qt-creator-on-linux</id>
@@ -2019,7 +2005,7 @@ Parthensis can still be used when using the &#8220;new&#8221; keyword
 
 <p>If not installed, install qt creator</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get qtcreator
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2030,7 +2016,7 @@ Parthensis can still be used when using the &#8220;new&#8221; keyword
 
 <p>Add following lines to .pro file</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2075,7 +2061,7 @@ Parthensis can still be used when using the &#8220;new&#8221; keyword
 
 <p>Set the terminal field to the following:</p>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/bin/xterm -e
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2085,7 +2071,7 @@ Parthensis can still be used when using the &#8220;new&#8221; keyword
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Fixing Opencv xserver error with Eclipse CDE]]></title>
+    <title type="html"><![CDATA[Fixing Opencv Xserver Error With Eclipse CDE]]></title>
     <link href="http://zacg.github.io/blog/2013/05/05/fixing-opencv-xserver-error-with-cde/"/>
     <updated>2013-05-05T01:57:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/05/05/fixing-opencv-xserver-error-with-cde</id>
@@ -2109,7 +2095,7 @@ Parthensis can still be used when using the &#8220;new&#8221; keyword
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Blogs worth reading]]></title>
+    <title type="html"><![CDATA[Blogs Worth Reading]]></title>
     <link href="http://zacg.github.io/blog/2013/05/03/blogs-i-recommend/"/>
     <updated>2013-05-03T22:04:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/05/03/blogs-i-recommend</id>
@@ -2151,7 +2137,7 @@ Parthensis can still be used when using the &#8220;new&#8221; keyword
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Installing opencv 2.4.5 on Ubuntu 12 with Eclipse CDE]]></title>
+    <title type="html"><![CDATA[Installing Opencv 2.4.5 on Ubuntu 12 With Eclipse CDE]]></title>
     <link href="http://zacg.github.io/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/"/>
     <updated>2013-05-02T00:45:00-04:00</updated>
     <id>http://zacg.github.io/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde</id>
@@ -2167,7 +2153,7 @@ Parthensis can still be used when using the &#8220;new&#8221; keyword
 Start by getting things up to date
 </span>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
 </span><span class='line'>sudo apt-get upgrade
@@ -2177,7 +2163,7 @@ Start by getting things up to date
 
 <li>Install opencv dependencies so we can compile the opencv library
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2185,7 +2171,7 @@ Start by getting things up to date
 
 <li>Grab the current stable release of opencv, at the time of this post it was: 2.4.5
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://github.com/Itseez/opencv/archive/2.4.5.tar.gz
 </span><span class='line'>tar -xvf OpenCV-2.4.5.tar.bz2
@@ -2195,7 +2181,7 @@ Start by getting things up to date
 
 <li>Now we need to build a makefile with cmake if you are just messing around and aren&#8217;t sure which modules to install you can run the following command which will include the most common ones including python bindings. Otherwise you can skip to 4a to select which options you want.
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2214,7 +2200,7 @@ If you chose the above generic build options continue to step 5.
 <li>
 We will use the cmake gui to select which components to include, start by installing it:
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get cmake-qt-gui
 </span><span class='line'>sudo cmake-gui
@@ -2241,7 +2227,7 @@ Click generate, cmake should populate the build directory with the necessary mak
 <li>
  Navigate to your build directory in a terminal and make. Then install.
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>release
@@ -2254,14 +2240,14 @@ Click generate, cmake should populate the build directory with the necessary mak
 <li>
 To configure the dynamic linker we need to add a line to the end of ld.so.conf.d. The following command will open the file in a text editor (the file may be blank, that is fine).
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo gedit /etc/ld.so.conf.d/opencv.conf
 </span></code></pre></td></tr></table></div></figure>
 
 
 Add the line:
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/lib
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2274,14 +2260,14 @@ and save it.
 To configure bash.bashrc:
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo gedit /etc/bash.bashrc
 </span></code></pre></td></tr></table></div></figure>
 
 
 And add:
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="nv">$PKG_CONFIG_PATH</span>:/usr/local/lib/pkgconfig
 </span><span class='line'><span class="nb">export </span>PKG_CONFIG_PATH
@@ -2298,7 +2284,7 @@ Logout/restart before moving on to eclipse installation.
 If you don&#8217;t already have eclipse with cde installed do that first with the following command
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install eclipse eclipse-cdt g++
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2322,7 +2308,7 @@ Next we need to tell eclipse what libraries to include with the project and wher
 Add the following to the include paths list <strong>Noted: if you need to compile projects with the older c++ api, you would replace opencv2 with opencv</strong>
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/include/opencv2
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2330,7 +2316,7 @@ Add the following to the include paths list <strong>Noted: if you need to compil
 Next goto the GC++ Linker tab and add the following to the library search paths list:
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/lib
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2338,7 +2324,7 @@ Next goto the GC++ Linker tab and add the following to the library search paths 
 then add the following libs to the libary list
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2375,7 +2361,7 @@ These project settings should now allow you to compile projects referencing open
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -2427,7 +2413,7 @@ Tip: the bag of words example references each module individually, if you want t
 reference all the free modules for tesing just include 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &quot;opencv.hpp&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 

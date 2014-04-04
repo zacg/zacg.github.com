@@ -4,7 +4,7 @@
   <title><![CDATA[Category: c# | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/c-number/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-01T12:34:59-04:00</updated>
+  <updated>2014-04-03T22:48:07-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -30,7 +30,7 @@
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'> <span class="n">Install</span><span class="p">-</span><span class="n">Package</span> <span class="n">log4net</span><span class="p">.</span><span class="n">Appender</span><span class="p">.</span><span class="n">Azure</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
@@ -54,7 +54,7 @@
 
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Azure Appender Config Example </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -112,7 +112,7 @@
 
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Flush Buffers </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -147,7 +147,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Log log4net Debugging Info </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -166,7 +166,7 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Dump Trace Logs to File </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -264,7 +264,7 @@ My fork can be found on github at: <a href="https://github.com/zacg/geoserver-cs
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">ListAdapter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SimpleTextAdapter</span><span class="p">&lt;</span><span class="n">SomeBusinessObject</span><span class="p">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="n">objects</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
@@ -273,7 +273,7 @@ My fork can be found on github at: <a href="https://github.com/zacg/geoserver-cs
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">ListAdapter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SimpleTextAdapter</span><span class="p">&lt;</span><span class="n">SomeBusinessObject</span><span class="p">&gt;</span> <span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="n">objects</span><span class="p">,</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">Name</span><span class="p">;},</span> <span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">CustomId</span><span class="p">;});</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 ]]></content>
@@ -303,7 +303,7 @@ The syntax follows the exisitng MvcJqGrid builder pattern and is very straightfo
 </p>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -410,7 +410,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
     </p>
    
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>c# </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -424,7 +424,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 
 
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C++ </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -451,7 +451,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 
 
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C# </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -464,7 +464,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 <p>Don't forget the "public" declaration if you are used to c#.</p>
 
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C++ </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -490,7 +490,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 
 <p>Access identifier specified on each member.</p>
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C#</span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">SomeProp</span> <span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
 </span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="nf">GetSomeOtherProp</span><span class="p">();</span>
@@ -498,7 +498,7 @@ Gotcha: C++ does not support template type constraints/guards on template defini
 
 <p>Access can be grouped.</p>
 <div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>C++ </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">public</span><span class="o">:</span>
@@ -561,13 +561,13 @@ If you require any of the following then you should explicitly define all three.
     <p>
 Don't include parathesis on paramaterless constructors the compiler will favour resolving it as a function declaration and you will end up with an error message like:
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="nl">error:</span> <span class="n">request</span> <span class="k">for</span> <span class="n">member</span> <span class="err">&#39;</span><span class="n">method</span><span class="err">&#39;</span> <span class="n">in</span> <span class="err">&#39;</span><span class="n">someObj</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">is</span> <span class="n">of</span> <span class="n">non</span><span class="o">-</span><span class="k">class</span> <span class="nc">type</span> <span class="err">&#39;</span><span class="n">someType</span><span class="p">()</span><span class="err">&#39;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 Parthensis can still be used when using the "new" keyword
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>

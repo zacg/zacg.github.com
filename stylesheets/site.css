@@ -1,7 +1,7 @@
 
 .landing-header {
 	height: 300px;
-	background-image: url(/images/cali.jpg);
+	background-image: url(/images/newzealand.jpg);
 	
 	background-position: 50% 50%; 
 	color: gray;
@@ -32,8 +32,14 @@ color: #2C2929;
      padding-top:20px;
      height: 250px;
      border-radius: 10px 10px 10px 10px;
-     background-repeat: no-repeat;
      
+     font-size: inherit !important;
+    /* background-color:rgba(255,255,204,0.4);*/
+}
+
+.tile-img{
+	background-repeat: no-repeat;
+	height:100%;
 }
 
 .landing-body{
@@ -46,8 +52,9 @@ color: #2C2929;
 }
 
 .tile-heading-link{
-	font-size: 3em;
-	line-height:1.1em;
+	font-size: 1.5em;
+	line-height:1.6em;
+	font-family: arial;
 	color:#2C2929;
 }
 
@@ -61,13 +68,15 @@ color: #2C2929;
 }
 
 .tile-date{
+	position:absolute;
+	bottom:5px;
 	vertical-align:bottom;
-        font-style:italic;
+    font-style:italic;
 	
 }
 
 header[role="banner"] {
-	background-image: url(/images/cali.jpg) !important;
+	background-image: url(/images/newzealand.jpg) !important;
 	color: red !important;
 	background-position: 75% 50% !important; 	
 }
@@ -89,4 +98,9 @@ hgroup h1 a{
     1px -1px 0 #0099CC,
     -1px 1px 0 #0099CC,
     1px 1px 0 #0099CC !important;
+}
+
+.col-lg-4 {
+    margin-left:15px;
+    width:31.6%;
 }

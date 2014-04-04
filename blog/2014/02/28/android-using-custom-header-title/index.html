@@ -20,19 +20,16 @@
   
   <link rel="canonical" href="http://zacg.github.io/blog/2014/02/28/android-using-custom-header-title">
   <link href="/favicon.png" rel="icon">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Zac Gross" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  
+
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>-->
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<!-- Optional theme -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -106,7 +103,8 @@
 
 <time datetime="2014-02-28T01:17:00-05:00" pubdate data-updated="true">Feb 28<span>th</span>, 2014</time>
         
-         | <a href="#disqus_thread">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://zacg.github.io">Comments</a>
         
       </p>
     
@@ -127,7 +125,7 @@ Trying to configure a custom header/title layout with the newer Android Holo The
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -154,7 +152,7 @@ I then modified my androidmanifiest.xml and style.xml files to configure a custo
 
 
 <figure class='code'><figcaption><span>androidmanifiest.xml </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'>  <span class="nt">&lt;manifest&gt;</span>
@@ -166,7 +164,7 @@ I then modified my androidmanifiest.xml and style.xml files to configure a custo
 
 
 <figure class='code'><figcaption><span>styles.xml </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -230,7 +228,7 @@ If you try setting a custom header/title without removing the actionbar you will
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2014/02/28/android-using-custom-header-title/" data-via="zachgross" data-counturl="http://zacg.github.io/blog/2014/02/28/android-using-custom-header-title/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2014/02/28/android-using-custom-header-title/" data-via="zachgross" data-counturl="http://zacg.github.io/blog/2014/02/28/android-using-custom-header-title/" >Tweet</a>
   
   
   
@@ -263,7 +261,7 @@ If you try setting a custom header/title without removing the actionbar you will
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/03/26/encoding-data-in-dna-with-go/">Encoding Data in DNA with Go</a>
+        <a href="/blog/2014/03/26/encoding-data-in-dna-with-go/">Encoding Data in DNA With Go</a>
       </li>
     
       <li class="post">
@@ -282,25 +280,6 @@ If you try setting a custom header/title without removing the actionbar you will
         <a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/">Checking Nested Models in Backbone Forms</a>
       </li>
     
-  </ul>
-</section>
-
-<section>
-  <h1>Upcoming Posts</h1>
-  <ul id="upcoming_posts">
-      <li class="post">
-        <a>Intro to Backbone.js</a>
-      </li>
-      <li class="post">
-        <a>Temporal Expressions</a>
-      </li>
-      <li class="post">
-        <a>Opencv Port of kaze Algorithm</a>
-      </li>
-      <li class="post">
-        <a>Using html5 Websockts with Revel and Golang</a>
-      </li>
-      
   </ul>
 </section>
 
@@ -362,7 +341,7 @@ If you try setting a custom header/title without removing the actionbar you will
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -378,7 +357,7 @@ If you try setting a custom header/title without removing the actionbar you will
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

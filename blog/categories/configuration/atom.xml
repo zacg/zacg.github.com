@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Configuration | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/configuration/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-01T12:34:59-04:00</updated>
+  <updated>2014-04-03T22:48:07-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -29,7 +29,7 @@
 <span style="line-height: 13px;">
 Start by getting things up to date
 </span>
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
 </span><span class='line'>sudo apt-get upgrade
@@ -37,13 +37,13 @@ Start by getting things up to date
 </li>
 
 <li>Install opencv dependencies so we can compile the opencv library
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 </li>
 
 <li>Grab the current stable release of opencv, at the time of this post it was: 2.4.5
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://github.com/Itseez/opencv/archive/2.4.5.tar.gz
 </span><span class='line'>tar -xvf OpenCV-2.4.5.tar.bz2
@@ -51,7 +51,7 @@ Start by getting things up to date
 </li>
 
 <li>Now we need to build a makefile with cmake if you are just messing around and aren't sure which modules to install you can run the following command which will include the most common ones including python bindings. Otherwise you can skip to 4a to select which options you want.
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -68,7 +68,7 @@ If you chose the above generic build options continue to step 5.
 
 <li>
 We will use the cmake gui to select which components to include, start by installing it:
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get cmake-qt-gui
 </span><span class='line'>sudo cmake-gui
@@ -93,7 +93,7 @@ Click generate, cmake should populate the build directory with the necessary mak
 
 <li>
  Navigate to your build directory in a terminal and make. Then install.
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>release
@@ -104,12 +104,12 @@ Click generate, cmake should populate the build directory with the necessary mak
 
 <li>
 To configure the dynamic linker we need to add a line to the end of ld.so.conf.d. The following command will open the file in a text editor (the file may be blank, that is fine).
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo gedit /etc/ld.so.conf.d/opencv.conf
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 Add the line:
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/lib
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -120,12 +120,12 @@ and save it.
 <li>
 To configure bash.bashrc:
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo gedit /etc/bash.bashrc
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 And add:
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="nv">$PKG_CONFIG_PATH</span>:/usr/local/lib/pkgconfig
 </span><span class='line'><span class="nb">export </span>PKG_CONFIG_PATH
@@ -140,7 +140,7 @@ Logout/restart before moving on to eclipse installation.
 <li>
 If you don't already have eclipse with cde installed do that first with the following command
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install eclipse eclipse-cdt g++
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -162,19 +162,19 @@ Next we need to tell eclipse what libraries to include with the project and wher
 
 Add the following to the include paths list <strong>Noted: if you need to compile projects with the older c++ api, you would replace opencv2 with opencv</strong>
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/include/opencv2
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 Next goto the GC++ Linker tab and add the following to the library search paths list:
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/lib
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 then add the following libs to the libary list
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -209,7 +209,7 @@ for other projects you can remove uneceoctopress spell checkingssary libs or add
 These project settings should now allow you to compile projects referencing opencv. Goto project -> build the project should build. Then run it, if you are using the bag of words example from the samples folder you should see console output similar to the following:
 
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -259,7 +259,7 @@ These project settings should now allow you to compile projects referencing open
 Tip: the bag of words example references each module individually, if you want to quickly
 reference all the free modules for tesing just include 
 
-<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &quot;opencv.hpp&quot;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 

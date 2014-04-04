@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Installing opencv 2.4.5 on Ubuntu 12 with Eclipse CDE - Zac Gross</title>
+  <title>Installing Opencv 2.4.5 on Ubuntu 12 With Eclipse CDE - Zac Gross</title>
   <meta name="author" content="Zac Gross">
 
   
@@ -20,19 +20,16 @@
   
   <link rel="canonical" href="http://zacg.github.io/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde">
   <link href="/favicon.png" rel="icon">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Zac Gross" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  
+
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>-->
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<!-- Optional theme -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -106,7 +103,8 @@
 
 <time datetime="2013-05-02T00:45:00-04:00" pubdate data-updated="true">May 2<span>nd</span>, 2013</time>
         
-         | <a href="#disqus_thread">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://zacg.github.io">Comments</a>
         
       </p>
     
@@ -125,7 +123,7 @@
 Start by getting things up to date
 </span>
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get update
 </span><span class='line'>sudo apt-get upgrade
@@ -135,7 +133,7 @@ Start by getting things up to date
 
 <li>Install opencv dependencies so we can compile the opencv library
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install build-essential libgtk2.0-dev libjpeg-dev libtiff4-dev libjasper-dev libopenexr-dev cmake python-dev python-numpy python-tk libtbb-dev libeigen2-dev yasm libfaac-dev libopencore-amrnb-dev libopencore-amrwb-dev libtheora-dev libvorbis-dev libxvidcore-dev libx264-dev libqt4-dev libqt4-opengl-dev sphinx-common texlive-latex-extra libv4l-dev libdc1394-22-dev libavcodec-dev libavformat-dev libswscale-dev
 </span></code></pre></td></tr></table></div></figure>
 
@@ -143,7 +141,7 @@ Start by getting things up to date
 
 <li>Grab the current stable release of opencv, at the time of this post it was: 2.4.5
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>wget https://github.com/Itseez/opencv/archive/2.4.5.tar.gz
 </span><span class='line'>tar -xvf OpenCV-2.4.5.tar.bz2
@@ -153,7 +151,7 @@ Start by getting things up to date
 
 <li>Now we need to build a makefile with cmake if you are just messing around and aren&#8217;t sure which modules to install you can run the following command which will include the most common ones including python bindings. Otherwise you can skip to 4a to select which options you want.
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -172,7 +170,7 @@ If you chose the above generic build options continue to step 5.
 <li>
 We will use the cmake gui to select which components to include, start by installing it:
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get cmake-qt-gui
 </span><span class='line'>sudo cmake-gui
@@ -199,7 +197,7 @@ Click generate, cmake should populate the build directory with the necessary mak
 <li>
  Navigate to your build directory in a terminal and make. Then install.
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>release
@@ -212,14 +210,14 @@ Click generate, cmake should populate the build directory with the necessary mak
 <li>
 To configure the dynamic linker we need to add a line to the end of ld.so.conf.d. The following command will open the file in a text editor (the file may be blank, that is fine).
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo gedit /etc/ld.so.conf.d/opencv.conf
 </span></code></pre></td></tr></table></div></figure>
 
 
 Add the line:
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/lib
 </span></code></pre></td></tr></table></div></figure>
 
@@ -232,14 +230,14 @@ and save it.
 To configure bash.bashrc:
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo gedit /etc/bash.bashrc
 </span></code></pre></td></tr></table></div></figure>
 
 
 And add:
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="nv">$PKG_CONFIG_PATH</span>:/usr/local/lib/pkgconfig
 </span><span class='line'><span class="nb">export </span>PKG_CONFIG_PATH
@@ -256,7 +254,7 @@ Logout/restart before moving on to eclipse installation.
 If you don&#8217;t already have eclipse with cde installed do that first with the following command
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get install eclipse eclipse-cdt g++
 </span></code></pre></td></tr></table></div></figure>
 
@@ -280,7 +278,7 @@ Next we need to tell eclipse what libraries to include with the project and wher
 Add the following to the include paths list <strong>Noted: if you need to compile projects with the older c++ api, you would replace opencv2 with opencv</strong>
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/include/opencv2
 </span></code></pre></td></tr></table></div></figure>
 
@@ -288,7 +286,7 @@ Add the following to the include paths list <strong>Noted: if you need to compil
 Next goto the GC++ Linker tab and add the following to the library search paths list:
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/local/lib
 </span></code></pre></td></tr></table></div></figure>
 
@@ -296,7 +294,7 @@ Next goto the GC++ Linker tab and add the following to the library search paths 
 then add the following libs to the libary list
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -333,7 +331,7 @@ These project settings should now allow you to compile projects referencing open
 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -385,7 +383,7 @@ Tip: the bag of words example references each module individually, if you want t
 reference all the free modules for tesing just include 
 
 
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="cp">#include &quot;opencv.hpp&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -448,7 +446,7 @@ References:
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/" data-via="zachgross" data-counturl="http://zacg.github.io/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/" data-via="zachgross" data-counturl="http://zacg.github.io/blog/2013/05/02/installing-opencv-2-dot-4-5-on-ubuntu-12-with-eclipse-cde/" >Tweet</a>
   
   
   
@@ -479,7 +477,7 @@ References:
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2014/03/26/encoding-data-in-dna-with-go/">Encoding Data in DNA with Go</a>
+        <a href="/blog/2014/03/26/encoding-data-in-dna-with-go/">Encoding Data in DNA With Go</a>
       </li>
     
       <li class="post">
@@ -498,25 +496,6 @@ References:
         <a href="/blog/2013/11/28/checking-nested-models-in-backbone-forms/">Checking Nested Models in Backbone Forms</a>
       </li>
     
-  </ul>
-</section>
-
-<section>
-  <h1>Upcoming Posts</h1>
-  <ul id="upcoming_posts">
-      <li class="post">
-        <a>Intro to Backbone.js</a>
-      </li>
-      <li class="post">
-        <a>Temporal Expressions</a>
-      </li>
-      <li class="post">
-        <a>Opencv Port of kaze Algorithm</a>
-      </li>
-      <li class="post">
-        <a>Using html5 Websockts with Revel and Golang</a>
-      </li>
-      
   </ul>
 </section>
 
@@ -578,7 +557,7 @@ References:
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -594,7 +573,7 @@ References:
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

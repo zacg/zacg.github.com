@@ -4,7 +4,7 @@
   <title><![CDATA[Category: debian | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/debian/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-01T12:34:59-04:00</updated>
+  <updated>2014-04-03T22:48:07-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -42,7 +42,7 @@ Recently while generating Go bindings for a C++ library with Swig I begain notic
 <ol>
     <li>
         Check Installed Swig version
-        <div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+        <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>        swig -version
 </span><span class='line'>
