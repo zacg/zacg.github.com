@@ -4,7 +4,7 @@
   <title><![CDATA[Category: golang | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/golang/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-03T22:48:07-04:00</updated>
+  <updated>2014-04-04T23:37:42-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -784,7 +784,7 @@ Next we need to generate the necessary C++ wrapper code to allow Go to bind to i
 With the official release of Go 1.2, the go build tool now recognizes SWIG files. The following steps are not necessary but may still be useful for users with more complicated build systems.
 </p>
 <p>
-If you are using Go 1.2 simply include the .swig file in your package directory along with the relevant c++ code files and run "go build" or "go install"
+If you are using Go 1.2 simply include the .swig module file in your package directory along with the relevant c++ code files and run "go build" or "go install"
 </p>
 </div></p>
 
