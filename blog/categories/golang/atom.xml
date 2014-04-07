@@ -4,7 +4,7 @@
   <title><![CDATA[Category: golang | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/golang/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-04T23:37:42-04:00</updated>
+  <updated>2014-04-07T01:21:42-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -887,12 +887,9 @@ That's it! you should now be able to import "simplelib" in your go projects and 
 
 <p><h3>Setting up Build Scripts</h3></p>
 
-<p><p></p>
-
-<pre><code>To recap the steps required are:
-</code></pre>
-
-<p></p></p>
+<p><p>
+ To recap the steps required are:
+</p></p>
 
 <p><ol>
 <li>Run SWIG tool (generate wrapper code) </li>
@@ -902,12 +899,9 @@ That's it! you should now be able to import "simplelib" in your go projects and 
 <li>Run Go install to make the new package available in your applications</li>
 </ol></p>
 
-<p><p></p>
-
-<pre><code>And here is an example makefile:
-</code></pre>
-
-<p></p></p>
+<p><p>
+And here is an example makefile:
+</p></p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simplelib.make </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1004,9 +998,9 @@ That's it! you should now be able to import "simplelib" in your go projects and 
 <span class='line-number'>92</span>
 <span class='line-number'>93</span>
 <span class='line-number'>94</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">CC</span><span class="o">=</span>g++&lt;/p&gt;
+</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="nv">CC</span><span class="o">=</span>g++&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;ifeq <span class="o">(</span><span class="k">$(</span>DEBUG<span class="k">)</span>,yes<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'><span class="err">&lt;p&gt;ifeq</span> <span class="err">(</span><span class="k">$(</span>DEBUG<span class="k">)</span>,yes<span class="o">)</span>&lt;/p&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;pre&gt;&lt;code&gt;CXXFLAGS<span class="o">=</span>-Wall -g
 </span><span class='line'><span class="nv">LDFLAGS</span><span class="o">=</span>-Wall -g

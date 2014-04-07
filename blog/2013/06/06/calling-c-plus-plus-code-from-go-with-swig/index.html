@@ -516,12 +516,9 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 
 <p><h3>Setting up Build Scripts</h3></p>
 
-<p><p></p>
-
-<pre><code>To recap the steps required are:
-</code></pre>
-
-<p></p></p>
+<p><p>
+ To recap the steps required are:
+</p></p>
 
 <p><ol>
 <li>Run SWIG tool (generate wrapper code) </li>
@@ -531,12 +528,9 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 <li>Run Go install to make the new package available in your applications</li>
 </ol></p>
 
-<p><p></p>
-
-<pre><code>And here is an example makefile:
-</code></pre>
-
-<p></p></p>
+<p><p>
+And here is an example makefile:
+</p></p>
 
 <p><figure class='code'><figcaption><span>simplelib.make </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -610,15 +604,15 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 <span class='line-number'>69</span>
 <span class='line-number'>70</span>
 <span class='line-number'>71</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">CC</span><span class="o">=</span>g++
+</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="nv">CC</span><span class="o">=</span>g++
 </span><span class='line'>
-</span><span class='line'>ifeq <span class="o">(</span><span class="k">$(</span>DEBUG<span class="k">)</span>,yes<span class="o">)</span>
+</span><span class='line'><span class="cp">ifeq ($(DEBUG),yes)</span>
 </span><span class='line'>  <span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall -g
 </span><span class='line'>  <span class="nv">LDFLAGS</span><span class="o">=</span>-Wall -g
-</span><span class='line'><span class="k">else</span>
-</span><span class='line'><span class="k">  </span><span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall
+</span><span class='line'><span class="cp">else</span>
+</span><span class='line'>  <span class="nv">CXXFLAGS</span><span class="o">=</span>-Wall
 </span><span class='line'>  <span class="nv">LDFLAGS</span><span class="o">=</span>-Wall
-</span><span class='line'>endif
+</span><span class='line'><span class="cp">endif</span>
 </span><span class='line'>
 </span><span class='line'><span class="nv">INCPATH</span><span class="o">=</span>inc
 </span><span class='line'><span class="nv">SRCPATH</span><span class="o">=</span>src
@@ -633,9 +627,9 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 </span><span class='line'>
 </span><span class='line'><span class="c">#Set this to your go installation directory</span>
 </span><span class='line'><span class="nv">EXE</span><span class="o">=</span><span class="nv">$$</span>HOME/dev/goinstallation/go/bin/
-</span><span class='line'><span class="nb">export </span>PATH :<span class="o">=</span> bin:<span class="k">$(</span>PATH<span class="k">)</span>
+</span><span class='line'><span class="k">export </span><span class="nv">PATH</span> <span class="o">:=</span> bin:<span class="k">$(</span>PATH<span class="k">)</span>
 </span><span class='line'>
-</span><span class='line'>default: <span class="k">$(</span>OUT<span class="k">)</span>
+</span><span class='line'><span class="nf">default</span><span class="o">:</span> <span class="m">$(OUT)</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">$(</span>OUT<span class="k">)</span>: <span class="k">$(</span>OBJS<span class="k">)</span>
 </span><span class='line'>  <span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> -shared -o <span class="nv">$@</span> <span class="nv">$^</span>
@@ -672,7 +666,7 @@ That&#8217;s it! you should now be able to import &#8220;simplelib&#8221; in you
 </span><span class='line'><br/>
 </span><span class='line'>install:
 </span><span class='line'>  @echo <span class="s2">&quot;Installing go package...&quot;</span>
-</span><span class='line'>  <span class="c">#Rename swig file so go install command does not try to reprocess it</span>
+</span><span class='line'><span class="c">  #Rename swig file so go install command does not try to reprocess it</span>
 </span><span class='line'>  mv simplelib.swig simplelib.notswig
 </span><span class='line'>  <span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$$</span>HOME/dev/go/; <span class="se">&lt;/span>
 </span><span class='line'>  <span class="k">$(</span>EXE<span class="k">)</span>go install
