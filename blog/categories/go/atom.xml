@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: go | Zac Gross]]></title>
+  <title><![CDATA[Category: Go | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/go/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-07T01:21:42-04:00</updated>
+  <updated>2014-07-21T12:57:04-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -14,114 +14,19 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Encoding Data in DNA with Go]]></title>
-    <link href="http://zacg.github.io/blog/2014/03/26/encoding-data-in-dna-with-go/"/>
-    <updated>2014-03-26T23:58:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2014/03/26/encoding-data-in-dna-with-go</id>
-    <content type="html"><![CDATA[<p>
-    As a recent programming exercise I wrote a golang library that allows encoding/decoding arbitrary data in DNA segments.
-</p>
+    <title type="html"><![CDATA[Porting Nupic to Go]]></title>
+    <link href="http://zacg.github.io/blog/2014/06/28/porting-nupic-to-go/"/>
+    <updated>2014-06-28T19:26:41-04:00</updated>
+    <id>http://zacg.github.io/blog/2014/06/28/porting-nupic-to-go</id>
+    <content type="html"><![CDATA[<p>Recently I ported the core parts of the Nupic project to Go.</p>
 
+<p><a href="https://github.com/numenta/nupic/">Nupic</a> is Numenta's current open source implementation of Jeff Hawkin's hierarchical temporal memory(HTM) model. It currently consists of the CLA (cortical learning algorithm) which is a single stage/layer of the HTM implemented in a mix of python and C++.</p>
 
+<p>In an effort to better understand the difference between the current implementation and the whitepaper I decided to try and port the spatial and temporal poolers to Go. Porting line by line gave me the opportunity to understand the design better as well as it's dependencies: python, numpy, etc...</p>
 
+<p>One of the more difficult parts of this project was interpreting the numpy expressions and translating them into a statically typed language. A few nested numpy expressions can easily end up being 10 of lines of Go.</p>
 
-<p>
-    The encoding algorithm is based on the method described in this Nature paper: <a href="http://www.nature.com/nature/journal/v494/n7435/full/nature11875.html">http://www.nature.com/nature/journal/v494/n7435/full/nature11875.html</a> . Pseudo code and details can be found here: <a href="http://www.nature.com/nature/journal/vaop/ncurrent/extref/nature11875-s2.pdf">http://www.nature.com/nature/journal/vaop/ncurrent/extref/nature11875-s2.pdf</a>
-</p>
-
-
-
-
-<p>
-Usage Example:
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Encoding </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">str</span> <span class="o">:=</span> <span class="s">&quot;some string to encode in DNA&quot;</span>
-</span><span class='line'><span class="nx">dna</span> <span class="o">:=</span> <span class="nx">dna</span><span class="p">.</span><span class="nx">Encode</span><span class="p">(</span><span class="nx">str</span><span class="p">)</span>
-</span><span class='line'><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result: &quot;</span><span class="p">,</span> <span class="nx">dna</span><span class="p">)</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-The resulting string is a valid DNA sequence.
-</p>
-
-
-
-
-<p>
-Sequences can be decoded back to human readable text the same way:
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Decoding </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">dna</span> <span class="o">:=</span> <span class="s">&quot;ATAGTATATCGACTAGTACAGCGTAGCATCTCGCAGCGAGATACGCTGCTACGCAGCATGCTGTGAGTATCGATGACGAGTGACTCTGTACAGTACGTACGATACGTACGTACGTCGTATAGTCGTACGTACGTACGTACGTACGTACGTACTGTACAGAGTCACTCGTCATCGATACTCACAGCATGCTGCGTAGCAGCGTATCTCGCTGCGAGATGATACGTACGTACGAGC&quot;</span>
-</span><span class='line'><span class="nx">str</span> <span class="o">:=</span> <span class="nx">dna</span><span class="p">.</span><span class="nx">Decode</span><span class="p">(</span><span class="nx">dna</span><span class="p">)</span>
-</span><span class='line'><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result&quot;</span><span class="p">,</span><span class="nx">str</span><span class="p">)</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-    Source on github: <a href="https://github.com/zacg/dna">https://github.com/zacg/dna</a>
-</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Golang Type Comparisons and Struct Initialization Using Reflection]]></title>
-    <link href="http://zacg.github.io/blog/2013/10/11/golang-type-comparisons-using-reflection/"/>
-    <updated>2013-10-11T19:29:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2013/10/11/golang-type-comparisons-using-reflection</id>
-    <content type="html"><![CDATA[<p>
-While writing some basic <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> code for a recent project, I decided to create a base struct containing the redundant fields for all of my data entities (id,date_created, etc...). I then embedded this struct in all data entities and tagged it as inline so json/bson marshalers would treat it accordingly. A problem arose when I wanted to pass newly created data entities from clients into a json webservice. Normally when instantiating a data entity struct I would use the associated creation method (NewSomeEntity()) which would set the appropriate id/created date etc... however the json marshaler is not smart enough to do this as it builds the object graph. If the object graph is only one level deep, you can just run an init function on the new object returned from the marshaler, when the object contains n-levels (n-many relationships) it becomes a problem.
-</p>
-
-
-<p>
-I had two options: I could implement custom marshal interfaces for every data entity struct, or I could write a function that reflects over the object graph after it has been built by the json marshaler and run my initialization function against any new/unintitalized base entity structs. I decided to go with the later option.
-</p>
-
-
-
-
-<p>
-There are a few key functions needed to achieve the method described above, mainly: reflecting over an object to get a list of it's fields, checking the type of the reflected field against your base struct, checking if the reflected field value is uninitialized or in the case of a pointer nil, and finally setting the value of an empty field to an initialized struct. 
-</p>
-
-
-
-
-<p>
-Here are some code examples:
-</p>
-
+<p>The result is 2 simple APIs for the spatial and temporal pooler which are go gettable.</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -130,406 +35,16 @@ Here are some code examples:
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>  <span class="c1">//base struct for all data entities</span>
-</span><span class='line'>  <span class="kd">type</span> <span class="nx">Entity</span> <span class="kd">struct</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span>    <span class="nx">Id</span>        <span class="nx">Uuid</span> <span class="s">`bson:&quot;_id,omitempty&quot; json:id`</span>
-</span><span class='line'>    <span class="nx">CreatedOn</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Time</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span> <span class="c1">//initialization function</span>
-</span><span class='line'> <span class="kd">func</span> <span class="nx">NewEntity</span><span class="p">()</span> <span class="nx">Entity</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="k">return</span> <span class="nx">Entity</span><span class="p">{</span><span class="nx">CreatedOn</span><span class="p">:</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">(),</span> <span class="nx">Id</span><span class="p">:</span> <span class="nx">Uuid</span><span class="p">.</span><span class="nx">NewUuid</span><span class="p">()}</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span> <span class="p">}&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-Reflect over object and get list of fields
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="nx">obj</span> <span class="o">:=</span> <span class="nx">Entity</span><span class="p">{};</span>
-</span><span class='line'><span class="c1">//retrieve list of fields</span>
-</span><span class='line'><span class="nx">r</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">).</span><span class="nx">Elem</span><span class="p">()&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="c1">//iterate over fields</span>
-</span><span class='line'><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="nx">r</span><span class="p">.</span><span class="nx">NumField</span><span class="p">();</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span>    <span class="nx">f</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Field</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;}&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-Compare reflected type
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Type</span><span class="p">()</span> <span class="o">==</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">TypeOf</span><span class="p">(</span><span class="nx">Entity</span><span class="p">{}))</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="c1">//reflected type is of type &quot;Entity&quot;</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-Checking for uninitialized/empty struct
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Interface</span><span class="p">().(</span><span class="nx">Entity</span><span class="p">)</span> <span class="o">==</span> <span class="nx">Entity</span><span class="p">{})</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="c1">//reflected field is an uninitialized entity struct</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;}&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-Checking for nil pointer - if you are using pointers you may need to check for a nil pointer rather than an uninitialized struct.
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">Kind</span><span class="p">()</span> <span class="o">==</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">Pointer</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">f</span><span class="p">.</span><span class="nx">IsNil</span><span class="p">())</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="c1">//reflected field is a null pointer</span>
-</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;}&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-Finally once an empty field is found set it to an initialized Entity struct
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="c1">//sets field f to an initialized Entity struct</span>
-</span><span class='line'><span class="nx">f</span><span class="p">.</span><span class="nx">Set</span><span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="nx">NewEntity</span><span class="p">()))&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-With the above snippets you can easily build a custom function for iterating over your object graph and initialize empty structs.
-</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Beware when Installing Swig from Debian Package]]></title>
-    <link href="http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package/"/>
-    <updated>2013-09-01T22:52:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2013/09/01/beware-when-installing-swig-from-debian-package</id>
-    <content type="html"><![CDATA[<p>
-Recently while generating Go bindings for a C++ library with Swig I begain noticing memory issues. Specifically when memory pressure was placed on the application I noticed output paramaters of standard types like std::vector were being randomly deallocated. After triple checking my Swig template files for the correct wrapping signatures and reviewing the generated Go and C/C++ code I was at a loss.
-</p>
-
-
-
-
-<p>
- After reviewing the Swig project commit log and noticing some fixes for Go related issues, I remembered I had installed Swig from the debian aptitude manager. Sure enough after running "swig -version" my swig version was at 2.0.7 (the current version at this time of writing was 2.0.10). 2.0.7 lacks many bug fixes related to Go. Downloading and installing 2.0.10 from the Swig website solved my memory issues.
-</p>
-
-
-
-
-<p>
-<strong>Solution:</strong>
-</p>
-
-
-
-
-<ol>
-    <li>
-        Check Installed Swig version
-        <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>        swig -version
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-    </li>
-    <li>
-        If version is < latest: unistall packaged version, then download and install current release from the website: <a href="http://swig.org">http://swig.org</a>
-    </li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Lowercase JSON Fields with Golang]]></title>
-    <link href="http://zacg.github.io/blog/2013/07/31/lowercase-json-fields-with-golang/"/>
-    <updated>2013-07-31T14:19:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2013/07/31/lowercase-json-fields-with-golang</id>
-    <content type="html"><![CDATA[<p>
-    The base GO libraries provide a handy function for marshaling structs into JSON. I recently came across an issue when writing webservices in GO for an existing javascript client. The problem was the client expected the JSON data to have field names starting with lowercase letters. GO's naming convention is obviously going to make all struct fields uppercase by default as they need to be exported. I ended up copying the JSON marshaler code from GO's library and modifiying it with a new paramater that will lowercase JSON field names when set. Because GO isn't on github and I am strapped for time I just copied the code into a new util namespace and made the modifications as a couple of other gophers in #go-nuts were interested in using it.
-</p>
-
-
-
-
-<p>
-Usage is simple, when the 2nd paramater is set to true, all fieldnames will start with a lowercase letter(other capitalization remains unchanged):
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="nx">b</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">jsonutils</span><span class="p">.</span><span class="nx">Marshal</span><span class="p">(&lt;</span><span class="nx">some</span> <span class="nx">obj</span><span class="p">&gt;,</span> <span class="p">&lt;</span><span class="nx">lowercase</span> <span class="nx">fieldnames</span><span class="p">:</span><span class="kc">true</span><span class="o">/</span><span class="kc">false</span><span class="p">&gt;)&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>
-The source code can be downloaded from github: <a href="https://github.com/zacg/goutils">https://github.com/zacg/goutils</a>
-</p>
-
-
-
-
-<p>And here is some boilerplate code to use it in a Revel controller:</p>
-
-
-<p><div><script src='https://gist.github.com/6124880.js'></script>
-<noscript><pre><code></code></pre></noscript></div>
-</p>
-
-<p>
-
-</p>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Calling C++ code from Go with SWIG]]></title>
-    <link href="http://zacg.github.io/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig/"/>
-    <updated>2013-06-06T22:51:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2013/06/06/calling-c-plus-plus-code-from-go-with-swig</id>
-    <content type="html"><![CDATA[<p>
- 
- Recently while working on a Go based project I needed to use some functionality from another large C++ library. The library's size and complexity made re-writing it in Go unfeasible. After some research I decided to use the popular SWIG (Simplified Wrapper and Interface Generator) framework to enable interop between my two projects.  
-
-</p>
-
-
-
-
-<p>
-The following is a brief tutorial to guide you through wrapping a C++ class with a Go package which can be called from any Go program.
-</p>
-
-
-
-
-<!-- more -->
-
-
-
-
-<p>
-Start by installing GO and SWIG if not already installed
-</p>
-
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;sudo apt-get install golang
-</span><span class='line'>sudo apt-get install swig&lt;/p&gt;
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;go get github.com/zacg/htm
+</span><span class='line'>go get github.com/zacg/htm/utils
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<div class="alert alert-danger">
-<p>
-<strong>Update:</strong> The debian package is out of date and lacking many go related fixes, it is best to install current SWIG release from SWIG website: <a href="http://swig.org">http://swig.org</a>
-</p>
-<p>
-    I also recommend installing golang from source as some of the following commands only work with go 1.1 and up. <a href="http://golang.org/doc/install/source">http://golang.org/doc/install/source</a>
-</p>
-</div>
-
-
-
-
-<p>
-Once everything in installed the first step is to define a module file which will tell the SWIG tool what code in the C++ project to expose in the resulting GO package. We'll assume your project is object oriented with cpp/header files for each class, when this is the case we can just include the desired header files in our SWIG module.
-</p>
-
-
-
-
-<p><p>
- We will pretend our C++ project is a dynamically linked shared library called "simplelib" and contains the following files:
-<p></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;simpleclass.h
-</span><span class='line'>simpleclass.cpp&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simpleclass.h </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">ifndef</span> <span class="n">SIMPLECLASS_H</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">SIMPLECLASS_H</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">iostream</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="o">&lt;</span><span class="n">vector</span><span class="o">&gt;&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">SimpleClass</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'><span class="k">public</span><span class="o">:&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">SimpleClass</span><span class="p">(){};</span>
-</span><span class='line'><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">hello</span><span class="p">();</span>
-</span><span class='line'><span class="kt">void</span> <span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="o">*</span><span class="n">results</span><span class="p">);</span>
-</span><span class='line'><span class="kt">void</span> <span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="kt">char</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="o">*</span><span class="n">results</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">};</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">endif</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simpleclass.cpp </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Spatial Pooler Example </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -556,354 +71,35 @@ Once everything in installed the first step is to define a module file which wil
 <span class='line-number'>24</span>
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">ssp</span> <span class="o">:=</span> <span class="nx">htm</span><span class="p">.</span><span class="nx">NewSpParams</span><span class="p">()</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">ColumnDimensions</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">}</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">InputDimensions</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">PotentialRadius</span> <span class="p">=</span> <span class="nx">ssp</span><span class="p">.</span><span class="nx">NumInputs</span><span class="p">()</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">NumActiveColumnsPerInhArea</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.02</span> <span class="o">*</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">ssp</span><span class="p">.</span><span class="nx">NumColumns</span><span class="p">()))</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">GlobalInhibition</span> <span class="p">=</span> <span class="kc">true</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">SynPermActiveInc</span> <span class="p">=</span> <span class="mf">0.01</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">SpVerbosity</span> <span class="p">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nx">sp</span> <span class="o">:=</span> <span class="nx">htm</span><span class="p">.</span><span class="nx">NewSpatialPooler</span><span class="p">(</span><span class="nx">ssp</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">hello</span><span class="p">(){</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">return</span> <span class="s">&quot;world&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'><span class="nx">activeArray</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">bool</span><span class="p">,</span> <span class="nx">sp</span><span class="p">.</span><span class="nx">NumColumns</span><span class="p">())</span>
+</span><span class='line'><span class="nx">inputVector</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">bool</span><span class="p">,</span> <span class="nx">sp</span><span class="p">.</span><span class="nx">NumInputs</span><span class="p">())</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="k">for</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">inputVector</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">inputVector</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;=</span> <span class="mi">2</span>
+</span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloString</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">){</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="nx">sp</span><span class="p">.</span><span class="nx">Compute</span><span class="p">(</span><span class="nx">inputVector</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">activeArray</span><span class="p">,</span> <span class="nx">sp</span><span class="p">.</span><span class="nx">InhibitColumns</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Active Indices:&quot;</span><span class="p">,</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">OnIndices</span><span class="p">(</span><span class="nx">activeArray</span><span class="p">))</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">SimpleClass</span><span class="o">::</span><span class="n">helloBytes</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="o">*</span><span class="n">results</span><span class="p">){</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;w&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;o&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;r&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;l&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="n">results</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;d&#39;</span><span class="p">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><p>
-We will add a module file called <i>simplelib.swig</i>. Inside we include the simpleclass.h header, this will instruct the SWIG tool to generate wrapping code for this class allowing us to use it in GO.
-</p></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Minimum Swig Template</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">module</span> <span class="n">simplelib</span>  <span class="c1">//name of the resulting GO package&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><p>
-If your wrapped class(es) are simple and use primitive types the above swig file should suffice, SWIG will translate the following primitive types to the specified Go types
-</p></p>
-
-<p><table summary="Go primitive type mappings" class="table">
-<tr>
-<th>C/C++ type</th>
-<th>Go type</th>
-</tr></p>
-
-<p><tr>
-<td>bool</td>
-<td>bool</td>
-</tr></p>
-
-<p><tr>
-<td>char</td>
-<td>byte</td>
-</tr></p>
-
-<p><tr>
-<td>signed char</td>
-<td>int8</td>
-</tr></p>
-
-<p><tr>
-<td>unsigned char</td>
-<td>byte</td>
-</tr></p>
-
-<p><tr>
-<td>short</td>
-<td>int16</td>
-</tr></p>
-
-<p><tr>
-<td>unsigned short</td>
-<td>uint16</td>
-</tr></p>
-
-<p><tr>
-<td>int</td>
-<td>int</td>
-</tr></p>
-
-<p><tr>
-<td>unsigned int</td>
-<td>uint</td>
-</tr></p>
-
-<p><tr>
-<td>long</td>
-<td>int32 or int64, depending on <tt>-long-type-size</tt></td>
-</tr></p>
-
-<p><tr>
-<td>unsigned long</td>
-<td>uint32 or uint64, depending on <tt>-long-type-size</tt></td>
-</tr></p>
-
-<p><tr>
-<td>long long</td>
-<td>int64</td>
-</tr></p>
-
-<p><tr>
-<td>unsigned long long</td>
-<td>uint64</td>
-</tr></p>
-
-<p><tr>
-<td>float</td>
-<td>float32</td>
-</tr></p>
-
-<p><tr>
-<td>double</td>
-<td>float64</td>
-</tr></p>
-
-<p><tr>
-<td>char *<br>char []</td>
-<td>string</td>
-</tr></p>
-
-<p></table></p>
-
-<p><br/></p>
-
-<p><p>
-If your target code contains non-primitive types you have a bit more work to do. SWIG includes headers to help with common non primitive types like string and vector from the standard library. Vectors bring up another issue because they use templates, template types have to be explicitly defined in your SWIG mapping file. A class that uses std::string and std::vector might look like the following:
-</p></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simplelib.swig</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">module</span> <span class="n">simplelib</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">include</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">typemaps</span><span class="p">.</span><span class="n">i</span><span class="o">&gt;</span>
-</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;std_string.i&quot;</span>
-</span><span class='line'><span class="o">%</span><span class="n">include</span> <span class="s">&quot;std_vector.i&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="c1">// This will create 2 wrapped types in Go called</span>
-</span><span class='line'><span class="c1">// &quot;StringVector&quot; and &quot;ByteVector&quot; for their respective</span>
-</span><span class='line'><span class="c1">// types.</span>
-</span><span class='line'><span class="k">namespace</span> <span class="n">std</span> <span class="p">{</span>
-</span><span class='line'>   <span class="o">%</span><span class="k">template</span><span class="p">(</span><span class="n">StringVector</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span class='line'>   <span class="o">%</span><span class="k">template</span><span class="p">(</span><span class="n">ByteVector</span><span class="p">)</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;%</span><span class="n">include</span> <span class="s">&quot;simpleclass.h&quot;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><br/>
-<br/></p>
-
-<p><p>
-The following definitions are included with the SWIG library, go <a href="http://www.swig.org/Doc1.3/Library.html#Library_stl_cpp_library">here for full reference</a>
-</p></p>
-
-<p><table BORDER summary="SWIG C++ library files" class="table">
-<tr>
-<th>C++ class</th>
-<th>C++ Library file</th>
-<th>SWIG Interface library file</th>
-</tr></p>
-
-<p><tr> <td>std::deque</td>           <td>deque</td>             <td>std_deque.i</td> </tr>
-<tr> <td>std::list</td>           <td>list</td>             <td>std_list.i</td> </tr>
-<tr> <td>std::map</td>           <td>map</td>             <td>std_map.i</td> </tr>
-<tr> <td>std::pair</td>           <td>utility</td>             <td>std_pair.i</td> </tr>
-<tr> <td>std::set</td>           <td>set</td>             <td>std_set.i</td> </tr>
-<tr> <td>std::string</td>           <td>string</td>             <td>std_string.i</td> </tr>
-<tr> <td>std::vector</td>           <td>vector</td>             <td>std_vector.i</td> </tr></p>
-
-<p></table></p>
-
-<p><br/>
-<br/></p>
-
-<p><p>
-Next we need to generate the necessary C++ wrapper code to allow Go to bind to it.
-</p></p>
-
-<p><div class="alert alert-danger">
-<p>
-<strong>Update:</strong>
-With the official release of Go 1.2, the go build tool now recognizes SWIG files. The following steps are not necessary but may still be useful for users with more complicated build systems.
-</p>
-<p>
-If you are using Go 1.2 simply include the .swig module file in your package directory along with the relevant c++ code files and run "go build" or "go install"
-</p>
-</div></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;cd /project/src/
-</span><span class='line'>SWIG -go -c++ simplelib.swig&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><p>
-Common optional parameters you may need to use:
-<ul>
-<li>
-<strong>"-soname"</strong> for specifying the name of your compiled shared library which is dynamically linked at runtime. e.g. -soname libSimpleLib.so.1
-</li>
-<li>
-<strong>"-intgosize"</strong> Depending on which version of go you are using 1/1.1 and which platform you are targeting you may need to explicitly set the Go int size (note the documentation for this is currently out of date). e.g. -intgosize 64
-</li>
-</ul>
-</p></p>
-
-<p><p>
-The above SWIG command should generate 3 new files in your project directory. Your project directory should now look something like the following:
-</p></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;simpleclass.h
-</span><span class='line'>simpleclass.cpp
-</span><span class='line'>simplelib.swig
-</span><span class='line'>simplelib.go
-</span><span class='line'>simplelib.cxx
-</span><span class='line'>simplelib_gc.c&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><p>
-Now we need to include these 3 new files in our projects. Simplelib.cxx contains the C++ wrapper code allowing your C++ project to interop with CGO. simplelib_gc.c contains the C code designed to be called from CGO. simplelib.go contains the GO code stubs for the resulting GO package, it uses cgo to call into the simplelib_gc.c interfaces.
-</p>
-<p>
-Add the simplelib.cxx file to the C++ project and build with the projects C++ compiler (I have only tested this process with GCC). Simply add it to your makefile or build script.
-</p></p>
-
-<p><p>
-simplelib_gc.c and simplelib.go need to be included in the go package using the following 5/6/8c and 5/6/8g commands.
-</p></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;go tool 6c -I &lt;Go Installation Path here&gt;/pkg/linux_amd64/ -D _64BIT simplelib_gc.c
-</span><span class='line'>go tool 6g simplelib.go
-</span><span class='line'>go tool pack grc simplelib.a simplelib.6 simplelib_gc.6&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><p>
-The last step is installation: first install your compiled C++ shared library, then run go install on the package created in the last step.
-</p></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /go/src/simplelib/
-</span><span class='line'>go install
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><p>
-If the installation was successful you should see <i>simplelib.a</i> file in /go/pkg/<linux distro>/
-</p></p>
-
-<p><p>
-That's it! you should now be able to import "simplelib" in your go projects and call the wrapped C++ code.
-</p></p>
-
-<p><h3>Setting up Build Scripts</h3></p>
-
-<p><p>
- To recap the steps required are:
-</p></p>
-
-<p><ol>
-<li>Run SWIG tool (generate wrapper code) </li>
-<li>Compile C++ project (including new wrapper code)</li>
-<li>Copy the built C++ library and files generated in step 1 to a directory in your go path</li>
-<li>Link and package the generated files into a Go Package</li>
-<li>Run Go install to make the new package available in your applications</li>
-</ol></p>
-
-<p><p>
-And here is an example makefile:
-</p></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>simplelib.make </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Temporal Pooler Example </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -978,135 +174,83 @@ And here is an example makefile:
 <span class='line-number'>72</span>
 <span class='line-number'>73</span>
 <span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-</pre></td><td class='code'><pre><code class='make'><span class='line'><span class="nv">CC</span><span class="o">=</span>g++&lt;/p&gt;
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="err">&lt;p&gt;ifeq</span> <span class="err">(</span><span class="k">$(</span>DEBUG<span class="k">)</span>,yes<span class="o">)</span>&lt;/p&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="kn">package</span> <span class="nx">main</span><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;CXXFLAGS<span class="o">=</span>-Wall -g
-</span><span class='line'><span class="nv">LDFLAGS</span><span class="o">=</span>-Wall -g
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="kn">import</span> <span class="p">(&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;else&lt;/p&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="s">&quot;fmt&quot;</span>
+</span><span class='line'><span class="s">&quot;github.com/zacg/htm&quot;</span>
+</span><span class='line'><span class="s">&quot;github.com/zacg/htm/utils&quot;</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;CXXFLAGS<span class="o">=</span>-Wall
-</span><span class='line'><span class="nv">LDFLAGS</span><span class="o">=</span>-Wall
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;)&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;endif&lt;/p&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;INCPATH<span class="o">=</span>inc
-</span><span class='line'><span class="nv">SRCPATH</span><span class="o">=</span>src
-</span><span class='line'><span class="nv">OBJPATH</span><span class="o">=</span>obj
-</span><span class='line'><span class="nv">LIBPATH</span><span class="o">=</span>lib
-</span><span class='line'><span class="nv">BINPATH</span><span class="o">=</span>bin&lt;/p&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">tps</span> <span class="o">:=</span> <span class="nx">htm</span><span class="p">.</span><span class="nx">NewTemporalPoolerParams</span><span class="p">()</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">Verbosity</span> <span class="p">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">NumberOfCols</span> <span class="p">=</span> <span class="mi">50</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">CellsPerColumn</span> <span class="p">=</span> <span class="mi">2</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">ActivationThreshold</span> <span class="p">=</span> <span class="mi">8</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">MinThreshold</span> <span class="p">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">InitialPerm</span> <span class="p">=</span> <span class="mf">0.5</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">ConnectedPerm</span> <span class="p">=</span> <span class="mf">0.5</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">NewSynapseCount</span> <span class="p">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">PermanenceDec</span> <span class="p">=</span> <span class="mf">0.0</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">PermanenceInc</span> <span class="p">=</span> <span class="mf">0.1</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">GlobalDecay</span> <span class="p">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">BurnIn</span> <span class="p">=</span> <span class="mi">1</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">PamLength</span> <span class="p">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">CollectStats</span> <span class="p">=</span> <span class="kc">true</span>
+</span><span class='line'><span class="nx">tp</span> <span class="o">:=</span> <span class="nx">htm</span><span class="p">.</span><span class="nx">NewTemporalPooler</span><span class="p">(</span><span class="o">*</span><span class="nx">tps</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;OBJS<span class="o">=</span><span class="k">$(</span>OBJPATH<span class="k">)</span>/simpleclass.o <span class="k">$(</span>OBJPATH<span class="k">)</span>/simplelib_wrap.o
-</span><span class='line'><span class="nv">OUT</span><span class="o">=</span><span class="k">$(</span>LIBPATH<span class="k">)</span>/libSimpleLib.so&lt;/p&gt;
+</span><span class='line'><span class="c1">//Mock encoding of ABCDE</span>
+</span><span class='line'><span class="nx">inputs</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="kt">bool</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>   <span class="c1">//bits 0-9 are &quot;on&quot;</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1">//bits 10-19 are &quot;on&quot;</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1">//bits 20-29 are &quot;on&quot;</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1">//bits 30-39 are &quot;on&quot;</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1">//bits 40-49 are &quot;on&quot;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;INCLUDES<span class="o">=</span>-I ./<span class="k">$(</span>INCPATH<span class="k">)</span>&lt;/p&gt;
+</span><span class='line'><span class="c1">//Learning and prediction can be done at the same time</span>
 </span><span class='line'>
-</span><span class='line'>&lt;h1&gt;Set this to your go installation directory&lt;/h1&gt;
+</span><span class='line'><span class="c1">//Learn 5 sequences above</span>
+</span><span class='line'><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">for</span> <span class="nx">p</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">p</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">p</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">tp</span><span class="p">.</span><span class="nx">Compute</span><span class="p">(</span><span class="nx">inputs</span><span class="p">[</span><span class="nx">p</span><span class="p">],</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">tp</span><span class="p">.</span><span class="nx">Reset</span><span class="p">()</span> <span class="c1">//not required</span>
+</span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;EXE<span class="o">=</span><span class="nv">$$</span>HOME/dev/goinstallation/go/bin/
-</span><span class='line'><span class="nb">export </span>PATH :<span class="o">=</span> bin:<span class="k">$(</span>PATH<span class="k">)</span>&lt;/p&gt;
+</span><span class='line'><span class="c1">//Predict sequences</span>
+</span><span class='line'><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">tp</span><span class="p">.</span><span class="nx">Compute</span><span class="p">(</span><span class="nx">inputs</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">p</span> <span class="o">:=</span> <span class="nx">tp</span><span class="p">.</span><span class="nx">DynamicState</span><span class="p">.</span><span class="nx">InfPredictedState</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;default: <span class="k">$(</span>OUT<span class="k">)</span>&lt;/p&gt;
+</span><span class='line'>    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Predicted: %v From input: %v \n&quot;</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">NonZeroRows</span><span class="p">(),</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">OnIndices</span><span class="p">(</span><span class="nx">inputs</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;<span class="k">$(</span>OUT<span class="k">)</span>: <span class="k">$(</span>OBJS<span class="k">)</span>&lt;/p&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;}&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;<span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> -shared -o <span class="nv">$@</span> <span class="nv">$^</span>
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="c1">//helper method for creating boolean sequences</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">boolRange</span><span class="p">(</span><span class="nx">start</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">end</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">length</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">bool</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;obj/simplelib_wrap.o: simplelib_wrap.cxx inc/simpleclass.h&lt;/p&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">bool</span><span class="p">,</span> <span class="nx">length</span><span class="p">)</span>
+</span><span class='line'><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nx">start</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;=</span> <span class="nx">end</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="kc">true</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">return</span> <span class="nx">result</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;<span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CXXFLAGS<span class="k">)</span> <span class="k">$(</span>INCLUDES<span class="k">)</span> -fpic -c <span class="nv">$&amp;</span>lt; -o <span class="nv">$@</span>
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;}&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>&lt;p&gt;obj/simpleclass.o: src/simpleclass.cpp inc/simpleclass.h&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;<span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CXXFLAGS<span class="k">)</span> <span class="k">$(</span>INCLUDES<span class="k">)</span> -fpic -c <span class="nv">$&amp;</span>lt; -o <span class="nv">$@</span>
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;simplelib_wrap.cxx:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;swig -go -c++ -intgosize 64 -soname libSimpleLib.so simplelib.swig
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;.PHONY: clean cleanall&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;clean:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;rm -f <span class="k">$(</span>OBJPATH<span class="k">)</span>/*.o
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;cleanall: clean&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;rm -f <span class="k">$(</span>OUT<span class="k">)</span>
-</span><span class='line'>rm -f *.6
-</span><span class='line'>rm -f *.a
-</span><span class='line'>rm -f *.so
-</span><span class='line'>rm -f *.cxx
-</span><span class='line'>rm -f *.c
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;build:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;@echo <span class="s2">&quot;Building bindings...&quot;</span>
-</span><span class='line'><span class="k">$(</span>EXE<span class="k">)</span>go tool 6c -I <span class="nv">$$</span>HOME/dev/goinstallation/go/pkg/linux_amd64/ -D _64BIT simplelib_gc.c
-</span><span class='line'><span class="k">$(</span>EXE<span class="k">)</span>go tool 6g simplelib.go
-</span><span class='line'><span class="k">$(</span>EXE<span class="k">)</span>go tool pack grc simplelib.a simplelib.6 simplelib_gc.6
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;install:&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;pre&gt;&lt;code&gt;@echo <span class="s2">&quot;Installing go package...&quot;</span>
-</span><span class='line'><span class="c">#Rename swig file so go install command does not try to reprocess it</span>
-</span><span class='line'>mv simplelib.swig simplelib.notswig
-</span><span class='line'><span class="nb">export </span><span class="nv">GOPATH</span><span class="o">=</span><span class="nv">$$</span>HOME/dev/go/; <span class="se">\</span>
-</span><span class='line'><span class="k">$(</span>EXE<span class="k">)</span>go install
-</span><span class='line'>mv simplelib.notswig simplelib.swig
-</span><span class='line'>
-</span><span class='line'>@echo <span class="s2">&quot;Installing go shared lib...&quot;</span>
-</span><span class='line'>sudo cp -f lib/libSimpleLib.so /usr/local/lib/
-</span><span class='line'>sudo ldconfig
-</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p><br/></p>
-
-<p><div class="alert alert-info">
-<p>
-<strong>Get example project on github:</strong>
-<a href="https://github.com/zacg/simplelib">https://github.com/zacg/simplelib</a>
-</p></p>
-
-<p></div></p>
-
-<p><p>
- Feel free to leave your comments below.
-</p></p>
+<p>You can grab the code @ <a href="https://github.com/zacg/htm">https://github.com/zacg/htm</a></p>
 ]]></content>
   </entry>
   

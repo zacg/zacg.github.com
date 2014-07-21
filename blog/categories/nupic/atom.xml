@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Nupic | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/nupic/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-04-07T01:21:42-04:00</updated>
+  <updated>2014-07-21T12:57:04-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -12,6 +12,247 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Porting Nupic to Go]]></title>
+    <link href="http://zacg.github.io/blog/2014/06/28/porting-nupic-to-go/"/>
+    <updated>2014-06-28T19:26:41-04:00</updated>
+    <id>http://zacg.github.io/blog/2014/06/28/porting-nupic-to-go</id>
+    <content type="html"><![CDATA[<p>Recently I ported the core parts of the Nupic project to Go.</p>
+
+<p><a href="https://github.com/numenta/nupic/">Nupic</a> is Numenta's current open source implementation of Jeff Hawkin's hierarchical temporal memory(HTM) model. It currently consists of the CLA (cortical learning algorithm) which is a single stage/layer of the HTM implemented in a mix of python and C++.</p>
+
+<p>In an effort to better understand the difference between the current implementation and the whitepaper I decided to try and port the spatial and temporal poolers to Go. Porting line by line gave me the opportunity to understand the design better as well as it's dependencies: python, numpy, etc...</p>
+
+<p>One of the more difficult parts of this project was interpreting the numpy expressions and translating them into a statically typed language. A few nested numpy expressions can easily end up being 10 of lines of Go.</p>
+
+<p>The result is 2 simple APIs for the spatial and temporal pooler which are go gettable.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;pre&gt;&lt;code&gt;go get github.com/zacg/htm
+</span><span class='line'>go get github.com/zacg/htm/utils
+</span><span class='line'>&lt;/code&gt;&lt;/pre&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Spatial Pooler Example </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">ssp</span> <span class="o">:=</span> <span class="nx">htm</span><span class="p">.</span><span class="nx">NewSpParams</span><span class="p">()</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">ColumnDimensions</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">}</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">InputDimensions</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">int</span><span class="p">{</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">}</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">PotentialRadius</span> <span class="p">=</span> <span class="nx">ssp</span><span class="p">.</span><span class="nx">NumInputs</span><span class="p">()</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">NumActiveColumnsPerInhArea</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.02</span> <span class="o">*</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">ssp</span><span class="p">.</span><span class="nx">NumColumns</span><span class="p">()))</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">GlobalInhibition</span> <span class="p">=</span> <span class="kc">true</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">SynPermActiveInc</span> <span class="p">=</span> <span class="mf">0.01</span>
+</span><span class='line'><span class="nx">ssp</span><span class="p">.</span><span class="nx">SpVerbosity</span> <span class="p">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nx">sp</span> <span class="o">:=</span> <span class="nx">htm</span><span class="p">.</span><span class="nx">NewSpatialPooler</span><span class="p">(</span><span class="nx">ssp</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nx">activeArray</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">bool</span><span class="p">,</span> <span class="nx">sp</span><span class="p">.</span><span class="nx">NumColumns</span><span class="p">())</span>
+</span><span class='line'><span class="nx">inputVector</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">bool</span><span class="p">,</span> <span class="nx">sp</span><span class="p">.</span><span class="nx">NumInputs</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">inputVector</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">inputVector</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;=</span> <span class="mi">2</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">sp</span><span class="p">.</span><span class="nx">Compute</span><span class="p">(</span><span class="nx">inputVector</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">activeArray</span><span class="p">,</span> <span class="nx">sp</span><span class="p">.</span><span class="nx">InhibitColumns</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Active Indices:&quot;</span><span class="p">,</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">OnIndices</span><span class="p">(</span><span class="nx">activeArray</span><span class="p">))</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Temporal Pooler Example </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="kn">package</span> <span class="nx">main</span><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="kn">import</span> <span class="p">(&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="s">&quot;fmt&quot;</span>
+</span><span class='line'><span class="s">&quot;github.com/zacg/htm&quot;</span>
+</span><span class='line'><span class="s">&quot;github.com/zacg/htm/utils&quot;</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;)&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">tps</span> <span class="o">:=</span> <span class="nx">htm</span><span class="p">.</span><span class="nx">NewTemporalPoolerParams</span><span class="p">()</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">Verbosity</span> <span class="p">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">NumberOfCols</span> <span class="p">=</span> <span class="mi">50</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">CellsPerColumn</span> <span class="p">=</span> <span class="mi">2</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">ActivationThreshold</span> <span class="p">=</span> <span class="mi">8</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">MinThreshold</span> <span class="p">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">InitialPerm</span> <span class="p">=</span> <span class="mf">0.5</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">ConnectedPerm</span> <span class="p">=</span> <span class="mf">0.5</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">NewSynapseCount</span> <span class="p">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">PermanenceDec</span> <span class="p">=</span> <span class="mf">0.0</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">PermanenceInc</span> <span class="p">=</span> <span class="mf">0.1</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">GlobalDecay</span> <span class="p">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">BurnIn</span> <span class="p">=</span> <span class="mi">1</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">PamLength</span> <span class="p">=</span> <span class="mi">10</span>
+</span><span class='line'><span class="nx">tps</span><span class="p">.</span><span class="nx">CollectStats</span> <span class="p">=</span> <span class="kc">true</span>
+</span><span class='line'><span class="nx">tp</span> <span class="o">:=</span> <span class="nx">htm</span><span class="p">.</span><span class="nx">NewTemporalPooler</span><span class="p">(</span><span class="o">*</span><span class="nx">tps</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Mock encoding of ABCDE</span>
+</span><span class='line'><span class="nx">inputs</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="kt">bool</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>   <span class="c1">//bits 0-9 are &quot;on&quot;</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1">//bits 10-19 are &quot;on&quot;</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1">//bits 20-29 are &quot;on&quot;</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1">//bits 30-39 are &quot;on&quot;</span>
+</span><span class='line'><span class="nx">inputs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">=</span> <span class="nx">boolRange</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1">//bits 40-49 are &quot;on&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Learning and prediction can be done at the same time</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Learn 5 sequences above</span>
+</span><span class='line'><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">for</span> <span class="nx">p</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">p</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">p</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">tp</span><span class="p">.</span><span class="nx">Compute</span><span class="p">(</span><span class="nx">inputs</span><span class="p">[</span><span class="nx">p</span><span class="p">],</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="nx">tp</span><span class="p">.</span><span class="nx">Reset</span><span class="p">()</span> <span class="c1">//not required</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Predict sequences</span>
+</span><span class='line'><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">tp</span><span class="p">.</span><span class="nx">Compute</span><span class="p">(</span><span class="nx">inputs</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">p</span> <span class="o">:=</span> <span class="nx">tp</span><span class="p">.</span><span class="nx">DynamicState</span><span class="p">.</span><span class="nx">InfPredictedState</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Predicted: %v From input: %v \n&quot;</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">NonZeroRows</span><span class="p">(),</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">OnIndices</span><span class="p">(</span><span class="nx">inputs</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;}&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span><span class="c1">//helper method for creating boolean sequences</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">boolRange</span><span class="p">(</span><span class="nx">start</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">end</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">length</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">bool</span> <span class="p">{&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="nx">result</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">bool</span><span class="p">,</span> <span class="nx">length</span><span class="p">)</span>
+</span><span class='line'><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nx">start</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;=</span> <span class="nx">end</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">result</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="kc">true</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">return</span> <span class="nx">result</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;}&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>You can grab the code @ <a href="https://github.com/zacg/htm">https://github.com/zacg/htm</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[New Nupic Cerebro Docker Image]]></title>
