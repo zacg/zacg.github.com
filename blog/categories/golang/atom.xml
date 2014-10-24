@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Golang | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/golang/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-07-21T12:57:04-04:00</updated>
+  <updated>2014-10-24T11:47:01-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -12,6 +12,272 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Go Asserts and Multiple Return Values]]></title>
+    <link href="http://zacg.github.io/blog/2014/10/05/go-asserts-and-multiple-return-values/"/>
+    <updated>2014-10-05T14:14:52-04:00</updated>
+    <id>http://zacg.github.io/blog/2014/10/05/go-asserts-and-multiple-return-values</id>
+    <content type="html"><![CDATA[<p>
+    Recently I have been writing many tests for functions with multiple return values. I was hoping to write a single line assertion. Something like the following:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="kd">func</span> <span class="nx">testableFunc</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">([]</span><span class="kd">interface</span><span class="p">{}{</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">},</span><span class="nx">testableFunc</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Note Equal()&#39;s signature expects interface{} arguments</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    This won't compile, the method signature for Equal takes interface{} parameters. Understandably the compiler can't figure it out.
+</p>
+
+
+
+
+<p>
+    After checking the <a href="https://code.google.com/p/go/issues/detail?id=973">mailing list</a> it turns out the compiler is smart enough to map multiple return values to function params when their types and order match. e.g:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="kd">func</span> <span class="nx">testableFunc</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">anotherFunc</span><span class="p">(</span><span class="nx">a</span> <span class="kt">int</span><span class="p">,</span><span class="nx">b</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">c</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">c</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//valid because returned types match arguments</span>
+</span><span class='line'><span class="nx">anotherFunc</span><span class="p">(</span><span class="nx">testableFunc</span><span class="p">())</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    With this behavior in mind we can write a shim function to map multiple return values to a slice of values that the assert function can compare. Here is a 2 value shim:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="kd">func</span> <span class="nx">Shim</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    It can be used like so
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="kd">func</span> <span class="nx">testableFunc</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">5</span><span class="p">,</span><span class="mi">5</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">Shim</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="nx">Shim</span><span class="p">(</span><span class="nx">testableFunc</span><span class="p">()))</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    Now shorten the name and create shims for different number of return values.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="c1">//Shim for 2 param return values</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">M</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Shim for 3 param return values</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">M3</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Shim for 4 param return values</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">M4</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">M</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="nx">M</span><span class="p">(</span><span class="nx">someMethod</span><span class="p">))</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    And finally here is a complete working example.
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">p</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">pre</span><span class="p">&gt;&lt;</span><span class="nx">code</span><span class="p">&gt;</span><span class="kn">import</span> <span class="p">(</span>
+</span><span class='line'>    <span class="s">&quot;github.com/stretchr/testify/assert&quot;</span>
+</span><span class='line'>    <span class="s">&quot;testing&quot;</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Shim for 2 param return values</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">M</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Shim for 3 param return values</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">M3</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//Shim for 4 param return values</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">M4</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span> <span class="kd">interface</span><span class="p">{})</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[]</span><span class="kd">interface</span><span class="p">{}{</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">testableFunc</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">otherTestableFunc</span><span class="p">()</span> <span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s">&quot;hi&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">TestMulti</span><span class="p">(</span><span class="nx">t</span> <span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">M</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="nx">M</span><span class="p">(</span><span class="nx">testableFunc</span><span class="p">()))</span>
+</span><span class='line'>    <span class="nx">assert</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">M3</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="s">&quot;hi&quot;</span><span class="p">),</span> <span class="nx">M3</span><span class="p">(</span><span class="nx">otherTestableFunc</span><span class="p">()))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="p">&lt;</span><span class="o">/</span><span class="nx">code</span><span class="p">&gt;&lt;</span><span class="o">/</span><span class="nx">pre</span><span class="p">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">&lt;</span><span class="nx">p</span><span class="p">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Porting Nupic to Go]]></title>
