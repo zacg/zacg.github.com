@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="Recently I have been writing many tests for functions with multiple return values. I was hoping to write a single line assertion. Something like the &hellip;">
+  <meta name="description" content="Recently I had to migrate an existing Xamarin iOS app to the unified API. The following are solutions to a few of the problems I encountered. After &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,150 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/">Migrating Existing Xamarin iOS App to Unified API</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-28T20:42:22-04:00" pubdate data-updated="true">Aug 28<span>th</span>, 2015</time>
+        
+           | <a href="/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/#disqus_thread"
+             data-disqus-identifier="http://zacg.github.io/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+    Recently I had to migrate an existing Xamarin iOS app to the unified API. The following are solutions to a few of the problems I encountered.
+</p>
+
+
+
+
+<p>
+    After running the automated update command from the Xamarin Studio OSX build menu I encountered the following error on subsequent builds:
+</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>The type MonoTouch.UIKit.UIViewController' is defined in an assembly that is not 
+</span><span class='line'>referenced. Consider adding a reference to assemblymonotouch, Version=0.0.0.0,</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    If you get a similar error it will probably be necessary to:
+</p>
+
+
+<ol>
+<li>Clean the solution.</li>
+<li>Reinstall all components.</li>
+<li><p>Rebuild.</p>
+
+<p> If the issue still persists (like in my case) and you are using Xamarin Studio you may have to manually delete the old component package files from your file system then reinstall them after you are sure they have been wiped. Xamarin studio can store them in multiple locations depending on platform be sure to check: <a href="https://kb.xamarin.com/customer/portal/articles/1865772-where-are-the-components-stored-on-my-machine-">https://kb.xamarin.com/customer/portal/articles/1865772-where-are-the-components-stored-on-my-machine-</a> to find the location on your machine.</p></li>
+</ol>
+
+
+<p>
+    One other thing to note is the compiled binary size of your app will probably double because the resulting package now contains both 32 and 64 bit versions.
+</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/28/configuring-android-wear-emulator-for-debugging-with-physical-device/">Configuring Android Wear Emulator for Debugging With Physical Device</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-28T20:15:33-04:00" pubdate data-updated="true">Aug 28<span>th</span>, 2015</time>
+        
+           | <a href="/blog/2015/08/28/configuring-android-wear-emulator-for-debugging-with-physical-device/#disqus_thread"
+             data-disqus-identifier="http://zacg.github.io/blog/2015/08/28/configuring-android-wear-emulator-for-debugging-with-physical-device/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+I recently started developing an Android Wear app and needed to pair a watch running in an emulator to a physical phone(s4). The current documentation on the net is somewhat stale so the following is an up to date procedure:
+</p>
+
+
+<ol>
+<li>Power on Android Watch AVD</li>
+<li>Connect the physical phone via usb and ensure usb debugging is turned on in system options.</li>
+<li>Turn on blue tooth debugging on the watch
+
+<ul>
+<li>swipe to get to the settings menu</li>
+<li>scroll down to the about menu</li>
+<li>tap 7 times on the build number to enable developer mode</li>
+<li>navigate back to the main settings menu and select developer options</li>
+<li>tap enable avd debugging</li>
+<li>tap enable bluetooth debugging (disabled until avd is enabled)</li>
+<li>on the home screen a notification should be displayed stating bluetooth debugging is enabled</li>
+</ul>
+</li>
+<li>In an SDK console type &#8220;avd devices&#8221; both the physical phone and watch emulator should be listed</li>
+<li>Type  &#8220;adb -d forward tcp:5601 tcp:5601&#8221; to map the emulator ports</li>
+<li>On the phone download the Android Wear app from the play store.</li>
+<li>Open the wear app and choose pair device.</li>
+<li>On the pair device screen press the physical menu/settings button on the phone. An option to &#8220;connect to emulator&#8221; will appear, tap it.</li>
+<li>The phone should find and connect to the emulator and display the connected options in the wear app. You can scroll to the bottom and tap one of test options to send a test notification to the paired watch.</li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -3119,6 +3263,14 @@ References:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/">Migrating Existing Xamarin iOS App to Unified API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/28/configuring-android-wear-emulator-for-debugging-with-physical-device/">Configuring Android Wear Emulator for Debugging With Physical Device</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/10/05/go-asserts-and-multiple-return-values/">Go Asserts and Multiple Return Values</a>
       </li>
     
@@ -3128,14 +3280,6 @@ References:
     
       <li class="post">
         <a href="/blog/2014/06/28/porting-nupic-to-go/">Porting Nupic to Go</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/26/encoding-data-in-dna-with-go/">Encoding Data in DNA With Go</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/03/21/new-nupic-cerebro-docker-image/">New Nupic Cerebro Docker Image</a>
       </li>
     
   </ul>
@@ -3180,7 +3324,7 @@ References:
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Zac Gross -
+  Copyright &copy; 2015 - Zac Gross -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

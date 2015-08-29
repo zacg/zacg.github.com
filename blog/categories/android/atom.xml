@@ -4,7 +4,7 @@
   <title><![CDATA[Category: android | Zac Gross]]></title>
   <link href="http://zacg.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-10-24T11:47:01-04:00</updated>
+  <updated>2015-08-28T21:11:17-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -12,6 +12,42 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Configuring Android Wear Emulator for Debugging With Physical Device]]></title>
+    <link href="http://zacg.github.io/blog/2015/08/28/configuring-android-wear-emulator-for-debugging-with-physical-device/"/>
+    <updated>2015-08-28T20:15:33-04:00</updated>
+    <id>http://zacg.github.io/blog/2015/08/28/configuring-android-wear-emulator-for-debugging-with-physical-device</id>
+    <content type="html"><![CDATA[<p>
+I recently started developing an Android Wear app and needed to pair a watch running in an emulator to a physical phone(s4). The current documentation on the net is somewhat stale so the following is an up to date procedure:
+</p>
+
+
+<ol>
+<li>Power on Android Watch AVD</li>
+<li>Connect the physical phone via usb and ensure usb debugging is turned on in system options.</li>
+<li>Turn on blue tooth debugging on the watch
+
+<ul>
+<li>swipe to get to the settings menu</li>
+<li>scroll down to the about menu</li>
+<li>tap 7 times on the build number to enable developer mode</li>
+<li>navigate back to the main settings menu and select developer options</li>
+<li>tap enable avd debugging</li>
+<li>tap enable bluetooth debugging (disabled until avd is enabled)</li>
+<li>on the home screen a notification should be displayed stating bluetooth debugging is enabled</li>
+</ul>
+</li>
+<li>In an SDK console type "avd devices" both the physical phone and watch emulator should be listed</li>
+<li>Type  "adb -d forward tcp:5601 tcp:5601" to map the emulator ports</li>
+<li>On the phone download the Android Wear app from the play store.</li>
+<li>Open the wear app and choose pair device.</li>
+<li>On the pair device screen press the physical menu/settings button on the phone. An option to "connect to emulator" will appear, tap it.</li>
+<li>The phone should find and connect to the emulator and display the connected options in the wear app. You can scroll to the bottom and tap one of test options to send a test notification to the paired watch.</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Android Using Custom Header Title]]></title>

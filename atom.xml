@@ -4,7 +4,7 @@
   <title><![CDATA[Zac Gross]]></title>
   <link href="http://zacg.github.io/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2014-10-24T11:47:01-04:00</updated>
+  <updated>2015-08-28T21:11:17-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -12,6 +12,90 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Migrating Existing Xamarin iOS App to Unified API]]></title>
+    <link href="http://zacg.github.io/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/"/>
+    <updated>2015-08-28T20:42:22-04:00</updated>
+    <id>http://zacg.github.io/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api</id>
+    <content type="html"><![CDATA[<p>
+    Recently I had to migrate an existing Xamarin iOS app to the unified API. The following are solutions to a few of the problems I encountered.
+</p>
+
+
+
+
+<p>
+    After running the automated update command from the Xamarin Studio OSX build menu I encountered the following error on subsequent builds:
+</p>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>The type MonoTouch.UIKit.UIViewController' is defined in an assembly that is not 
+</span><span class='line'>referenced. Consider adding a reference to assemblymonotouch, Version=0.0.0.0,</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    If you get a similar error it will probably be necessary to:
+</p>
+
+
+<ol>
+<li>Clean the solution.</li>
+<li>Reinstall all components.</li>
+<li><p>Rebuild.</p>
+
+<p> If the issue still persists (like in my case) and you are using Xamarin Studio you may have to manually delete the old component package files from your file system then reinstall them after you are sure they have been wiped. Xamarin studio can store them in multiple locations depending on platform be sure to check: <a href="https://kb.xamarin.com/customer/portal/articles/1865772-where-are-the-components-stored-on-my-machine-">https://kb.xamarin.com/customer/portal/articles/1865772-where-are-the-components-stored-on-my-machine-</a> to find the location on your machine.</p></li>
+</ol>
+
+
+<p>
+    One other thing to note is the compiled binary size of your app will probably double because the resulting package now contains both 32 and 64 bit versions.
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Configuring Android Wear Emulator for Debugging With Physical Device]]></title>
+    <link href="http://zacg.github.io/blog/2015/08/28/configuring-android-wear-emulator-for-debugging-with-physical-device/"/>
+    <updated>2015-08-28T20:15:33-04:00</updated>
+    <id>http://zacg.github.io/blog/2015/08/28/configuring-android-wear-emulator-for-debugging-with-physical-device</id>
+    <content type="html"><![CDATA[<p>
+I recently started developing an Android Wear app and needed to pair a watch running in an emulator to a physical phone(s4). The current documentation on the net is somewhat stale so the following is an up to date procedure:
+</p>
+
+
+<ol>
+<li>Power on Android Watch AVD</li>
+<li>Connect the physical phone via usb and ensure usb debugging is turned on in system options.</li>
+<li>Turn on blue tooth debugging on the watch
+
+<ul>
+<li>swipe to get to the settings menu</li>
+<li>scroll down to the about menu</li>
+<li>tap 7 times on the build number to enable developer mode</li>
+<li>navigate back to the main settings menu and select developer options</li>
+<li>tap enable avd debugging</li>
+<li>tap enable bluetooth debugging (disabled until avd is enabled)</li>
+<li>on the home screen a notification should be displayed stating bluetooth debugging is enabled</li>
+</ul>
+</li>
+<li>In an SDK console type &#8220;avd devices&#8221; both the physical phone and watch emulator should be listed</li>
+<li>Type  &#8220;adb -d forward tcp:5601 tcp:5601&#8221; to map the emulator ports</li>
+<li>On the phone download the Android Wear app from the play store.</li>
+<li>Open the wear app and choose pair device.</li>
+<li>On the pair device screen press the physical menu/settings button on the phone. An option to &#8220;connect to emulator&#8221; will appear, tap it.</li>
+<li>The phone should find and connect to the emulator and display the connected options in the wear app. You can scroll to the bottom and tap one of test options to send a test notification to the paired watch.</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Go Asserts and Multiple Return Values]]></title>
@@ -2156,379 +2240,6 @@ The syntax follows the exisitng MvcJqGrid builder pattern and is very straightfo
 
 
 <p>I have submitted a pull request for my additions so it will become part of the core library shortly, if you can&#8217;t wait that long just clone my fork here: <a href="https://github.com/zacg/MvcJqGrid">https://github.com/zacg/MvcJqGrid</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Notes on C++ for C# Developers]]></title>
-    <link href="http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus--for-c-number-developers/"/>
-    <updated>2013-05-29T02:25:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2013/05/29/notes-on-c-plus-plus&#8211;for-c-number-developers</id>
-    <content type="html"><![CDATA[<p>After primarily working in C# for the last 5 years I recently switched back to c++ for a large project. I am going to use this article to post notes/gotcha&#8217;s/tips as a I come across them. I already have a few to add, and will update as I go along. Hopefully they help some c# programmers out there. They are listed in no particular order.</p>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">C++ does not support template type constraints/guards on template definitions</h3>
-  </div>
-  <div class="panel-body">
-    <p>
-Gotcha: C++ does not support template type constraints/guards on template definitions. I ended up using static asserts (requires c++ 11), the example shown below uses helper methods from the popular boost library.
-    </p>
-   
-
-<figure class='code'><figcaption><span>c# </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">TestSuite</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
-</span><span class='line'>  <span class="p">:</span>  <span class="k">where</span> <span class="n">T</span> <span class="p">:</span> <span class="n">SomeType</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>C++ </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Case</span><span class="o">&gt;</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">TestSuite</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'> <span class="n">BOOST_STATIC_ASSERT</span><span class="p">((</span><span class="n">boost</span><span class="o">::</span><span class="n">is_base_of</span><span class="o">&lt;</span><span class="n">ITestCase</span><span class="p">,</span> <span class="n">Case</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">));</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-  </div>
- </div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">By default inheritance is private in c++</h3>
-  </div>
-  <div class="panel-body">
-
-
-
-<figure class='code'><figcaption><span>C# </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">b</span>
-</span><span class='line'>  <span class="p">:</span> <span class="k">class</span> <span class="nc">a</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Don&#8217;t forget the &#8220;public&#8221; declaration if you are used to c#.</p>
-
-
-<figure class='code'><figcaption><span>C++ </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">b</span>
-</span><span class='line'> <span class="o">:</span> <span class="k">public</span> <span class="k">class</span> <span class="nc">a</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-  </div>
-  
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Member access specified at group level</h3>
-  </div>
-  <div class="panel-body">
-
-<p>Access identifier specified on each member.</p>
-
-<figure class='code'><figcaption><span>C#</span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">SomeProp</span> <span class="p">{</span><span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;}</span>
-</span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="nf">GetSomeOtherProp</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Access can be grouped.</p>
-
-<figure class='code'><figcaption><span>C++ </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>  <span class="n">string</span> <span class="n">GetSomeProp</span><span class="p">();</span>
-</span><span class='line'>  <span class="n">string</span> <span class="n">GetSomeOtherProp</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-  </div>
-  
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">C++ supports multiple inheiritance</h3>
-  </div>
-  <div class="panel-body">
-<p>
-Unlike C#, C++ supports multiple inheiritance, while this may seem like a benifit it should be used very very rarely. If you find your object model requires multiple inheiritance it is best to reevaluate your design or you will end up facing issues like the <a href="http://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem">diamond of death</a>.
-</p>
-
-  </div>
-  
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Rule of 3</h3>
-  </div>
-  <div class="panel-body">
-<p>
-Remember the <a href="http://en.wikipedia.org/wiki/Rule_of_three_%28C++_programming%29">rule of 3</a>.
-
-If you require any of the following then you should explicitly define all three.
-<ul>
-<li>copy constructor</li>
-<li>copy assingment operator</li>
-<li>destructor</li>
-</ul>
-
-</p>
-
-  </div>
-  
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Temproraries with Parameterless Constructors</h3>
-  </div>
-  <div class="panel-body">
-    <p>
-Don&#8217;t include parathesis on paramaterless constructors the compiler will favour resolving it as a function declaration and you will end up with an error message like:
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="nl">error:</span> <span class="n">request</span> <span class="k">for</span> <span class="n">member</span> <span class="err">&#39;</span><span class="n">method</span><span class="err">&#39;</span> <span class="n">in</span> <span class="err">&#39;</span><span class="n">someObj</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">which</span> <span class="n">is</span> <span class="n">of</span> <span class="n">non</span><span class="o">-</span><span class="k">class</span> <span class="nc">type</span> <span class="err">&#39;</span><span class="n">someType</span><span class="p">()</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-Parthensis can still be used when using the &#8220;new&#8221; keyword
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="c1">//bad</span>
-</span><span class='line'><span class="n">someObj</span> <span class="n">obj</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//good</span>
-</span><span class='line'><span class="n">someObj</span> <span class="n">obj</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</p>
-
-</div>
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">STL containers copy their values.</h3>
-  </div>
-  <div class="panel-body">
-    <p>
-        When adding items to STL containters remember the container does a copy and keeps track of it&#8217;s own copy of the item being added.
-    </p>
-
-  </div>
-  
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Follow the Virtual Constructor Idiom</h3>
-  </div>
-  <div class="panel-body">
-<p>
-    When creating abstract base classes follow the  <a href="http://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Virtual_Constructor">virtual constructor idiom</a>
-    and create virtual clone and create methods.
-
-    This allows you to create collections of base types while still being able to copy them without knowing their concrete type.
-</p>
-
-  </div>
-  
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Dynamic Linking Libraries</h3>
-  </div>
-  <div class="panel-body">
-  <p>
-    Here are some tips and tools for working with dynamically linked libraries and shared objects.
-  </p>
-  <ul>
-    <li>Shared library files to be registered must start with &#8220;lib&#8221;</li>
-    <li>Use ldconfig -v to see registered libraries</li>
-    <li>Use ldconfig to reload linked libraries</li>
-    <li>Export ldpath to temporarily point executable at your lib, handy for scripting.</li>
-    <li>Use ldd command to view an executables dependencies.</li>
-    <li>Use nm &#8211;demangle <some.so> to view shared objects exported symbol list.</li>
-    <li>Use c++filt <symbol reference> to lookup runtime symbol lookup errors.</li>
-  </ul>
-
-  </div>
-  
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Can&#8217;t call virtual methods from constructor</h3>
-  </div>
-  <div class="panel-body">
-    Virtual methods can&#8217;t be called from within constructors. This usually means you have to use a two stage approach to initialization of derived classes.
-  
-  </div>
-  
-</div>
-
-
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">Avoid importing namespaces</h3>
-  </div>
-  <div class="panel-body">
-    It is bad practice to use &#8220;using namespace <...>;&#8221;. When including third party libraries there can be naming conflicts which become a pain to track down in a large project.
-  </div>
-  
-</div>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Setup Opencv Project With Qt Creator on Linux]]></title>
-    <link href="http://zacg.github.io/blog/2013/05/09/configuring-opencv-project-with-qt-creator-on-linux/"/>
-    <updated>2013-05-09T02:08:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2013/05/09/configuring-opencv-project-with-qt-creator-on-linux</id>
-    <content type="html"><![CDATA[<p>The following tutorial will show you how to setup a console project in qt creator for opencv based projects. It assumes you have already installed the opencv library.</p>
-
-<p>If not installed, install qt creator</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo apt-get qtcreator
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Open qt creator</p>
-
-<p>create a new console application project</p>
-
-<p>Add following lines to .pro file</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>INCLUDEPATH +<span class="o">=</span> /usr/local/include/opencv2/
-</span><span class='line'>
-</span><span class='line'>LIBS +<span class="o">=</span> -L /usr/local/lib/
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_core
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_nonfree
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_imgproc
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_highgui
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_ml
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_video
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_features2d
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_calib3d
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_objdetect
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_contrib
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_legacy
-</span><span class='line'>LIBS +<span class="o">=</span> -lopencv_flann
-</span><span class='line'>LIBS +<span class="o">=</span> -lboost_system
-</span><span class='line'>LIBS +<span class="o">=</span> -lboost_filesystem
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>By default qt creator will add some message pump related code to your main.cpp file, this can be commented out if you are just writing a console application (leaving it unmodified may prevent you from seeing output in the xterm console window)</p>
-
-<p>If you are using ubuntu you will probably have to configure the x-term environment settings.</p>
-
-<p>Goto: Tools -> options -> environment settings</p>
-
-<p>Set the terminal field to the following:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/usr/bin/xterm -e
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   

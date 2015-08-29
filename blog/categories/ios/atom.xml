@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: iOS | Zac Gross]]></title>
+  <link href="http://zacg.github.io/blog/categories/ios/atom.xml" rel="self"/>
+  <link href="http://zacg.github.io/"/>
+  <updated>2015-08-28T21:11:17-04:00</updated>
+  <id>http://zacg.github.io/</id>
+  <author>
+    <name><![CDATA[Zac Gross]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Migrating Existing Xamarin iOS App To Unified API]]></title>
+    <link href="http://zacg.github.io/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/"/>
+    <updated>2015-08-28T20:42:22-04:00</updated>
+    <id>http://zacg.github.io/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api</id>
+    <content type="html"><![CDATA[<p>
+    Recently I had to migrate an existing Xamarin iOS app to the unified API. The following are solutions to a few of the problems I encountered.
+</p>
+
+
+
+
+<p>
+    After running the automated update command from the Xamarin Studio OSX build menu I encountered the following error on subsequent builds:
+</p>
+
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>The type MonoTouch.UIKit.UIViewController' is defined in an assembly that is not
+</span><span class='line'>referenced. Consider adding a reference to assemblymonotouch, Version=0.0.0.0,</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>
+    If you get a similar error it will probably be necessary to:
+</p>
+
+
+<ol>
+<li>Clean the solution.</li>
+<li>Reinstall all components.</li>
+<li><p>Rebuild.</p>
+
+<p> If the issue still persists (like in my case) and you are using Xamarin Studio you may have to manually delete the old component package files from your file system then reinstall them after you are sure they have been wiped. Xamarin studio can store them in multiple locations depending on platform be sure to check: <a href="https://kb.xamarin.com/customer/portal/articles/1865772-where-are-the-components-stored-on-my-machine-">https://kb.xamarin.com/customer/portal/articles/1865772-where-are-the-components-stored-on-my-machine-</a> to find the location on your machine.</p></li>
+</ol>
+
+
+<p>
+    One other thing to note is the compiled binary size of your app will probably double because the resulting package now contains both 32 and 64 bit versions.
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>
