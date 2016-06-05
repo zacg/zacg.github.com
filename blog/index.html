@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="Recently I had to migrate an existing Xamarin iOS app to the unified API. The following are solutions to a few of the problems I encountered. After &hellip;">
+  <meta name="description" content="Npgsql is the most popular Postgres data provider for .net. None of the integration examples involving entity framework I found online used the db &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -54,7 +54,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">Zac Gross</a></h1>
   
-    <h2>AI | Engineering | Biology</h2>
+    <h2>Code & More</h2>
   
 </hgroup>
 
@@ -82,6 +82,196 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/06/04/postgres-and-entity-framework-code-first/">Postgres With Entity Framework Code First</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-06-04T20:47:11-04:00" pubdate data-updated="true">Jun 4<span>th</span>, 2016</time>
+        
+           | <a href="/blog/2016/06/04/postgres-and-entity-framework-code-first/#disqus_thread"
+             data-disqus-identifier="http://zacg.github.io/blog/2016/06/04/postgres-and-entity-framework-code-first/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>
+    Npgsql is the most popular Postgres data provider for .net. None of the integration examples involving entity framework I found online used the db first paradigm. After a lot of testing I posted a working example of EF code first with Npgsql below.
+</p>
+
+
+
+
+<div class="alert alert-danger">
+<p>
+<strong>Note:</strong> this example requires the database to already exist. EF automatic creation/migrations will not work.
+</p>
+</div>
+
+
+
+
+<p>
+    Db configuration class, this ensures the correct connection factory is used. My testing found this was the only way to get it set, various connection string formats were ignored/overridden at runtime.
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>DB Config </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'>   
+</span><span class='line'>  <span class="k">public</span> <span class="k">class</span> <span class="nc">NpgsqlConfiguration</span>
+</span><span class='line'>      <span class="p">:</span> <span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">DbConfiguration</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span> <span class="nf">NpgsqlConfiguration</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">SetProviderServices</span><span class="p">(</span><span class="s">&quot;Npgsql&quot;</span><span class="p">,</span> <span class="n">Npgsql</span><span class="p">.</span><span class="n">NpgsqlServices</span><span class="p">.</span><span class="n">Instance</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">SetProviderFactory</span><span class="p">(</span><span class="s">&quot;Npgsql&quot;</span><span class="p">,</span> <span class="n">Npgsql</span><span class="p">.</span><span class="n">NpgsqlFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">SetDefaultConnectionFactory</span><span class="p">(</span><span class="k">new</span> <span class="n">Npgsql</span><span class="p">.</span><span class="n">NpgsqlConnectionFactory</span><span class="p">());</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    Next define a context class decorated with the custom db config attribute. Ensure the default schema is set to &#8220;public&#8221; (or the relevant schema name). 
+</p>
+
+
+<p>Key Points:</p>
+
+<ul>
+    <li>Ensure context decorated with Npgsql config class</li>
+    <li>Ensure correct schema name is set in OnMOdelCreating method</li>
+    <li>Don&#8217;t use an initializer</li>
+    <li>Apply any case/naming conversions needed</li>
+</ul>
+
+
+
+
+<p>
+    Some sort of case conversion will likely need to made in the OnModelCreating method, in my case I made all column names lowercase and did the necessary column name transformation there. For table names I used decorator attributes on the entity classes.
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>Context </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">  </span>
+</span><span class='line'><span class="na">  [DbConfigurationType(typeof(NpgsqlConfiguration))]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="k">class</span> <span class="nc">ExampleContext</span>
+</span><span class='line'>        <span class="p">:</span> <span class="n">DbContext</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">public</span> <span class="n">DbSet</span><span class="p">&lt;</span><span class="n">Example</span><span class="p">&gt;</span> <span class="n">Examples</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">public</span> <span class="nf">ExampleContext</span><span class="p">(</span><span class="kt">string</span> <span class="n">connectionString</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">connectionString</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">LazyLoadingEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">ProxyCreationEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">//Helpful for debugging            </span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="n">Database</span><span class="p">.</span><span class="n">Log</span> <span class="p">=</span> <span class="n">s</span> <span class="p">=&gt;</span> <span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="n">Debug</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnModelCreating</span><span class="p">(</span><span class="n">DbModelBuilder</span> <span class="n">modelBuilder</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">Database</span><span class="p">.</span><span class="n">SetInitializer</span><span class="p">&lt;</span><span class="n">ExampleContext</span><span class="p">&gt;(</span><span class="k">null</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">modelBuilder</span><span class="p">.</span><span class="n">HasDefaultSchema</span><span class="p">(</span><span class="s">&quot;public&quot;</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">modelBuilder</span><span class="p">.</span><span class="n">Conventions</span><span class="p">.</span><span class="n">Remove</span><span class="p">&lt;</span><span class="n">OneToManyCascadeDeleteConvention</span><span class="p">&gt;();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">modelBuilder</span><span class="p">.</span><span class="n">Properties</span><span class="p">().</span><span class="n">Configure</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">ClrPropertyInfo</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span><span class='line'>                <span class="kt">var</span> <span class="n">newName</span> <span class="p">=</span> <span class="n">name</span><span class="p">.</span><span class="n">ToLower</span><span class="p">();</span>
+</span><span class='line'>                <span class="n">c</span><span class="p">.</span><span class="n">HasColumnName</span><span class="p">(</span><span class="n">newName</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -3263,6 +3453,10 @@ References:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/06/04/postgres-and-entity-framework-code-first/">Postgres With Entity Framework Code First</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/">Migrating Existing Xamarin iOS App to Unified API</a>
       </li>
     
@@ -3276,10 +3470,6 @@ References:
     
       <li class="post">
         <a href="/blog/2014/10/05/noise-words/">Noise Words</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/06/28/porting-nupic-to-go/">Porting Nupic to Go</a>
       </li>
     
   </ul>
@@ -3324,7 +3514,7 @@ References:
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Zac Gross -
+  Copyright &copy; 2016 - Zac Gross -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

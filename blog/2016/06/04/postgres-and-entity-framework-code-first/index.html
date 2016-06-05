@@ -1,0 +1,439 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Postgres With Entity Framework Code First - Zac Gross</title>
+  <meta name="author" content="Zac Gross">
+
+  
+  <meta name="description" content="Npgsql is the most popular Postgres data provider for .net. None of the integration examples involving entity framework I found online used the db &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://zacg.github.io/blog/2016/06/04/postgres-and-entity-framework-code-first">
+  <link href="/favicon.png" rel="icon">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/site.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Zac Gross" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  
+
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4180781-4']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Zac Gross</a></h1>
+  
+    <h2>Code & More</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:zacg.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Postgres With Entity Framework Code First</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-06-04T20:47:11-04:00" pubdate data-updated="true">Jun 4<span>th</span>, 2016</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://zacg.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>
+    Npgsql is the most popular Postgres data provider for .net. None of the integration examples involving entity framework I found online used the db first paradigm. After a lot of testing I posted a working example of EF code first with Npgsql below.
+</p>
+
+
+
+
+<div class="alert alert-danger">
+<p>
+<strong>Note:</strong> this example requires the database to already exist. EF automatic creation/migrations will not work.
+</p>
+</div>
+
+
+
+
+<p>
+    Db configuration class, this ensures the correct connection factory is used. My testing found this was the only way to get it set, various connection string formats were ignored/overridden at runtime.
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>DB Config </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'>   
+</span><span class='line'>  <span class="k">public</span> <span class="k">class</span> <span class="nc">NpgsqlConfiguration</span>
+</span><span class='line'>      <span class="p">:</span> <span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">DbConfiguration</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span> <span class="nf">NpgsqlConfiguration</span><span class="p">()</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">SetProviderServices</span><span class="p">(</span><span class="s">&quot;Npgsql&quot;</span><span class="p">,</span> <span class="n">Npgsql</span><span class="p">.</span><span class="n">NpgsqlServices</span><span class="p">.</span><span class="n">Instance</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">SetProviderFactory</span><span class="p">(</span><span class="s">&quot;Npgsql&quot;</span><span class="p">,</span> <span class="n">Npgsql</span><span class="p">.</span><span class="n">NpgsqlFactory</span><span class="p">.</span><span class="n">Instance</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">SetDefaultConnectionFactory</span><span class="p">(</span><span class="k">new</span> <span class="n">Npgsql</span><span class="p">.</span><span class="n">NpgsqlConnectionFactory</span><span class="p">());</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<p>
+    Next define a context class decorated with the custom db config attribute. Ensure the default schema is set to &#8220;public&#8221; (or the relevant schema name). 
+</p>
+
+
+<p>Key Points:</p>
+
+<ul>
+    <li>Ensure context decorated with Npgsql config class</li>
+    <li>Ensure correct schema name is set in OnMOdelCreating method</li>
+    <li>Don&#8217;t use an initializer</li>
+    <li>Apply any case/naming conversions needed</li>
+</ul>
+
+
+
+
+<p>
+    Some sort of case conversion will likely need to made in the OnModelCreating method, in my case I made all column names lowercase and did the necessary column name transformation there. For table names I used decorator attributes on the entity classes.
+</p>
+
+
+
+
+<figure class='code'><figcaption><span>Context </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">  </span>
+</span><span class='line'><span class="na">  [DbConfigurationType(typeof(NpgsqlConfiguration))]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="k">class</span> <span class="nc">ExampleContext</span>
+</span><span class='line'>        <span class="p">:</span> <span class="n">DbContext</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">public</span> <span class="n">DbSet</span><span class="p">&lt;</span><span class="n">Example</span><span class="p">&gt;</span> <span class="n">Examples</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">public</span> <span class="nf">ExampleContext</span><span class="p">(</span><span class="kt">string</span> <span class="n">connectionString</span><span class="p">)</span>
+</span><span class='line'>            <span class="p">:</span> <span class="k">base</span><span class="p">(</span><span class="n">connectionString</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">LazyLoadingEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">ProxyCreationEnabled</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="c1">//Helpful for debugging            </span>
+</span><span class='line'>            <span class="k">this</span><span class="p">.</span><span class="n">Database</span><span class="p">.</span><span class="n">Log</span> <span class="p">=</span> <span class="n">s</span> <span class="p">=&gt;</span> <span class="n">System</span><span class="p">.</span><span class="n">Diagnostics</span><span class="p">.</span><span class="n">Debug</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnModelCreating</span><span class="p">(</span><span class="n">DbModelBuilder</span> <span class="n">modelBuilder</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="n">Database</span><span class="p">.</span><span class="n">SetInitializer</span><span class="p">&lt;</span><span class="n">ExampleContext</span><span class="p">&gt;(</span><span class="k">null</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">modelBuilder</span><span class="p">.</span><span class="n">HasDefaultSchema</span><span class="p">(</span><span class="s">&quot;public&quot;</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">modelBuilder</span><span class="p">.</span><span class="n">Conventions</span><span class="p">.</span><span class="n">Remove</span><span class="p">&lt;</span><span class="n">OneToManyCascadeDeleteConvention</span><span class="p">&gt;();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">modelBuilder</span><span class="p">.</span><span class="n">Properties</span><span class="p">().</span><span class="n">Configure</span><span class="p">(</span><span class="n">c</span> <span class="p">=&gt;</span>
+</span><span class='line'>            <span class="p">{</span>
+</span><span class='line'>                <span class="kt">var</span> <span class="n">name</span> <span class="p">=</span> <span class="n">c</span><span class="p">.</span><span class="n">ClrPropertyInfo</span><span class="p">.</span><span class="n">Name</span><span class="p">;</span>
+</span><span class='line'>                <span class="kt">var</span> <span class="n">newName</span> <span class="p">=</span> <span class="n">name</span><span class="p">.</span><span class="n">ToLower</span><span class="p">();</span>
+</span><span class='line'>                <span class="n">c</span><span class="p">.</span><span class="n">HasColumnName</span><span class="p">(</span><span class="n">newName</span><span class="p">);</span>
+</span><span class='line'>            <span class="p">});</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">}</span>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Zac Gross</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-06-04T20:47:11-04:00" pubdate data-updated="true">Jun 4<span>th</span>, 2016</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c-number/'>C#</a>, <a class='category' href='/blog/categories/codefirst/'>Codefirst</a>, <a class='category' href='/blog/categories/entity-framework/'>Entity Framework</a>, <a class='category' href='/blog/categories/postgres/'>Postgres</a>, <a class='category' href='/blog/categories/npgsql/'>npgsql</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://zacg.github.io/blog/2016/06/04/postgres-and-entity-framework-code-first/" data-via="zachgross" data-counturl="http://zacg.github.io/blog/2016/06/04/postgres-and-entity-framework-code-first/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/" title="Previous Post: Migrating Existing Xamarin iOS App To Unified API">&laquo; Migrating Existing Xamarin iOS App To Unified API</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/06/04/postgres-and-entity-framework-code-first/">Postgres With Entity Framework Code First</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/">Migrating Existing Xamarin iOS App to Unified API</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/08/28/configuring-android-wear-emulator-for-debugging-with-physical-device/">Configuring Android Wear Emulator for Debugging With Physical Device</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/05/go-asserts-and-multiple-return-values/">Go Asserts and Multiple Return Values</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/05/noise-words/">Noise Words</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/zacg">@zacg</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'zacg',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Zac Gross -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'zacg';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://zacg.github.io/blog/2016/06/04/postgres-and-entity-framework-code-first/';
+        var disqus_url = 'http://zacg.github.io/blog/2016/06/04/postgres-and-entity-framework-code-first/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

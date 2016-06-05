@@ -9,7 +9,7 @@
   <meta name="author" content="Zac Gross">
 
   
-  <meta name="description" content="Blog Archives Recent Posts Migrating Existing Xamarin iOS App to Unified API Configuring Android Wear Emulator for Debugging With Physical Device Go &hellip;">
+  <meta name="description" content="Blog Archives Recent Posts Postgres With Entity Framework Code First Migrating Existing Xamarin iOS App to Unified API Configuring Android Wear &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -54,7 +54,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">Zac Gross</a></h1>
   
-    <h2>AI | Engineering | Biology</h2>
+    <h2>Code & More</h2>
   
 </hgroup>
 
@@ -96,6 +96,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/06/04/postgres-and-entity-framework-code-first/">Postgres With Entity Framework Code First</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/08/28/migrating-existing-xamarin-ios-app-to-unified-api/">Migrating Existing Xamarin iOS App to Unified API</a>
       </li>
     
@@ -109,10 +113,6 @@
     
       <li class="post">
         <a href="/blog/2014/10/05/noise-words/">Noise Words</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/06/28/porting-nupic-to-go/">Porting Nupic to Go</a>
       </li>
     
   </ul>
@@ -157,7 +157,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Zac Gross -
+  Copyright &copy; 2016 - Zac Gross -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
