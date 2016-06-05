@@ -4,7 +4,7 @@
   <title><![CDATA[Zac Gross]]></title>
   <link href="http://zacg.github.io/atom.xml" rel="self"/>
   <link href="http://zacg.github.io/"/>
-  <updated>2016-06-05T13:40:33-04:00</updated>
+  <updated>2016-06-05T13:41:57-04:00</updated>
   <id>http://zacg.github.io/</id>
   <author>
     <name><![CDATA[Zac Gross]]></name>
@@ -516,6 +516,832 @@ I recently started developing an Android Wear app and needed to pair a watch run
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'>   <span class="kd">var</span> <span class="nx">noiseWords</span> <span class="o">=</span>
 </span><span class='line'>  <span class="p">[</span><span class="s2">&quot;able&quot;</span><span class="p">,</span><span class="s2">&quot;available&quot;</span><span class="p">,</span><span class="s2">&quot;bad&quot;</span><span class="p">,</span><span class="s2">&quot;big&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">,</span><span class="s2">&quot;central&quot;</span><span class="p">,</span><span class="s2">&quot;certain&quot;</span><span class="p">,</span><span class="s2">&quot;clear&quot;</span><span class="p">,</span><span class="s2">&quot;close&quot;</span><span class="p">,</span><span class="s2">&quot;common&quot;</span><span class="p">,</span><span class="s2">&quot;concerned&quot;</span><span class="p">,</span><span class="s2">&quot;current&quot;</span><span class="p">,</span><span class="s2">&quot;different&quot;</span><span class="p">,</span><span class="s2">&quot;difficult&quot;</span><span class="p">,</span><span class="s2">&quot;due&quot;</span><span class="p">,</span><span class="s2">&quot;early&quot;</span><span class="p">,</span><span class="s2">&quot;easy&quot;</span><span class="p">,</span><span class="s2">&quot;economic&quot;</span><span class="p">,</span><span class="s2">&quot;far&quot;</span><span class="p">,</span><span class="s2">&quot;final&quot;</span><span class="p">,</span><span class="s2">&quot;financial&quot;</span><span class="p">,</span><span class="s2">&quot;fine&quot;</span><span class="p">,</span><span class="s2">&quot;following&quot;</span><span class="p">,</span><span class="s2">&quot;foreign&quot;</span><span class="p">,</span><span class="s2">&quot;free&quot;</span><span class="p">,</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="s2">&quot;general&quot;</span><span class="p">,</span><span class="s2">&quot;good&quot;</span><span class="p">,</span><span class="s2">&quot;great&quot;</span><span class="p">,</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span><span class="s2">&quot;hard&quot;</span><span class="p">,</span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="s2">&quot;human&quot;</span><span class="p">,</span><span class="s2">&quot;individual&quot;</span><span class="p">,</span><span class="s2">&quot;industrial&quot;</span><span class="p">,</span><span class="s2">&quot;international&quot;</span><span class="p">,</span><span class="s2">&quot;important&quot;</span><span class="p">,</span><span class="s2">&quot;large&quot;</span><span class="p">,</span><span class="s2">&quot;last&quot;</span><span class="p">,</span><span class="s2">&quot;late&quot;</span><span class="p">,</span><span class="s2">&quot;legal&quot;</span><span class="p">,</span><span class="s2">&quot;likely&quot;</span><span class="p">,</span><span class="s2">&quot;line&quot;</span><span class="p">,</span><span class="s2">&quot;little&quot;</span><span class="p">,</span><span class="s2">&quot;local&quot;</span><span class="p">,</span><span class="s2">&quot;long&quot;</span><span class="p">,</span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="s2">&quot;main&quot;</span><span class="p">,</span><span class="s2">&quot;major&quot;</span><span class="p">,</span><span class="s2">&quot;modern&quot;</span><span class="p">,</span><span class="s2">&quot;new&quot;</span><span class="p">,</span><span class="s2">&quot;name&quot;</span><span class="p">,</span><span class="s2">&quot;national&quot;</span><span class="p">,</span><span class="s2">&quot;natural&quot;</span><span class="p">,</span><span class="s2">&quot;necessary&quot;</span><span class="p">,</span><span class="s2">&quot;nice&quot;</span><span class="p">,</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span><span class="s2">&quot;old&quot;</span><span class="p">,</span><span class="s2">&quot;only&quot;</span><span class="p">,</span><span class="s2">&quot;open&quot;</span><span class="p">,</span><span class="s2">&quot;other&quot;</span><span class="p">,</span><span class="s2">&quot;particular&quot;</span><span class="p">,</span><span class="s2">&quot;personal&quot;</span><span class="p">,</span><span class="s2">&quot;political&quot;</span><span class="p">,</span><span class="s2">&quot;poor&quot;</span><span class="p">,</span><span class="s2">&quot;possible&quot;</span><span class="p">,</span><span class="s2">&quot;present&quot;</span><span class="p">,</span><span class="s2">&quot;previous&quot;</span><span class="p">,</span><span class="s2">&quot;prime&quot;</span><span class="p">,</span><span class="s2">&quot;private&quot;</span><span class="p">,</span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="s2">&quot;real&quot;</span><span class="p">,</span><span class="s2">&quot;recent&quot;</span><span class="p">,</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;right&quot;</span><span class="p">,</span><span class="s2">&quot;royal&quot;</span><span class="p">,</span><span class="s2">&quot;serious&quot;</span><span class="p">,</span><span class="s2">&quot;short&quot;</span><span class="p">,</span><span class="s2">&quot;significant&quot;</span><span class="p">,</span><span class="s2">&quot;simple&quot;</span><span class="p">,</span><span class="s2">&quot;similar&quot;</span><span class="p">,</span><span class="s2">&quot;single&quot;</span><span class="p">,</span><span class="s2">&quot;small&quot;</span><span class="p">,</span><span class="s2">&quot;social&quot;</span><span class="p">,</span><span class="s2">&quot;sorry&quot;</span><span class="p">,</span><span class="s2">&quot;special&quot;</span><span class="p">,</span><span class="s2">&quot;strong&quot;</span><span class="p">,</span><span class="s2">&quot;sure&quot;</span><span class="p">,</span><span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;various&quot;</span><span class="p">,</span><span class="s2">&quot;was&quot;</span><span class="p">,</span><span class="s2">&quot;white&quot;</span><span class="p">,</span><span class="s2">&quot;whole&quot;</span><span class="p">,</span><span class="s2">&quot;wide&quot;</span><span class="p">,</span><span class="s2">&quot;wrong&quot;</span><span class="p">,</span><span class="s2">&quot;young&quot;</span><span class="p">,</span><span class="s2">&quot;labor&quot;</span><span class="p">,</span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="s2">&quot;dead&quot;</span><span class="p">,</span><span class="s2">&quot;specific&quot;</span><span class="p">,</span><span class="s2">&quot;total&quot;</span><span class="p">,</span><span class="s2">&quot;appropriate&quot;</span><span class="p">,</span><span class="s2">&quot;military&quot;</span><span class="p">,</span><span class="s2">&quot;basic&quot;</span><span class="p">,</span><span class="s2">&quot;original&quot;</span><span class="p">,</span><span class="s2">&quot;successful&quot;</span><span class="p">,</span><span class="s2">&quot;aware&quot;</span><span class="p">,</span><span class="s2">&quot;popular&quot;</span><span class="p">,</span><span class="s2">&quot;professional&quot;</span><span class="p">,</span><span class="s2">&quot;heavy&quot;</span><span class="p">,</span><span class="s2">&quot;top&quot;</span><span class="p">,</span><span class="s2">&quot;dark&quot;</span><span class="p">,</span><span class="s2">&quot;ready&quot;</span><span class="p">,</span><span class="s2">&quot;useful&quot;</span><span class="p">,</span><span class="s2">&quot;not&quot;</span><span class="p">,</span><span class="s2">&quot;out&quot;</span><span class="p">,</span><span class="s2">&quot;up&quot;</span><span class="p">,</span><span class="s2">&quot;so&quot;</span><span class="p">,</span><span class="s2">&quot;then&quot;</span><span class="p">,</span><span class="s2">&quot;more&quot;</span><span class="p">,</span><span class="s2">&quot;now&quot;</span><span class="p">,</span><span class="s2">&quot;just&quot;</span><span class="p">,</span><span class="s2">&quot;also&quot;</span><span class="p">,</span><span class="s2">&quot;well&quot;</span><span class="p">,</span><span class="s2">&quot;only&quot;</span><span class="p">,</span><span class="s2">&quot;very&quot;</span><span class="p">,</span><span class="s2">&quot;how&quot;</span><span class="p">,</span><span class="s2">&quot;when&quot;</span><span class="p">,</span><span class="s2">&quot;as&quot;</span><span class="p">,</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span><span class="s2">&quot;even&quot;</span><span class="p">,</span><span class="s2">&quot;there&quot;</span><span class="p">,</span><span class="s2">&quot;down&quot;</span><span class="p">,</span><span class="s2">&quot;back&quot;</span><span class="p">,</span><span class="s2">&quot;still&quot;</span><span class="p">,</span><span class="s2">&quot;here&quot;</span><span class="p">,</span><span class="s2">&quot;too&quot;</span><span class="p">,</span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="s2">&quot;turn&quot;</span><span class="p">,</span><span class="s2">&quot;where&quot;</span><span class="p">,</span><span class="s2">&quot;over&quot;</span><span class="p">,</span><span class="s2">&quot;much&quot;</span><span class="p">,</span><span class="s2">&quot;is&quot;</span><span class="p">,</span><span class="s2">&quot;however&quot;</span><span class="p">,</span><span class="s2">&quot;again&quot;</span><span class="p">,</span><span class="s2">&quot;never&quot;</span><span class="p">,</span><span class="s2">&quot;all&quot;</span><span class="p">,</span><span class="s2">&quot;most&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;in&quot;</span><span class="p">,</span><span class="s2">&quot;why&quot;</span><span class="p">,</span><span class="s2">&quot;away&quot;</span><span class="p">,</span><span class="s2">&quot;really&quot;</span><span class="p">,</span><span class="s2">&quot;cause&quot;</span><span class="p">,</span><span class="s2">&quot;off&quot;</span><span class="p">,</span><span class="s2">&quot;always&quot;</span><span class="p">,</span><span class="s2">&quot;next&quot;</span><span class="p">,</span><span class="s2">&quot;rather&quot;</span><span class="p">,</span><span class="s2">&quot;quite&quot;</span><span class="p">,</span><span class="s2">&quot;right&quot;</span><span class="p">,</span><span class="s2">&quot;often&quot;</span><span class="p">,</span><span class="s2">&quot;yet&quot;</span><span class="p">,</span><span class="s2">&quot;perhaps&quot;</span><span class="p">,</span><span class="s2">&quot;already&quot;</span><span class="p">,</span><span class="s2">&quot;least&quot;</span><span class="p">,</span><span class="s2">&quot;almost&quot;</span><span class="p">,</span><span class="s2">&quot;long&quot;</span><span class="p">,</span><span class="s2">&quot;together&quot;</span><span class="p">,</span><span class="s2">&quot;are&quot;</span><span class="p">,</span><span class="s2">&quot;later&quot;</span><span class="p">,</span><span class="s2">&quot;less&quot;</span><span class="p">,</span><span class="s2">&quot;both&quot;</span><span class="p">,</span><span class="s2">&quot;once&quot;</span><span class="p">,</span><span class="s2">&quot;probably&quot;</span><span class="p">,</span><span class="s2">&quot;ever&quot;</span><span class="p">,</span><span class="s2">&quot;no&quot;</span><span class="p">,</span><span class="s2">&quot;far&quot;</span><span class="p">,</span><span class="s2">&quot;actually&quot;</span><span class="p">,</span><span class="s2">&quot;today&quot;</span><span class="p">,</span><span class="s2">&quot;enough&quot;</span><span class="p">,</span><span class="s2">&quot;therefore&quot;</span><span class="p">,</span><span class="s2">&quot;around&quot;</span><span class="p">,</span><span class="s2">&quot;soon&quot;</span><span class="p">,</span><span class="s2">&quot;particularly&quot;</span><span class="p">,</span><span class="s2">&quot;early&quot;</span><span class="p">,</span><span class="s2">&quot;else&quot;</span><span class="p">,</span><span class="s2">&quot;sometimes&quot;</span><span class="p">,</span><span class="s2">&quot;thus&quot;</span><span class="p">,</span><span class="s2">&quot;further&quot;</span><span class="p">,</span><span class="s2">&quot;ago&quot;</span><span class="p">,</span><span class="s2">&quot;yesterday&quot;</span><span class="p">,</span><span class="s2">&quot;usually&quot;</span><span class="p">,</span><span class="s2">&quot;indeed&quot;</span><span class="p">,</span><span class="s2">&quot;certainly&quot;</span><span class="p">,</span><span class="s2">&quot;home&quot;</span><span class="p">,</span><span class="s2">&quot;simply&quot;</span><span class="p">,</span><span class="s2">&quot;especially&quot;</span><span class="p">,</span><span class="s2">&quot;better&quot;</span><span class="p">,</span><span class="s2">&quot;either&quot;</span><span class="p">,</span><span class="s2">&quot;clearly&quot;</span><span class="p">,</span><span class="s2">&quot;instead&quot;</span><span class="p">,</span><span class="s2">&quot;round&quot;</span><span class="p">,</span><span class="s2">&quot;to&quot;</span><span class="p">,</span><span class="s2">&quot;finalty&quot;</span><span class="p">,</span><span class="s2">&quot;please&quot;</span><span class="p">,</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span><span class="s2">&quot;quickly&quot;</span><span class="p">,</span><span class="s2">&quot;recently&quot;</span><span class="p">,</span><span class="s2">&quot;anyway&quot;</span><span class="p">,</span><span class="s2">&quot;suddenly&quot;</span><span class="p">,</span><span class="s2">&quot;generality&quot;</span><span class="p">,</span><span class="s2">&quot;nearly&quot;</span><span class="p">,</span><span class="s2">&quot;obviously&quot;</span><span class="p">,</span><span class="s2">&quot;though&quot;</span><span class="p">,</span><span class="s2">&quot;hard&quot;</span><span class="p">,</span><span class="s2">&quot;okay&quot;</span><span class="p">,</span><span class="s2">&quot;exactly&quot;</span><span class="p">,</span><span class="s2">&quot;above&quot;</span><span class="p">,</span><span class="s2">&quot;maybe&quot;</span><span class="p">,</span><span class="s2">&quot;and&quot;</span><span class="p">,</span><span class="s2">&quot;that&quot;</span><span class="p">,</span><span class="s2">&quot;help&quot;</span><span class="p">,</span><span class="s2">&quot;but&quot;</span><span class="p">,</span><span class="s2">&quot;or&quot;</span><span class="p">,</span><span class="s2">&quot;as&quot;</span><span class="p">,</span><span class="s2">&quot;it&quot;</span><span class="p">,</span><span class="s2">&quot;think&quot;</span><span class="p">,</span><span class="s2">&quot;than&quot;</span><span class="p">,</span><span class="s2">&quot;when&quot;</span><span class="p">,</span><span class="s2">&quot;because&quot;</span><span class="p">,</span><span class="s2">&quot;so&quot;</span><span class="p">,</span><span class="s2">&quot;while&quot;</span><span class="p">,</span><span class="s2">&quot;where&quot;</span><span class="p">,</span><span class="s2">&quot;although&quot;</span><span class="p">,</span><span class="s2">&quot;whether&quot;</span><span class="p">,</span><span class="s2">&quot;until&quot;</span><span class="p">,</span><span class="s2">&quot;though&quot;</span><span class="p">,</span><span class="s2">&quot;since&quot;</span><span class="p">,</span><span class="s2">&quot;alter&quot;</span><span class="p">,</span><span class="s2">&quot;before&quot;</span><span class="p">,</span><span class="s2">&quot;nor&quot;</span><span class="p">,</span><span class="s2">&quot;unless&quot;</span><span class="p">,</span><span class="s2">&quot;once&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;form&quot;</span><span class="p">,</span><span class="s2">&quot;this&quot;</span><span class="p">,</span><span class="s2">&quot;this&quot;</span><span class="p">,</span><span class="s2">&quot;that&quot;</span><span class="p">,</span><span class="s2">&quot;which&quot;</span><span class="p">,</span><span class="s2">&quot;an&quot;</span><span class="p">,</span><span class="s2">&quot;their&quot;</span><span class="p">,</span><span class="s2">&quot;what&quot;</span><span class="p">,</span><span class="s2">&quot;all&quot;</span><span class="p">,</span><span class="s2">&quot;her&quot;</span><span class="p">,</span><span class="s2">&quot;some&quot;</span><span class="p">,</span><span class="s2">&quot;its&quot;</span><span class="p">,</span><span class="s2">&quot;my&quot;</span><span class="p">,</span><span class="s2">&quot;your&quot;</span><span class="p">,</span><span class="s2">&quot;no&quot;</span><span class="p">,</span><span class="s2">&quot;these&quot;</span><span class="p">,</span><span class="s2">&quot;any&quot;</span><span class="p">,</span><span class="s2">&quot;such&quot;</span><span class="p">,</span><span class="s2">&quot;our&quot;</span><span class="p">,</span><span class="s2">&quot;many&quot;</span><span class="p">,</span><span class="s2">&quot;those&quot;</span><span class="p">,</span><span class="s2">&quot;own&quot;</span><span class="p">,</span><span class="s2">&quot;more&quot;</span><span class="p">,</span><span class="s2">&quot;same&quot;</span><span class="p">,</span><span class="s2">&quot;each&quot;</span><span class="p">,</span><span class="s2">&quot;another&quot;</span><span class="p">,</span><span class="s2">&quot;next&quot;</span><span class="p">,</span><span class="s2">&quot;most&quot;</span><span class="p">,</span><span class="s2">&quot;both&quot;</span><span class="p">,</span><span class="s2">&quot;every&quot;</span><span class="p">,</span><span class="s2">&quot;much&quot;</span><span class="p">,</span><span class="s2">&quot;little&quot;</span><span class="p">,</span><span class="s2">&quot;several&quot;</span><span class="p">,</span><span class="s2">&quot;half&quot;</span><span class="p">,</span><span class="s2">&quot;whose&quot;</span><span class="p">,</span><span class="s2">&quot;few&quot;</span><span class="p">,</span><span class="s2">&quot;former&quot;</span><span class="p">,</span><span class="s2">&quot;whatever&quot;</span><span class="p">,</span><span class="s2">&quot;either&quot;</span><span class="p">,</span><span class="s2">&quot;less&quot;</span><span class="p">,</span><span class="s2">&quot;to&quot;</span><span class="p">,</span><span class="s2">&quot;yeah&quot;</span><span class="p">,</span><span class="s2">&quot;no&quot;</span><span class="p">,</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="s2">&quot;well&quot;</span><span class="p">,</span><span class="s2">&quot;will&quot;</span><span class="p">,</span><span class="s2">&quot;would&quot;</span><span class="p">,</span><span class="s2">&quot;can&quot;</span><span class="p">,</span><span class="s2">&quot;could&quot;</span><span class="p">,</span><span class="s2">&quot;should&quot;</span><span class="p">,</span><span class="s2">&quot;may&quot;</span><span class="p">,</span><span class="s2">&quot;must&quot;</span><span class="p">,</span><span class="s2">&quot;might&quot;</span><span class="p">,</span><span class="s2">&quot;shall&quot;</span><span class="p">,</span><span class="s2">&quot;used&quot;</span><span class="p">,</span><span class="s2">&quot;come&quot;</span><span class="p">,</span><span class="s2">&quot;get&quot;</span><span class="p">,</span><span class="s2">&quot;give&quot;</span><span class="p">,</span><span class="s2">&quot;go&quot;</span><span class="p">,</span><span class="s2">&quot;keep&quot;</span><span class="p">,</span><span class="s2">&quot;let&quot;</span><span class="p">,</span><span class="s2">&quot;make&quot;</span><span class="p">,</span><span class="s2">&quot;put&quot;</span><span class="p">,</span><span class="s2">&quot;seem&quot;</span><span class="p">,</span><span class="s2">&quot;take&quot;</span><span class="p">,</span><span class="s2">&quot;be&quot;</span><span class="p">,</span><span class="s2">&quot;do&quot;</span><span class="p">,</span><span class="s2">&quot;have&quot;</span><span class="p">,</span><span class="s2">&quot;say&quot;</span><span class="p">,</span><span class="s2">&quot;see&quot;</span><span class="p">,</span><span class="s2">&quot;send&quot;</span><span class="p">,</span><span class="s2">&quot;may&quot;</span><span class="p">,</span><span class="s2">&quot;will&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;across&quot;</span><span class="p">,</span><span class="s2">&quot;after&quot;</span><span class="p">,</span><span class="s2">&quot;against&quot;</span><span class="p">,</span><span class="s2">&quot;among&quot;</span><span class="p">,</span><span class="s2">&quot;at&quot;</span><span class="p">,</span><span class="s2">&quot;before&quot;</span><span class="p">,</span><span class="s2">&quot;between&quot;</span><span class="p">,</span><span class="s2">&quot;by&quot;</span><span class="p">,</span><span class="s2">&quot;down&quot;</span><span class="p">,</span><span class="s2">&quot;from&quot;</span><span class="p">,</span><span class="s2">&quot;in&quot;</span><span class="p">,</span><span class="s2">&quot;off&quot;</span><span class="p">,</span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="s2">&quot;over&quot;</span><span class="p">,</span><span class="s2">&quot;through&quot;</span><span class="p">,</span><span class="s2">&quot;to&quot;</span><span class="p">,</span><span class="s2">&quot;under&quot;</span><span class="p">,</span><span class="s2">&quot;up&quot;</span><span class="p">,</span><span class="s2">&quot;with&quot;</span><span class="p">,</span><span class="s2">&quot;as&quot;</span><span class="p">,</span><span class="s2">&quot;for&quot;</span><span class="p">,</span><span class="s2">&quot;of&quot;</span><span class="p">,</span><span class="s2">&quot;till&quot;</span><span class="p">,</span><span class="s2">&quot;than&quot;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;all&quot;</span><span class="p">,</span><span class="s2">&quot;any&quot;</span><span class="p">,</span><span class="s2">&quot;every&quot;</span><span class="p">,</span><span class="s2">&quot;little&quot;</span><span class="p">,</span><span class="s2">&quot;much&quot;</span><span class="p">,</span><span class="s2">&quot;no&quot;</span><span class="p">,</span><span class="s2">&quot;other&quot;</span><span class="p">,</span><span class="s2">&quot;some&quot;</span><span class="p">,</span><span class="s2">&quot;such&quot;</span><span class="p">,</span><span class="s2">&quot;that&quot;</span><span class="p">,</span><span class="s2">&quot;this&quot;</span><span class="p">,</span><span class="s2">&quot;I &quot;</span><span class="p">,</span><span class="s2">&quot;he&quot;</span><span class="p">,</span><span class="s2">&quot;you&quot;</span><span class="p">,</span><span class="s2">&quot;who&quot;</span><span class="p">,</span><span class="s2">&quot;and&quot;</span><span class="p">,</span><span class="s2">&quot;because&quot;</span><span class="p">,</span><span class="s2">&quot;but&quot;</span><span class="p">,</span><span class="s2">&quot;or&quot;</span><span class="p">,</span><span class="s2">&quot;if&quot;</span><span class="p">,</span><span class="s2">&quot;though&quot;</span><span class="p">,</span><span class="s2">&quot;while&quot;</span><span class="p">,</span><span class="s2">&quot;how&quot;</span><span class="p">,</span><span class="s2">&quot;when&quot;</span><span class="p">,</span><span class="s2">&quot;where&quot;</span><span class="p">,</span><span class="s2">&quot;why&quot;</span><span class="p">,</span><span class="s2">&quot;again&quot;</span><span class="p">,</span><span class="s2">&quot;ever&quot;</span><span class="p">,</span><span class="s2">&quot;far&quot;</span><span class="p">,</span><span class="s2">&quot;forward&quot;</span><span class="p">,</span><span class="s2">&quot;here&quot;</span><span class="p">,</span><span class="s2">&quot;near&quot;</span><span class="p">,</span><span class="s2">&quot;now&quot;</span><span class="p">,</span><span class="s2">&quot;out&quot;</span><span class="p">,</span><span class="s2">&quot;still&quot;</span><span class="p">,</span><span class="s2">&quot;then&quot;</span><span class="p">,</span><span class="s2">&quot;there&quot;</span><span class="p">,</span><span class="s2">&quot;together&quot;</span><span class="p">,</span><span class="s2">&quot;well&quot;</span><span class="p">,</span><span class="s2">&quot;almost&quot;</span><span class="p">,</span><span class="s2">&quot;enough&quot;</span><span class="p">,</span><span class="s2">&quot;even&quot;</span><span class="p">,</span><span class="s2">&quot;not&quot;</span><span class="p">,</span><span class="s2">&quot;only&quot;</span><span class="p">,</span><span class="s2">&quot;quite&quot;</span><span class="p">,</span><span class="s2">&quot;so&quot;</span><span class="p">,</span><span class="s2">&quot;very&quot;</span><span class="p">,</span><span class="s2">&quot;tomorrow&quot;</span><span class="p">,</span><span class="s2">&quot;yesterday&quot;</span><span class="p">,</span><span class="s2">&quot;north&quot;</span><span class="p">,</span><span class="s2">&quot;south&quot;</span><span class="p">,</span><span class="s2">&quot;east&quot;</span><span class="p">,</span><span class="s2">&quot;west&quot;</span><span class="p">,</span><span class="s2">&quot;please&quot;</span><span class="p">,</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span><span class="s2">&quot;able&quot;</span><span class="p">,</span><span class="s2">&quot;acid&quot;</span><span class="p">,</span><span class="s2">&quot;angry&quot;</span><span class="p">,</span><span class="s2">&quot;automatic&quot;</span><span class="p">,</span><span class="s2">&quot;beautiful&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">,</span><span class="s2">&quot;boiling&quot;</span><span class="p">,</span><span class="s2">&quot;bright&quot;</span><span class="p">,</span><span class="s2">&quot;broken&quot;</span><span class="p">,</span><span class="s2">&quot;brown&quot;</span><span class="p">,</span><span class="s2">&quot;cheap&quot;</span><span class="p">,</span><span class="s2">&quot;chemical&quot;</span><span class="p">,</span><span class="s2">&quot;chief&quot;</span><span class="p">,</span><span class="s2">&quot;clean&quot;</span><span class="p">,</span><span class="s2">&quot;clear&quot;</span><span class="p">,</span><span class="s2">&quot;common&quot;</span><span class="p">,</span><span class="s2">&quot;complex&quot;</span><span class="p">,</span><span class="s2">&quot;conscious&quot;</span><span class="p">,</span><span class="s2">&quot;cut&quot;</span><span class="p">,</span><span class="s2">&quot;deep&quot;</span><span class="p">,</span><span class="s2">&quot;dependent&quot;</span><span class="p">,</span><span class="s2">&quot;early&quot;</span><span class="p">,</span><span class="s2">&quot;elastic&quot;</span><span class="p">,</span><span class="s2">&quot;electric&quot;</span><span class="p">,</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span><span class="s2">&quot;fat&quot;</span><span class="p">,</span><span class="s2">&quot;fertile&quot;</span><span class="p">,</span><span class="s2">&quot;first&quot;</span><span class="p">,</span><span class="s2">&quot;fixed&quot;</span><span class="p">,</span><span class="s2">&quot;flat&quot;</span><span class="p">,</span><span class="s2">&quot;free&quot;</span><span class="p">,</span><span class="s2">&quot;frequent&quot;</span><span class="p">,</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="s2">&quot;general&quot;</span><span class="p">,</span><span class="s2">&quot;good&quot;</span><span class="p">,</span><span class="s2">&quot;great&quot;</span><span class="p">,</span><span class="s2">&quot;hanging&quot;</span><span class="p">,</span><span class="s2">&quot;happy&quot;</span><span class="p">,</span><span class="s2">&quot;hard&quot;</span><span class="p">,</span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span><span class="s2">&quot;high&quot;</span><span class="p">,</span><span class="s2">&quot;hollow&quot;</span><span class="p">,</span><span class="s2">&quot;important&quot;</span><span class="p">,</span><span class="s2">&quot;kind&quot;</span><span class="p">,</span><span class="s2">&quot;like&quot;</span><span class="p">,</span><span class="s2">&quot;living&quot;</span><span class="p">,</span><span class="s2">&quot;long&quot;</span><span class="p">,</span><span class="s2">&quot;male&quot;</span><span class="p">,</span><span class="s2">&quot;married&quot;</span><span class="p">,</span><span class="s2">&quot;material&quot;</span><span class="p">,</span><span class="s2">&quot;medical&quot;</span><span class="p">,</span><span class="s2">&quot;military&quot;</span><span class="p">,</span><span class="s2">&quot;natural&quot;</span><span class="p">,</span><span class="s2">&quot;necessary&quot;</span><span class="p">,</span><span class="s2">&quot;new&quot;</span><span class="p">,</span><span class="s2">&quot;normal&quot;</span><span class="p">,</span><span class="s2">&quot;open&quot;</span><span class="p">,</span><span class="s2">&quot;parallel&quot;</span><span class="p">,</span><span class="s2">&quot;past&quot;</span><span class="p">,</span><span class="s2">&quot;physical&quot;</span><span class="p">,</span><span class="s2">&quot;political&quot;</span><span class="p">,</span><span class="s2">&quot;poor&quot;</span><span class="p">,</span><span class="s2">&quot;possible&quot;</span><span class="p">,</span><span class="s2">&quot;present&quot;</span><span class="p">,</span><span class="s2">&quot;private&quot;</span><span class="p">,</span><span class="s2">&quot;probable&quot;</span><span class="p">,</span><span class="s2">&quot;quick&quot;</span><span class="p">,</span><span class="s2">&quot;quiet&quot;</span><span class="p">,</span><span class="s2">&quot;ready&quot;</span><span class="p">,</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;regular&quot;</span><span class="p">,</span><span class="s2">&quot;responsible&quot;</span><span class="p">,</span><span class="s2">&quot;right&quot;</span><span class="p">,</span><span class="s2">&quot;round&quot;</span><span class="p">,</span><span class="s2">&quot;same&quot;</span><span class="p">,</span><span class="s2">&quot;second&quot;</span><span class="p">,</span><span class="s2">&quot;separate&quot;</span><span class="p">,</span><span class="s2">&quot;serious&quot;</span><span class="p">,</span><span class="s2">&quot;sharp&quot;</span><span class="p">,</span><span class="s2">&quot;smooth&quot;</span><span class="p">,</span><span class="s2">&quot;sticky&quot;</span><span class="p">,</span><span class="s2">&quot;stiff&quot;</span><span class="p">,</span><span class="s2">&quot;straight&quot;</span><span class="p">,</span><span class="s2">&quot;strong&quot;</span><span class="p">,</span><span class="s2">&quot;sudden&quot;</span><span class="p">,</span><span class="s2">&quot;sweet&quot;</span><span class="p">,</span><span class="s2">&quot;tall&quot;</span><span class="p">,</span><span class="s2">&quot;thick&quot;</span><span class="p">,</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span><span class="s2">&quot;tired&quot;</span><span class="p">,</span><span class="s2">&quot;true&quot;</span><span class="p">,</span><span class="s2">&quot;violent&quot;</span><span class="p">,</span><span class="s2">&quot;waiting&quot;</span><span class="p">,</span><span class="s2">&quot;warm&quot;</span><span class="p">,</span><span class="s2">&quot;wet&quot;</span><span class="p">,</span><span class="s2">&quot;wide&quot;</span><span class="p">,</span><span class="s2">&quot;wise&quot;</span><span class="p">,</span><span class="s2">&quot;yellow&quot;</span><span class="p">,</span><span class="s2">&quot;young&quot;</span><span class="p">,</span><span class="s2">&quot;awake&quot;</span><span class="p">,</span><span class="s2">&quot;bad&quot;</span><span class="p">,</span><span class="s2">&quot;bent&quot;</span><span class="p">,</span><span class="s2">&quot;bitter&quot;</span><span class="p">,</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span><span class="s2">&quot;certain&quot;</span><span class="p">,</span><span class="s2">&quot;cold&quot;</span><span class="p">,</span><span class="s2">&quot;complete&quot;</span><span class="p">,</span><span class="s2">&quot;cruel&quot;</span><span class="p">,</span><span class="s2">&quot;dark&quot;</span><span class="p">,</span><span class="s2">&quot;dead&quot;</span><span class="p">,</span><span class="s2">&quot;dear&quot;</span><span class="p">,</span><span class="s2">&quot;delicate&quot;</span><span class="p">,</span><span class="s2">&quot;different&quot;</span><span class="p">,</span><span class="s2">&quot;dirty&quot;</span><span class="p">,</span><span class="s2">&quot;dry&quot;</span><span class="p">,</span><span class="s2">&quot;false&quot;</span><span class="p">,</span><span class="s2">&quot;feeble&quot;</span><span class="p">,</span><span class="s2">&quot;female&quot;</span><span class="p">,</span><span class="s2">&quot;foolish&quot;</span><span class="p">,</span><span class="s2">&quot;future&quot;</span><span class="p">,</span><span class="s2">&quot;green&quot;</span><span class="p">,</span><span class="s2">&quot;ill&quot;</span><span class="p">,</span><span class="s2">&quot;last&quot;</span><span class="p">,</span><span class="s2">&quot;late&quot;</span><span class="p">,</span><span class="s2">&quot;left&quot;</span><span class="p">,</span><span class="s2">&quot;loose&quot;</span><span class="p">,</span><span class="s2">&quot;loud&quot;</span><span class="p">,</span><span class="s2">&quot;low&quot;</span><span class="p">,</span><span class="s2">&quot;mixed&quot;</span><span class="p">,</span><span class="s2">&quot;narrow&quot;</span><span class="p">,</span><span class="s2">&quot;old&quot;</span><span class="p">,</span><span class="s2">&quot;opposite&quot;</span><span class="p">,</span><span class="s2">&quot;public&quot;</span><span class="p">,</span><span class="s2">&quot;rough&quot;</span><span class="p">,</span><span class="s2">&quot;sad&quot;</span><span class="p">,</span><span class="s2">&quot;safe&quot;</span><span class="p">,</span><span class="s2">&quot;secret&quot;</span><span class="p">,</span><span class="s2">&quot;short&quot;</span><span class="p">,</span><span class="s2">&quot;shut&quot;</span><span class="p">,</span><span class="s2">&quot;simple&quot;</span><span class="p">,</span><span class="s2">&quot;slow&quot;</span><span class="p">,</span><span class="s2">&quot;small&quot;</span><span class="p">,</span><span class="s2">&quot;soft&quot;</span><span class="p">,</span><span class="s2">&quot;solid&quot;</span><span class="p">,</span><span class="s2">&quot;special&quot;</span><span class="p">,</span><span class="s2">&quot;strange&quot;</span><span class="p">,</span><span class="s2">&quot;thin&quot;</span><span class="p">,</span><span class="s2">&quot;white&quot;</span><span class="p">,</span><span class="s2">&quot;wrong&quot;</span><span class="p">,</span><span class="s2">&quot;this&quot;</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Go Snippets]]></title>
+    <link href="http://zacg.github.io/blog/2014/07/21/go-snippets/"/>
+    <updated>2014-07-21T12:08:28-04:00</updated>
+    <id>http://zacg.github.io/blog/2014/07/21/go-snippets</id>
+    <content type="html"><![CDATA[<p>
+    Some random code snippets I wrote while learning GO.
+</p>
+
+
+
+
+<h2>Bitwise Ops</h2>
+
+
+
+
+<figure class='code'><figcaption><span>Flip Bits </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="c1">//num is odd or even</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">isEven</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">n</span><span class="o">&amp;</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//test nth bit is set</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">isSet</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">n</span> <span class="kt">uint</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nx">n</span><span class="p">))</span> <span class="p">&gt;</span> <span class="mi">0</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">setBit</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">n</span> <span class="kt">uint</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">x</span> <span class="p">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nx">n</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">unSetBit</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">n</span> <span class="kt">uint</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// negate = all 0 except 1 position</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">x</span> <span class="o">&amp;</span> <span class="p">^(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nx">n</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">toggleBit</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">n</span> <span class="kt">uint</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// ^ = xor = both same = 0 else 1</span>
+</span><span class='line'>  <span class="c1">// only of or is true</span>
+</span><span class='line'>  <span class="c1">//xor twice returns original value</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">x</span> <span class="p">^</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nx">n</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//turn off rightmost 1-bit</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">turnOffRightMost</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">x</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nx">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//turns off all other bits except rightmost &quot;on&quot; bit</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">isolateRightmostBit</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">x</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">-</span><span class="nx">x</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//produces all 1&#39;s if x = 0</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">rightPropogateRightmostBit</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">x</span> <span class="p">|</span> <span class="p">(</span><span class="nx">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//flip all bits in integer</span>
+</span><span class='line'><span class="kd">func</span> <span class="nx">flipBits</span><span class="p">(</span><span class="nx">x</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">uint</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">^</span><span class="nb">uint</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Sorting</h2>
+
+
+
+
+<figure class='code'><figcaption><span>Counting Sort </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="nx">CountingSort</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">maxVal</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">histogram</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">int</span><span class="p">]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">maxVal</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">vals</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">histogram</span><span class="p">[</span><span class="nx">val</span><span class="p">]</span><span class="o">++</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">pos</span> <span class="o">:=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">maxVal</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="nx">histogram</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">ok</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">histogram</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">vals</span><span class="p">[</span><span class="nx">pos</span><span class="p">]</span> <span class="p">=</span> <span class="nx">i</span>
+</span><span class='line'>              <span class="nx">pos</span><span class="o">++</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Radix Sort </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="nx">RadixSort</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">m</span> <span class="o">:=</span> <span class="nx">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>  <span class="kd">const</span> <span class="nx">base</span> <span class="p">=</span> <span class="mi">10</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">vals</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">val</span> <span class="p">&gt;</span> <span class="nx">m</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">m</span> <span class="p">=</span> <span class="nx">val</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">exp</span> <span class="o">:=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">m</span><span class="o">/</span><span class="nx">exp</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">bucket</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([][]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">base</span><span class="p">)</span>
+</span><span class='line'>      <span class="c1">//count keys</span>
+</span><span class='line'>      <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">vals</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">key</span> <span class="o">:=</span> <span class="p">(</span><span class="nx">vals</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">/</span> <span class="nx">exp</span><span class="p">)</span> <span class="o">%</span> <span class="nx">base</span>
+</span><span class='line'>          <span class="nx">bucket</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">bucket</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="nx">idx</span> <span class="o">:=</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">bucket</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="nx">bucket</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>              <span class="nx">vals</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">bucket</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">j</span><span class="p">]</span>
+</span><span class='line'>              <span class="nx">idx</span><span class="o">++</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="nx">exp</span> <span class="o">*=</span> <span class="mi">10</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Insert Sort </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="nx">InsertSort</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">vals</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">j</span> <span class="o">:=</span> <span class="nx">i</span>
+</span><span class='line'>      <span class="k">for</span> <span class="nx">j</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">vals</span><span class="p">[</span><span class="nx">j</span><span class="p">],</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">=</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+</span><span class='line'>          <span class="nx">j</span><span class="o">--</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Merge Sort </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="nx">merge</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">helper</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">low</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">middle</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">high</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">//copy both halves into helper slice</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="nx">low</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">high</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">helper</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">helperLeft</span> <span class="o">:=</span> <span class="nx">low</span>
+</span><span class='line'>  <span class="nx">helperRight</span> <span class="o">:=</span> <span class="nx">middle</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="nx">current</span> <span class="o">:=</span> <span class="nx">low</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//iterate through helper array. Compare left and right</span>
+</span><span class='line'>  <span class="c1">// half, copying the smaller of the 2 into original</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">helperLeft</span> <span class="o">&lt;=</span> <span class="nx">middle</span> <span class="o">&amp;&amp;</span> <span class="nx">helperRight</span> <span class="o">&lt;=</span> <span class="nx">high</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">helper</span><span class="p">[</span><span class="nx">helperLeft</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">helper</span><span class="p">[</span><span class="nx">helperRight</span><span class="p">]</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">vals</span><span class="p">[</span><span class="nx">current</span><span class="p">]</span> <span class="p">=</span> <span class="nx">helper</span><span class="p">[</span><span class="nx">helperLeft</span><span class="p">]</span>
+</span><span class='line'>          <span class="nx">helperLeft</span><span class="o">++</span>
+</span><span class='line'>      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">vals</span><span class="p">[</span><span class="nx">current</span><span class="p">]</span> <span class="p">=</span> <span class="nx">helper</span><span class="p">[</span><span class="nx">helperRight</span><span class="p">]</span>
+</span><span class='line'>          <span class="nx">helperRight</span><span class="o">++</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="nx">current</span><span class="o">++</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">// Copy the rest of the left side of the array into the</span>
+</span><span class='line'>  <span class="c1">// target array.</span>
+</span><span class='line'>  <span class="nx">remaining</span> <span class="o">:=</span> <span class="nx">middle</span> <span class="o">-</span> <span class="nx">helperLeft</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nx">remaining</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">vals</span><span class="p">[</span><span class="nx">current</span><span class="o">+</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">helper</span><span class="p">[</span><span class="nx">helperLeft</span><span class="o">+</span><span class="nx">i</span><span class="p">]</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">mergesort</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">helper</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">low</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">high</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">low</span> <span class="p">&lt;</span> <span class="nx">high</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">middle</span> <span class="o">:=</span> <span class="p">(</span><span class="nx">low</span> <span class="o">+</span> <span class="nx">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>      <span class="nx">mergesort</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">helper</span><span class="p">,</span> <span class="nx">low</span><span class="p">,</span> <span class="nx">middle</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">mergesort</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">helper</span><span class="p">,</span> <span class="nx">middle</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">high</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">merge</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">helper</span><span class="p">,</span> <span class="nx">low</span><span class="p">,</span> <span class="nx">middle</span><span class="p">,</span> <span class="nx">high</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">MergeSort</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">helper</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">vals</span><span class="p">))</span>
+</span><span class='line'>  <span class="nx">mergesort</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">helper</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">vals</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Quick Sort </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">func</span> <span class="nx">partition</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">left</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">right</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">middle</span> <span class="o">:=</span> <span class="p">(</span><span class="nx">left</span> <span class="o">+</span> <span class="nx">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>  <span class="nx">pivotVal</span> <span class="o">:=</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">middle</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//swap middle/right</span>
+</span><span class='line'>  <span class="nx">vals</span><span class="p">[</span><span class="nx">middle</span><span class="p">],</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">right</span><span class="p">]</span> <span class="p">=</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">right</span><span class="p">],</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">middle</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">lessPointer</span> <span class="o">:=</span> <span class="nx">left</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">greaterPointer</span> <span class="o">:=</span> <span class="nx">left</span><span class="p">;</span> <span class="nx">greaterPointer</span> <span class="p">&lt;</span> <span class="nx">right</span><span class="p">;</span> <span class="nx">greaterPointer</span><span class="o">++</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">greaterPointer</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="nx">pivotVal</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nx">vals</span><span class="p">[</span><span class="nx">greaterPointer</span><span class="p">],</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">lessPointer</span><span class="p">]</span> <span class="p">=</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">lessPointer</span><span class="p">],</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">greaterPointer</span><span class="p">]</span>
+</span><span class='line'>          <span class="nx">lessPointer</span><span class="o">++</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">vals</span><span class="p">[</span><span class="nx">lessPointer</span><span class="p">],</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">right</span><span class="p">]</span> <span class="p">=</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">right</span><span class="p">],</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">lessPointer</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">lessPointer</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">quickSort</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">min</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">max</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nx">min</span> <span class="p">&lt;</span> <span class="nx">max</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">p</span> <span class="o">:=</span> <span class="nx">partition</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">quickSort</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">min</span><span class="p">,</span> <span class="nx">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">quickSort</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">QuickSort</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">quickSort</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">vals</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Data Structures</h2>
+
+
+
+
+<figure class='code'><figcaption><span>Heap </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">type</span> <span class="nx">Heap</span> <span class="kd">struct</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">data</span> <span class="p">[]</span><span class="kt">int</span>
+</span><span class='line'>  <span class="c1">//maxSize      int</span>
+</span><span class='line'>  <span class="c1">//itemsInArray int</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">NewHeap</span><span class="p">(</span><span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="o">*</span><span class="nx">Heap</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">h</span> <span class="o">:=</span> <span class="nb">new</span><span class="p">(</span><span class="nx">Heap</span><span class="p">)</span>
+</span><span class='line'>  <span class="nx">h</span><span class="p">.</span><span class="nx">data</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">h</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">//moves element up to its proper position</span>
+</span><span class='line'><span class="c1">//respecting binary tree property</span>
+</span><span class='line'><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">Heap</span><span class="p">)</span> <span class="nx">up</span><span class="p">(</span><span class="nx">idx</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">parent</span> <span class="o">:=</span> <span class="p">(</span><span class="nx">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">idx</span> <span class="o">==</span> <span class="nx">parent</span> <span class="o">||</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">parent</span><span class="p">]</span> <span class="p">{</span>
+</span><span class='line'>          <span class="c1">//at end of array or idx is in proper position</span>
+</span><span class='line'>          <span class="k">break</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="c1">//Swap with parent</span>
+</span><span class='line'>      <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">parent</span><span class="p">],</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">idx</span><span class="p">],</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">parent</span><span class="p">]</span>
+</span><span class='line'>      <span class="nx">idx</span> <span class="p">=</span> <span class="nx">parent</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">Heap</span><span class="p">)</span> <span class="nx">down</span><span class="p">(</span><span class="nx">idx</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">end</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">{</span>
+</span><span class='line'>      <span class="c1">//start with left child</span>
+</span><span class='line'>      <span class="nx">child</span> <span class="o">:=</span> <span class="mi">2</span><span class="o">*</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">child</span> <span class="p">&gt;</span> <span class="nx">end</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">break</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">child</span><span class="o">+</span><span class="mi">1</span> <span class="p">&lt;</span> <span class="nx">end</span> <span class="o">&amp;&amp;</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">child</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">child</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="p">{</span>
+</span><span class='line'>          <span class="c1">//use right child</span>
+</span><span class='line'>          <span class="nx">child</span><span class="o">++</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">child</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">{</span>
+</span><span class='line'>          <span class="c1">//proper position</span>
+</span><span class='line'>          <span class="k">break</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="c1">//swap parent with child</span>
+</span><span class='line'>      <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">child</span><span class="p">],</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">idx</span><span class="p">],</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nx">child</span><span class="p">]</span>
+</span><span class='line'>      <span class="c1">//move to grandchildren</span>
+</span><span class='line'>      <span class="nx">idx</span> <span class="p">=</span> <span class="nx">child</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">Heap</span><span class="p">)</span> <span class="nx">Pop</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">result</span> <span class="o">:=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class='line'>  <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>  <span class="nx">h</span><span class="p">.</span><span class="nx">down</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>  <span class="nx">h</span><span class="p">.</span><span class="nx">data</span> <span class="p">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//shrink when excess capacity hits 3/4</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">h</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">result</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">Heap</span><span class="p">)</span> <span class="nx">resize</span><span class="p">(</span><span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">len</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+</span><span class='line'>  <span class="nx">temp</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">len</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">idx</span><span class="p">,</span> <span class="nx">val</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">temp</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">temp</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="p">=</span> <span class="nx">val</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="nx">h</span><span class="p">.</span><span class="nx">data</span> <span class="p">=</span> <span class="nx">temp</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">Heap</span><span class="p">)</span> <span class="nx">Push</span><span class="p">(</span><span class="nx">v</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">h</span><span class="p">.</span><span class="nx">data</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+</span><span class='line'>  <span class="nx">h</span><span class="p">.</span><span class="nx">up</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1">//grow when cap hit</span>
+</span><span class='line'>  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">cap</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">h</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Hash Table </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Linked List </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'><span class="kd">type</span> <span class="nx">Node</span> <span class="kd">struct</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">Data</span> <span class="kt">int</span>
+</span><span class='line'>  <span class="nx">Next</span> <span class="o">*</span><span class="nx">Node</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="p">(</span><span class="nx">n</span> <span class="o">*</span><span class="nx">Node</span><span class="p">)</span> <span class="nx">Append</span><span class="p">(</span><span class="nx">newNode</span> <span class="o">*</span><span class="nx">Node</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">temp</span> <span class="o">:=</span> <span class="nx">n</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">temp</span><span class="p">.</span><span class="nx">Next</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">temp</span> <span class="p">=</span> <span class="nx">temp</span><span class="p">.</span><span class="nx">Next</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">n</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">newNode</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">func</span> <span class="nx">reverseLinkedList</span><span class="p">(</span><span class="nx">node</span> <span class="o">*</span><span class="nx">Node</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">prev</span> <span class="o">*</span><span class="nx">Node</span>
+</span><span class='line'>  <span class="nx">current</span> <span class="o">:=</span> <span class="nx">node</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">current</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">next</span> <span class="o">:=</span> <span class="nx">current</span><span class="p">.</span><span class="nx">Next</span>
+</span><span class='line'>      <span class="nx">current</span><span class="p">.</span><span class="nx">Next</span> <span class="p">=</span> <span class="nx">prev</span>
+</span><span class='line'>      <span class="nx">prev</span> <span class="p">=</span> <span class="nx">current</span>
+</span><span class='line'>      <span class="nx">current</span> <span class="p">=</span> <span class="nx">next</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="nx">node</span> <span class="p">=</span> <span class="nx">prev</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Stack </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="c1">//simple stack structure</span>
+</span><span class='line'>  <span class="kd">type</span> <span class="nx">stack</span> <span class="p">[]</span><span class="kt">int</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">stack</span><span class="p">)</span> <span class="nx">Empty</span><span class="p">()</span> <span class="kt">bool</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">}</span>
+</span><span class='line'>  <span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">stack</span><span class="p">)</span> <span class="nx">Peek</span><span class="p">()</span> <span class="kt">int</span>   <span class="p">{</span> <span class="k">return</span> <span class="nx">s</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">}</span>
+</span><span class='line'>  <span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">stack</span><span class="p">)</span> <span class="nx">Put</span><span class="p">(</span><span class="nx">i</span> <span class="kt">int</span><span class="p">)</span>  <span class="p">{</span> <span class="p">(</span><span class="o">*</span><span class="nx">s</span><span class="p">)</span> <span class="p">=</span> <span class="nb">append</span><span class="p">((</span><span class="o">*</span><span class="nx">s</span><span class="p">),</span> <span class="nx">i</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">stack</span><span class="p">)</span> <span class="nx">Pop</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">d</span> <span class="o">:=</span> <span class="p">(</span><span class="o">*</span><span class="nx">s</span><span class="p">)[</span><span class="nb">len</span><span class="p">(</span><span class="o">*</span><span class="nx">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>      <span class="p">(</span><span class="o">*</span><span class="nx">s</span><span class="p">)</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">s</span><span class="p">)[:</span><span class="nb">len</span><span class="p">(</span><span class="o">*</span><span class="nx">s</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nx">d</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<h2>Misc</h2>
+
+
+
+
+<figure class='code'><figcaption><span>And 2 Collections </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Binary Search </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   <span class="c1">//Binary search</span>
+</span><span class='line'>  <span class="kd">func</span> <span class="nx">Search</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">target</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">return</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">target</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nx">vals</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">func</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">vals</span> <span class="p">[]</span><span class="kt">int</span><span class="p">,</span> <span class="nx">target</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">start</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">end</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">start</span> <span class="p">&gt;</span> <span class="nx">end</span> <span class="p">{</span>
+</span><span class='line'>          <span class="c1">//not found</span>
+</span><span class='line'>          <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nx">middle</span> <span class="o">:=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nx">Floor</span><span class="p">((</span><span class="nb">float64</span><span class="p">(</span><span class="nx">start</span><span class="p">)</span> <span class="o">+</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">end</span><span class="p">))</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">))</span>
+</span><span class='line'>      <span class="nx">value</span> <span class="o">:=</span> <span class="nx">vals</span><span class="p">[</span><span class="nx">middle</span><span class="p">]</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">value</span> <span class="p">&gt;</span> <span class="nx">target</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">start</span><span class="p">,</span> <span class="nx">middle</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">if</span> <span class="nx">value</span> <span class="p">&lt;</span> <span class="nx">target</span> <span class="p">{</span>
+</span><span class='line'>          <span class="k">return</span> <span class="nx">binarySearch</span><span class="p">(</span><span class="nx">vals</span><span class="p">,</span> <span class="nx">target</span><span class="p">,</span> <span class="nx">middle</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nx">end</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">return</span> <span class="nx">middle</span> <span class="c1">//found</span>
+</span><span class='line'>  <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Reverse Polish Calculator </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='go'><span class='line'>   
+</span><span class='line'>  <span class="c1">//reverse polish notation calculator</span>
+</span><span class='line'>  <span class="c1">//takes a string like &quot;699+/&quot;</span>
+</span><span class='line'>  <span class="c1">//prints result e.g. 9</span>
+</span><span class='line'>  <span class="kd">func</span> <span class="nx">ReversePolishCalculator</span><span class="p">(</span><span class="nx">expression</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">s</span> <span class="nx">stack</span>
+</span><span class='line'>  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">expression</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">switch</span> <span class="nx">c</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;+&#39;</span><span class="p">:</span>
+</span><span class='line'>          <span class="nx">a</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Pop</span><span class="p">()</span>
+</span><span class='line'>          <span class="nx">b</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Pop</span><span class="p">()</span>
+</span><span class='line'>          <span class="nx">s</span><span class="p">.</span><span class="nx">Put</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">break</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;-&#39;</span><span class="p">:</span>
+</span><span class='line'>          <span class="nx">a</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Pop</span><span class="p">()</span>
+</span><span class='line'>          <span class="nx">b</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Pop</span><span class="p">()</span>
+</span><span class='line'>          <span class="nx">s</span><span class="p">.</span><span class="nx">Put</span><span class="p">(</span><span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">break</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;/&#39;</span><span class="p">:</span>
+</span><span class='line'>          <span class="nx">a</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Pop</span><span class="p">()</span>
+</span><span class='line'>          <span class="nx">b</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Pop</span><span class="p">()</span>
+</span><span class='line'>          <span class="nx">s</span><span class="p">.</span><span class="nx">Put</span><span class="p">(</span><span class="nx">a</span> <span class="o">/</span> <span class="nx">b</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">break</span>
+</span><span class='line'>      <span class="k">case</span> <span class="sc">&#39;*&#39;</span><span class="p">:</span>
+</span><span class='line'>          <span class="nx">a</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Pop</span><span class="p">()</span>
+</span><span class='line'>          <span class="nx">b</span> <span class="o">:=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Pop</span><span class="p">()</span>
+</span><span class='line'>          <span class="nx">s</span><span class="p">.</span><span class="nx">Put</span><span class="p">(</span><span class="nx">a</span> <span class="o">*</span> <span class="nx">b</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">break</span>
+</span><span class='line'>      <span class="k">default</span><span class="p">:</span>
+</span><span class='line'>          <span class="nx">s</span><span class="p">.</span><span class="nx">Put</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="o">-</span> <span class="mi">48</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">//result</span>
+</span><span class='line'>  <span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;%v=%v&quot;</span><span class="p">,</span> <span class="nx">expression</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">Pop</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
@@ -2224,79 +3050,6 @@ And here is an example makefile:
 <p><p>
  Feel free to leave your comments below.
 </p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Nested Folders in Qt Creator]]></title>
-    <link href="http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator/"/>
-    <updated>2013-06-01T22:21:00-04:00</updated>
-    <id>http://zacg.github.io/blog/2013/06/01/nested-folders-in-qt-creator</id>
-    <content type="html"><![CDATA[<p>
-At first glance qt creator seems to be a feature rich ide however it still lacks many basic features such as being able to add sub folders for code to projects through the project explorer window. The following tutorial demonstrates how to get around the ide limitation by adding the folders manually.
-</p>
-
-
-
-
-<p>
-The goal is to achive the below folder strucutre, project being the root, and &#8220;ModuleA&#8221; being the folder we need to add.
-</p>
-
-
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>--Project
-</span><span class='line'>--/ModuleA/
-</span><span class='line'>----a.cpp
-</span><span class='line'>----a.h
-</span><span class='line'>----b.cpp
-</span><span class='line'>----b.h
-</span><span class='line'>--main.cpp
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Start by navigating to the projects root directory, and create a new folder:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'> mkdir ModuleA
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Create a new file inside named &#8220;modulea.pri&#8221;. If you are going to copy existing files into this new folder you need to add them to the pri file. (Adding new files can be done through the qt creator gui once the project is configured properly)</p>
-
-<p>Note the path names must be relative from the project root</p>
-
-<figure class='code'><figcaption><span>title:ModuleA.pri </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>SOURCES +<span class="o">=</span> ModuleA/a.cpp <span class="se">\</span>
-</span><span class='line'>    ModuleA/b.cpp <span class="se">\</span>
-</span><span class='line'>
-</span><span class='line'>HEADERS +<span class="o">=</span> ModuleA/a.h <span class="se">\</span>
-</span><span class='line'>    ModuleA/b.h <span class="se">\</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Now we need to include the new .pri file for the folder in the project configuration. Open up the .pro file located in the project root directory and add the following line:</p>
-
-<figure class='code'><figcaption><span>title:Project.pro </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>include<span class="o">(</span>ModuleA/ModuleA.pri<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Reload the project, the new ModuleA folder should now be visible as a subfolder in your main project. Right clicking on it will give you the option to add new files. Simply repeat the above process for each new sub folder you wish to add.</p>
 ]]></content>
   </entry>
   
